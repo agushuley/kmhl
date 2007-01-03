@@ -71,16 +71,12 @@ namespace km.hl {
                         transaction.Commit();
                     }
                 } */
-                using (g.orm.ORMContext ctx = new dom.Context()) {
-                    g.orm.Mapper m = ctx.getMapper(typeof(dom.junius.Order));
-                    foreach (dom.junius.Order o in m.getAll()) {
-                        textBox1.Text += ((g.orm.impl.IntKey)o.Key).Int + ":" + o.Description + ":" + o.Date + ":" + o.Name + "\r\n";
-                        o.Date = DateTime.Now;
-                    }
-                    ctx.update();
-                    ctx.rollback();
-                    ctx.commit();
-                };
+                g.orm.Mapper m = dom.Context.Instance.getMapper(typeof(dom.junius.Order));
+                foreach (dom.junius.Order o in m.getAll()) {
+                    textBox1.Text += ((g.orm.impl.IntKey)o.Key).Int + ":" + o.Description + ":" + o.Date + ":" + o.Name + "\r\n";
+                    o.Date = DateTime.Now;
+                }
+                dom.Context.Instance.commit();
 
             }
             catch (Exception ex) {

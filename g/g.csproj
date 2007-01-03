@@ -52,7 +52,7 @@
     <Reference Include="mscorlib" />
     <Reference Include="Oracle.DataAccess.Lite_wce, Version=10.2.0.0, Culture=neutral, PublicKeyToken=c30576e928f1bcd8">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Oracle.DataAccess.Lite_wce.dll</HintPath>
+      <HintPath>..\libs\Oracle.DataAccess.Lite_wce.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

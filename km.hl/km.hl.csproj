@@ -116,7 +116,7 @@
       <Project>{7648D0B2-C7A1-470B-882B-0985DBF22AB3}</Project>
       <Name>g</Name>
     </ProjectReference>
-    <ProjectReference Include="..\km.hard\casio.scan\km.hard.csproj">
+    <ProjectReference Include="..\km.hard\km.hard.csproj">
       <Project>{B458B90D-7AE1-4968-88E0-F57D09C137C1}</Project>
       <Name>km.hard</Name>
     </ProjectReference>

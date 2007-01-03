@@ -51,12 +51,12 @@
   <ItemGroup>
     <Reference Include="BluetoothLibNet, Version=1.0.2081.16828, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\BluetoothLibNet.dll</HintPath>
+      <HintPath>..\libs\BluetoothLibNet.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="OBReadLibNet, Version=1.0.2120.20267, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\OBReadLibNet.dll</HintPath>
+      <HintPath>..\libs\OBReadLibNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

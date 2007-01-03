@@ -11,8 +11,6 @@ namespace ITScan
 {
     public partial class Component1 : Component
     {
-        ORMContext ctx = new km.hl.dom.Context();
-
         public Component1()
         {
             InitializeComponent();
@@ -27,7 +25,7 @@ namespace ITScan
 
         public Order[] Orders {
             get {
-                return new TypedMapper<Order>(ctx.getMapper(typeof(Order))).getAll(); ;
+                return new TypedMapper<Order>(km.hl.dom.Context.Instance.getMapper(typeof(Order))).getAll(); ;
             }
         }
     }

@@ -10,8 +10,6 @@ using g.orm;
 
 namespace km.hl {
     public partial class testEdit : Form {
-        ORMContext ctx = new dom.Context();
- 
         public testEdit()
         {
             InitializeComponent();
@@ -20,7 +18,7 @@ namespace km.hl {
         private void testEdit_Load(object sender, EventArgs e)
         {
             this.ordersBindingSource.DataSource = orders;
-            foreach (Order order in ctx.getMapper(typeof(Order)).getAll()) {
+            foreach (Order order in dom.Context.Instance.getMapper(typeof(Order)).getAll()) {
                 orders.Add(order);
             }
             orders.AllowNew = true;
@@ -59,7 +57,7 @@ namespace km.hl {
         private void ordersBindingSource_AddingNew(object sender, AddingNewEventArgs e) {
             try {
                 Order order = new Order(new g.orm.impl.IntKey(10));
-                ctx.getMapper(typeof(Order)).add(order);
+                dom.Context.Instance.getMapper(typeof(Order)).add(order);
                 e.NewObject = order;
             }
             catch (Exception ex) {
