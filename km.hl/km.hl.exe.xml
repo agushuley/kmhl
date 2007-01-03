@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <!-- value name="scannerDriver">km.casio.CasioBarScanner, km.casio</value -->
+  <value name="scannerDriver">km.hard.stubs.BarScanner, km.hard</value>
+  
+  <value name="orders-db.factory">g.orm.driver.OracleLiteCeDataFactory, g</value>
+  <value name="orders-db.connection">dsn=OrdersODB;uid=system;pwd=JUNIUS</value>
+</config>
