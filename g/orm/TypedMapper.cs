@@ -4,7 +4,7 @@ using System.Text;
 
 namespace g.orm {
     public class TypedMapper<T>
-        where T : ORMObject
+        where T : g.orm.ORMObject
     {
         private Mapper mapper;
         public TypedMapper(Mapper mapper) {

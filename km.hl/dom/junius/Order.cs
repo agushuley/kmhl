@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace km.hl.dom.junius {
-    public class Order : g.orm.ORMObject {
+    public class Order : g.orm.impl.AbstractORMObject {
         public Order(g.orm.impl.IntKey key) : base(key) { }
 
         public int Id {

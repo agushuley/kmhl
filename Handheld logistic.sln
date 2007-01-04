@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "g", "g.csproj", "{7648D0B2-C7A1-470B-882B-0985DBF22AB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "g", "g\g.csproj", "{7648D0B2-C7A1-470B-882B-0985DBF22AB3}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
@@ -13,40 +13,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{8BA4EF37-B
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 	ProjectSection(SolutionItems) = preProject
-		..\libs\BluetoothLibNet.dll = ..\libs\BluetoothLibNet.dll
-		..\libs\OBReadLibNet.dll = ..\libs\OBReadLibNet.dll
-		..\libs\Oracle.DataAccess.Lite_w32.dll = ..\libs\Oracle.DataAccess.Lite_w32.dll
-		..\libs\Oracle.DataAccess.Lite_wce.dll = ..\libs\Oracle.DataAccess.Lite_wce.dll
+		libs\BluetoothLibNet.dll = libs\BluetoothLibNet.dll
+		libs\OBReadLibNet.dll = libs\OBReadLibNet.dll
+		libs\Oracle.DataAccess.Lite_w32.dll = libs\Oracle.DataAccess.Lite_w32.dll
+		libs\Oracle.DataAccess.Lite_wce.dll = libs\Oracle.DataAccess.Lite_wce.dll
+		libs\SystemLibnet.dll = libs\SystemLibnet.dll
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "km.hl", "..\km.hl\km.hl.csproj", "{5E535048-C479-466A-89A7-B3CBBB846AB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "km.hl", "km.hl\km.hl.csproj", "{5E535048-C479-466A-89A7-B3CBBB846AB5}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "km.hard", "..\km.hard\km.hard.csproj", "{B458B90D-7AE1-4968-88E0-F57D09C137C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "km.hard", "km.hard\km.hard.csproj", "{B458B90D-7AE1-4968-88E0-F57D09C137C1}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "oracew32", "oracew32\oracew32.csproj", "{095A712F-2110-4E8D-8D32-150DB8B96385}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(SourceCodeControl) = preSolution
-		SccNumberOfProjects = 3
-		SccProjectUniqueName0 = g.csproj
-		SccProjectName0 = g
-		SccLocalPath0 = .
-		SccProvider0 = MSSCCI:PushOk\u0020SVNSCC
-		SccProjectUniqueName1 = ..\\km.hl\\km.hl.csproj
-		SccProjectName1 = km/hl
-		SccLocalPath1 = ..\\km.hl
-		SccProvider1 = MSSCCI:PushOk\u0020SVNSCC
-		SccProjectUniqueName2 = ..\\km.hard\\km.hard.csproj
-		SccProjectName2 = km/hard
-		SccLocalPath2 = ..\\km.hard
-		SccProvider2 = MSSCCI:PushOk\u0020SVNSCC
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -66,6 +58,10 @@ Global
 		{B458B90D-7AE1-4968-88E0-F57D09C137C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B458B90D-7AE1-4968-88E0-F57D09C137C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B458B90D-7AE1-4968-88E0-F57D09C137C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{095A712F-2110-4E8D-8D32-150DB8B96385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{095A712F-2110-4E8D-8D32-150DB8B96385}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{095A712F-2110-4E8D-8D32-150DB8B96385}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{095A712F-2110-4E8D-8D32-150DB8B96385}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

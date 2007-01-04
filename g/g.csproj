@@ -17,11 +17,14 @@
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FormFactorID>
     </FormFactorID>
-    <SccProjectName>g</SccProjectName>
-    <SccLocalPath>.</SccLocalPath>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
     <SccAuxPath>
     </SccAuxPath>
-    <SccProvider>MSSCCI:PushOk SVNSCC</SccProvider>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -73,9 +76,10 @@
     <Compile Include="orm\impl\GenericContext.cs" />
     <Compile Include="orm\impl\GetQueryCallback.cs" />
     <Compile Include="orm\impl\IntKey.cs" />
+    <Compile Include="orm\ORMObject.cs" />
     <Compile Include="orm\Key.cs" />
     <Compile Include="orm\Mapper.cs" />
-    <Compile Include="orm\ORMObject.cs" />
+    <Compile Include="orm\impl\AbstractORMObject.cs" />
     <Compile Include="orm\ORMContext.cs" />
     <Compile Include="orm\ORMException.cs" />
     <Compile Include="orm\TypedMapper.cs" />

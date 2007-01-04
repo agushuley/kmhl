@@ -28,11 +28,11 @@ namespace g.orm.impl {
                     return registry[key];
                 }
 			    ORMObject obj = createInstance(key, rs);
-			    obj.State = ORMObject.StateType.LOADING;
+			    obj.ORMState = StateType.LOADING;
 			    registry.Add(obj.Key, obj);
 			    try {
 				    loadInstance(obj, rs);
-				    obj.State = ORMObject.StateType.CLEAN;
+				    obj.ORMState = StateType.CLEAN;
 			    }
 			    catch (ORMException e) {
 				    registry.Remove(obj.Key);
@@ -73,7 +73,10 @@ namespace g.orm.impl {
         public ORMObject[] getAll() {
             lock (registry) {
                 try {
-                    return getObjectsForCb(getSelectAllCb());
+                    getObjectsForCb(getSelectAllCb());
+                    ORMObject[] o = new ORMObject[Registry.Count];
+                    Registry.Values.CopyTo(o, 0);
+                    return o;
                 }
                 catch (DataException e) {
                     throw new ORMException(e);
@@ -91,9 +94,9 @@ namespace g.orm.impl {
         delegate GetQueryCallback QueryCallbackDelegate();
 	    public void commit() {
 		    try {
-			    executeBatchForObjects(getInsertQueryCB, ORMObject.StateType.NEW);
-			    executeBatchForObjects(getDeleteQueryCB, ORMObject.StateType.DELETED);
-			    executeBatchForObjects(getUpdateQueryCB, ORMObject.StateType.DIRTY);
+			    executeBatchForObjects(getInsertQueryCB, StateType.NEW);
+			    executeBatchForObjects(getDeleteQueryCB, StateType.DELETED);
+			    executeBatchForObjects(getUpdateQueryCB, StateType.DIRTY);
 		    } catch (DataException e) {
 			    throw new ORMException(e);
 		    }		
@@ -101,19 +104,19 @@ namespace g.orm.impl {
     	
 	    public void setClean() {
 		    foreach (ORMObject obj in Registry.Values) {
-			    if (obj.State == ORMObject.StateType.DELETED) {
+			    if (obj.ORMState == StateType.DELETED) {
 				    Registry.Remove(obj.Key);
 			    }
-                obj.State = ORMObject.StateType.CLEAN;
+                obj.ORMState = StateType.CLEAN;
 		    }		
 	    }
     	
         
-	    private void executeBatchForObjects(QueryCallbackDelegate queryCB, ORMObject.StateType state) {
+	    private void executeBatchForObjects(QueryCallbackDelegate queryCB, StateType state) {
 		    IDbCommand stm = null;
 		    try {
 			    foreach (ORMObject obj in Registry.Values) {
-				    if (obj.State == state) {
+				    if (obj.ORMState == state) {
 					    if (stm == null) {
 						    stm = ctx.getFactory(ConnectionKey)
                                 .getCommand(ctx.getConnection(ConnectionKey),
@@ -164,7 +167,7 @@ namespace g.orm.impl {
 				    throw new ORMException("Duplicate object key");
 			    }
 			    registry.Add(obj.Key, obj);
-			    obj.State = ORMObject.StateType.NEW;
+			    obj.ORMState = StateType.NEW;
 		    }		
 	    }
 
@@ -173,15 +176,13 @@ namespace g.orm.impl {
         public abstract Key createKey(DataRow rs);
         public abstract Key createKey();
 
-        IDictionary<Key, ORMObject> Mapper.Registry {
-            get { return registry; }
-        }
-
         public ORMContext Context {
             set { ctx = value; }
             get { return ctx; }
         }
 
         #endregion
+
+
     }
 }
