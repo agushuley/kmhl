@@ -5,7 +5,7 @@ using System.Text;
 namespace g.orm {
     public class ORMException : Exception {
         public ORMException(Exception i)
-            : base("", i) {
+            : base(i.Message, i) {
         }
         public ORMException(String message)
             : base(message) {
