@@ -71,16 +71,34 @@ namespace km.hl {
                         transaction.Commit();
                     }
                 } */
-                g.orm.Mapper m = dom.Context.Instance.getMapper(typeof(dom.junius.Order));
-                foreach (dom.junius.Order o in m.getAll()) {
-                    textBox1.Text += ((g.orm.impl.IntKey)o.Key).Int + ":" + o.Description + ":" + o.Date + ":" + o.Name + "\r\n";
-                    o.Date = DateTime.Now;
-                }
-                dom.Context.Instance.commit();
-
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e) {
+            g.orm.Mapper m = dom.Context.Instance.getMapper(typeof(dom.hl.MoveOrder));
+            foreach (dom.hl.MoveOrder o in m.getAll()) {
+                textBox1.Text += ((g.orm.impl.IntKey)o.Key).Int + ":" + o.Description + "\r\n";
+            }
+            dom.Context.Instance.commit();
+
+        }
+
+        private void button6_Click(object sender, EventArgs e) {
+            String caption = this.Text;
+            try {
+                this.Text = "Sync is running...";
+                dom.Context.Instance.close();
+                g.dbsync.SyncProvider sync = g.Class.CreateInstance<g.dbsync.SyncProvider>(g.config.Config.get("sync.provider"), null);
+                sync.DoSync();
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
+            }
+            finally {
+                this.Text = caption;
             }
         }
     }

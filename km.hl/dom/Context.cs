@@ -5,8 +5,7 @@ using System.Text;
 namespace km.hl.dom {
     public class Context : g.orm.impl.GenericContext {
         private Context() {
-            this.registerMapper(typeof(junius.Order), typeof(junius.OrderMapper));
-            this.registerMapper(typeof(junius.OrderDetail), typeof(junius.OrderDetailsMapper));
+            this.registerMapper(typeof(hl.MoveOrder), typeof(hl.MoveOrdersMapper));
         }
 
         static g.orm.ORMContext ctx = new Context();

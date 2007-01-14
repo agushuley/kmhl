@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="Class.cs" />
     <Compile Include="config\Config.cs" />
+    <Compile Include="dbsync\OracleCeSyncProvider.cs" />
+    <Compile Include="dbsync\SyncProvider.cs" />
     <Compile Include="DbTools.cs" />
     <Compile Include="orm\DataFactory.cs" />
     <Compile Include="orm\DeferableLoader.cs" />

@@ -89,6 +89,7 @@ namespace km.hl
             this.dataGrid1.Name = "dataGrid1";
             this.dataGrid1.Size = new System.Drawing.Size(231, 209);
             this.dataGrid1.TabIndex = 11;
+            this.dataGrid1.CurrentCellChanged += new System.EventHandler(this.dataGrid1_CurrentCellChanged);
             // 
             // testEdit
             // 

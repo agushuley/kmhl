@@ -13,7 +13,6 @@ namespace g {
 		/// <exception cref="System.ArgumentException">Задано неправильное имя типа, невозможно загрузить указанную сборку, нет сборки для типа</exception>
 		/// <returns>Экземпляр объекта</returns>
 		public static T CreateInstance<T>(string typeFullName, System.Type defaultType) {
-
 			System.Reflection.Assembly assembly = null; // сборка, с которой будет загружатся тип
 			string typeName;							// Название типа
 			string typeAssemblyName = "";		// Название сборки

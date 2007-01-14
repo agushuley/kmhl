@@ -5,4 +5,8 @@
   
   <value name="orders-db.factory">g.orm.driver.OracleLiteCeDataFactory, g</value>
   <value name="orders-db.connection">dsn=OrdersODB;uid=system;pwd=JUNIUS</value>
+  <value name="hl-db.factory">g.orm.driver.OracleLiteCeDataFactory, g</value>
+  <value name="hl-db.connection">dsn=kmhl;uid=system;pwd=s1</value>
+
+  <value name="sync.provider">g.dbsync.OracleCeSyncProvider, g</value>
 </config>

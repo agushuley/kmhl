@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace g {
-    class HttpUtility {
+    public class HttpUtility {
         private class UrlDecoder {
             internal UrlDecoder(int bufferSize, Encoding encoding) {
                 this._bufferSize = bufferSize;

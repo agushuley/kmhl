@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using km.hl.dom.junius;
+using km.hl.dom.hl;
 using g.orm;
 
 namespace km.hl {
@@ -18,7 +18,7 @@ namespace km.hl {
         private void testEdit_Load(object sender, EventArgs e)
         {
             this.ordersBindingSource.DataSource = orders;
-            foreach (Order order in dom.Context.Instance.getMapper(typeof(Order)).getAll()) {
+            foreach (MoveOrder order in dom.Context.Instance.getMapper(typeof(MoveOrder)).getAll()) {
                 orders.Add(order);
             }
             orders.AllowNew = true;
@@ -52,18 +52,22 @@ namespace km.hl {
 
         }
 
-        BindingList<Order> orders = new BindingList<Order>();
+        BindingList<MoveOrder> orders = new BindingList<MoveOrder>();
 
         private void ordersBindingSource_AddingNew(object sender, AddingNewEventArgs e) {
             try {
-                Order order = new Order(new g.orm.impl.IntKey(10));
-                dom.Context.Instance.getMapper(typeof(Order)).add(order);
+                MoveOrder order = new MoveOrder(new g.orm.impl.IntKey(10));
+                dom.Context.Instance.getMapper(typeof(MoveOrder)).add(order);
                 e.NewObject = order;
             }
             catch (Exception ex) {
                 orders.CancelNew(orders.Count - 1);
                 throw new ORMException("Duplicate key");
             }
+        }
+
+        private void dataGrid1_CurrentCellChanged(object sender, EventArgs e) {
+
         }
         
     }

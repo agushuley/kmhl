@@ -68,10 +68,8 @@
       <DependentUpon>Component1.cs</DependentUpon>
     </Compile>
     <Compile Include="dom\Context.cs" />
-    <Compile Include="dom\junius\Order.cs" />
-    <Compile Include="dom\junius\OrderDetail.cs" />
-    <Compile Include="dom\junius\OrderDetailsMapper.cs" />
-    <Compile Include="dom\junius\OrderMapper.cs" />
+    <Compile Include="dom\hl\MoveOrder.cs" />
+    <Compile Include="dom\hl\MoveOrdersMapper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

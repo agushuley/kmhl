@@ -5,8 +5,6 @@ using System.Diagnostics;
 using System.Text;
 
 using g.orm;
-using km.hl.dom.junius;
-
 namespace ITScan
 {
     public partial class Component1 : Component
@@ -23,10 +21,6 @@ namespace ITScan
             InitializeComponent();
         }
 
-        public Order[] Orders {
-            get {
-                return new TypedMapper<Order>(km.hl.dom.Context.Instance.getMapper(typeof(Order))).getAll(); ;
-            }
-        }
+     
     }
 }
