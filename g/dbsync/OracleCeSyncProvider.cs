@@ -6,6 +6,10 @@ using Oracle.DataAccess.Lite;
 
 namespace g.dbsync {
     public class OracleCeSyncProvider : OracleSync, SyncProvider {
+        public OracleCeSyncProvider() {
+            this.Option = SyncOption.DEBUG;
+        }
+
         public string HostName {
             get { return this.ServerURL; }
             set { this.ServerURL = value; }

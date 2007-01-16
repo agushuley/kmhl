@@ -35,6 +35,8 @@ namespace km.hl
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGrid1 = new System.Windows.Forms.DataGrid();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -49,6 +51,7 @@ namespace km.hl
             // ordersBindingSource
             // 
             this.ordersBindingSource.AllowNew = true;
+            this.ordersBindingSource.CurrentChanged += new System.EventHandler(this.ordersBindingSource_CurrentChanged);
             this.ordersBindingSource.AddingNew += new System.ComponentModel.AddingNewEventHandler(this.ordersBindingSource_AddingNew);
             // 
             // button2
@@ -91,12 +94,30 @@ namespace km.hl
             this.dataGrid1.TabIndex = 11;
             this.dataGrid1.CurrentCellChanged += new System.EventHandler(this.dataGrid1_CurrentCellChanged);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Location = new System.Drawing.Point(83, 56);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(100, 22);
+            this.comboBox1.TabIndex = 12;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(106, 4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 21);
+            this.textBox1.TabIndex = 13;
+            this.textBox1.Text = "textBox1";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // testEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 294);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGrid1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -117,5 +138,7 @@ namespace km.hl
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGrid dataGrid1;
         private System.Windows.Forms.BindingSource ordersBindingSource;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

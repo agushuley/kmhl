@@ -78,11 +78,11 @@ namespace km.hl {
         }
 
         private void button5_Click(object sender, EventArgs e) {
-            g.orm.Mapper m = dom.Context.Instance.getMapper(typeof(dom.hl.MoveOrder));
-            foreach (dom.hl.MoveOrder o in m.getAll()) {
-                textBox1.Text += ((g.orm.impl.IntKey)o.Key).Int + ":" + o.Description + "\r\n";
+            g.orm.Mapper m = orm.Context.Instance.getMapper(typeof(orm.MoveOrder));
+            foreach (orm.MoveOrder o in m.getAll()) {
+                textBox1.Text += ((g.orm.impl.IntKey)o.ORMKey).Int + ":" + o.Description + "\r\n";
             }
-            dom.Context.Instance.commit();
+            orm.Context.Instance.commit();
 
         }
 
@@ -91,7 +91,7 @@ namespace km.hl {
             String caption = this.Text;
             try {
                 this.Text = "Sync is running...";
-                dom.Context.Instance.close();
+                orm.Context.Instance.close();
                 g.dbsync.SyncProvider sync = g.Class.CreateInstance<g.dbsync.SyncProvider>(g.config.Config.get("sync.provider"), null);
                 sync.UserName = g.config.Config.get("sync.user");
                 sync.Password = g.config.Config.get("sync.password");

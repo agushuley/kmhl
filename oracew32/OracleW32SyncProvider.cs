@@ -7,6 +7,10 @@ using g.dbsync;
 
 namespace oracew32 {
     public class OracleW32SyncProvider : OracleSync, SyncProvider {
+        public OracleW32SyncProvider() {
+            this.Option = SyncOption.DEBUG;
+        }
+
         public string HostName {
             get { return this.ServerURL; }
             set { this.ServerURL = value; }

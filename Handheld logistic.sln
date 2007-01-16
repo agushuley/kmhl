@@ -38,6 +38,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "oracew32", "oracew32\oracew
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{46F079FA-E3F7-45DB-8667-48E0BF4DF456}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +68,12 @@ Global
 		{095A712F-2110-4E8D-8D32-150DB8B96385}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{095A712F-2110-4E8D-8D32-150DB8B96385}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{095A712F-2110-4E8D-8D32-150DB8B96385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46F079FA-E3F7-45DB-8667-48E0BF4DF456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46F079FA-E3F7-45DB-8667-48E0BF4DF456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46F079FA-E3F7-45DB-8667-48E0BF4DF456}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{46F079FA-E3F7-45DB-8667-48E0BF4DF456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46F079FA-E3F7-45DB-8667-48E0BF4DF456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46F079FA-E3F7-45DB-8667-48E0BF4DF456}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

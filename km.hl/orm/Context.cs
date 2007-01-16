@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace km.hl.dom {
+namespace km.hl.orm {
     public class Context : g.orm.impl.GenericContext {
         private Context() {
-            this.registerMapper(typeof(hl.MoveOrder), typeof(hl.MoveOrdersMapper));
+            this.registerMapper(typeof(MoveOrder), typeof(MoveOrdersMapper));
         }
 
         static g.orm.ORMContext ctx = new Context();
