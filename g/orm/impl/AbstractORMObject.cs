@@ -12,7 +12,7 @@ namespace g.orm.impl {
 		    this.key = key;
 	    }
 
-	    public Key Key {
+	    public Key ORMKey {
 		    get { return this.key; }
 	    }
     	

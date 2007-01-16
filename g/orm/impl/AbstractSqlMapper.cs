@@ -29,17 +29,17 @@ namespace g.orm.impl {
                 }
 			    ORMObject obj = createInstance(key, rs);
 			    obj.ORMState = StateType.LOADING;
-			    registry.Add(obj.Key, obj);
+			    registry.Add(obj.ORMKey, obj);
 			    try {
 				    loadInstance(obj, rs);
 				    obj.ORMState = StateType.CLEAN;
 			    }
 			    catch (ORMException e) {
-				    registry.Remove(obj.Key);
+				    registry.Remove(obj.ORMKey);
 				    throw e;
 			    }
 			    catch (Exception e) {
-                    registry.Remove(obj.Key);
+                    registry.Remove(obj.ORMKey);
 				    throw new ORMException(e);
 			    }
 			    return obj;
@@ -105,7 +105,7 @@ namespace g.orm.impl {
 	    public void setClean() {
 		    foreach (ORMObject obj in Registry.Values) {
 			    if (obj.ORMState == StateType.DELETED) {
-				    Registry.Remove(obj.Key);
+				    Registry.Remove(obj.ORMKey);
 			    }
                 obj.ORMState = StateType.CLEAN;
 		    }		
@@ -163,10 +163,10 @@ namespace g.orm.impl {
     	
 	    public void add(ORMObject obj) {
 		    lock (registry) {
-                if (this[obj.Key] != null) {
+                if (this[obj.ORMKey] != null) {
 				    throw new ORMException("Duplicate object key");
 			    }
-			    registry.Add(obj.Key, obj);
+			    registry.Add(obj.ORMKey, obj);
 			    obj.ORMState = StateType.NEW;
 		    }		
 	    }
