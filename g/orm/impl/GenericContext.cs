@@ -66,7 +66,6 @@ namespace g.orm.impl {
         }
 
         public Mapper getMapper(Type type) {
-
             Type o = type;
 
             while (type != typeof(Object)) {
@@ -121,6 +120,10 @@ namespace g.orm.impl {
                 }
             }
             cnns.Clear();
+
+            foreach (Mapper mapper in mappers.Values) {
+                mapper.clear();
+            }
 	    }
 
         public void rollback() {

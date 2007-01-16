@@ -87,11 +87,15 @@ namespace km.hl {
         }
 
         private void button6_Click(object sender, EventArgs e) {
+            g.config.Config.clean();
             String caption = this.Text;
             try {
                 this.Text = "Sync is running...";
                 dom.Context.Instance.close();
                 g.dbsync.SyncProvider sync = g.Class.CreateInstance<g.dbsync.SyncProvider>(g.config.Config.get("sync.provider"), null);
+                sync.UserName = g.config.Config.get("sync.user");
+                sync.Password = g.config.Config.get("sync.password");
+                sync.HostName = g.config.Config.get("sync.host");
                 sync.DoSync();
             }
             catch (Exception ex) {

@@ -55,14 +55,18 @@ namespace g.config {
         }
 
         private static void loadConfig(String path, Dictionary<String, String> dict) {
-            if (!System.IO.File.Exists(path)) {
-                return;
-            }
-
             XmlDocument doc = new XmlDocument();
-            doc.Load(path);
+            try {
+                doc.Load(path);
+            }
+            catch (System.IO.FileNotFoundException) { 
+                return;  
+            }
             foreach (XmlNode node in doc.SelectNodes("/config/value")) {
                 XmlElement el = (XmlElement) node;
+                if (dict.ContainsKey(el.GetAttribute("name"))) {
+                    dict.Remove(el.GetAttribute("name"));
+                }
                 dict.Add(el.GetAttribute("name"), el.InnerXml);
             }
         }

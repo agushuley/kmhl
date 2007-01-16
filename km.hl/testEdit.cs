@@ -30,6 +30,7 @@ namespace km.hl {
 
         private void button1_Click(object sender, EventArgs e)
         {
+            dom.Context.Instance.commit();
             this.Close();
         }
 
