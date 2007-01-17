@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace g.orm.impl {
-    public class AbstractORMObject : g.orm.ORMObject  {
+    public class GenericORMObject : g.orm.ORMObject  {
 	    private StateType state = StateType.NEW; 
 
 	    private Key key;
 
-        public AbstractORMObject(Key key) {
+        public GenericORMObject(Key key) {
 		    this.key = key;
 	    }
 

@@ -69,7 +69,7 @@
     <Compile Include="dbsync\SyncProvider.cs" />
     <Compile Include="DbTools.cs" />
     <Compile Include="orm\DataFactory.cs" />
-    <Compile Include="orm\DeferableLoader.cs" />
+    <Compile Include="orm\DefferableLoader.cs" />
     <Compile Include="orm\driver\OracleLiteCeDataFactory.cs" />
     <Compile Include="orm\driver\SQLServerCeDataFactory.cs" />
     <Compile Include="orm\impl\AbstractKey.cs" />
@@ -81,7 +81,7 @@
     <Compile Include="orm\ORMObject.cs" />
     <Compile Include="orm\Key.cs" />
     <Compile Include="orm\Mapper.cs" />
-    <Compile Include="orm\impl\AbstractORMObject.cs" />
+    <Compile Include="orm\impl\GenericORMObject.cs" />
     <Compile Include="orm\ORMContext.cs" />
     <Compile Include="orm\ORMException.cs" />
     <Compile Include="orm\TypedMapper.cs" />

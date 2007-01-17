@@ -59,7 +59,6 @@ namespace km.hl {
 
         private void ordersBindingSource_AddingNew(object sender, AddingNewEventArgs e) {
             try {
-                MoveOrder order = new MoveOrder(new g.orm.impl.IntKey(10));
                 orm.Context.Instance.getMapper(typeof(MoveOrder)).add(order);
                 e.NewObject = order;
             }

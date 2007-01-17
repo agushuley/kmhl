@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 
 using g.orm.impl;
+using g.orm;
 
 namespace km.hl.orm {
     public enum MoveOrderSate { Y, N }
-    public class MoveOrder : AbstractORMObject {
-        public MoveOrder(g.orm.impl.IntKey key) : base(key) { }
+    public class MoveOrder : GenericORMObject {
+        public MoveOrder(g.orm.impl.IntKey key, DefferableLoader<MoveOrderItem, MoveOrder> itemsLoader) : base(key) {
+            loader = itemsLoader;
+        }
 
         String description;
 
@@ -55,6 +58,20 @@ namespace km.hl.orm {
             set {
                 checkRo("moveDate");
                 moveDate = value; 
+            }
+        }
+
+        private DefferableLoader<MoveOrderItem, MoveOrder> loader = null;
+        private ICollection<MoveOrderItem> items = null;
+        public ICollection<MoveOrderItem> Items {
+            get {
+                if (items == null && loader != null) {
+                    items = loader.load(this);
+                    if (items != null) {
+                        loader = null;
+                    }
+                }
+                return items;
             }
         }
     }

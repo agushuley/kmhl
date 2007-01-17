@@ -74,7 +74,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="orm\Context.cs" />
+    <Compile Include="orm\IMoveOrderMapper.cs" />
     <Compile Include="orm\MoveOrder.cs" />
+    <Compile Include="orm\MoveOrderItem.cs" />
     <Compile Include="orm\MoveOrdersMapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

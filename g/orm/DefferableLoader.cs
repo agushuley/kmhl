@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace g.orm {
-    public interface DeferableLoader<T, K>
+    public interface DefferableLoader<T, K>
         where T : ORMObject
         where K : ORMObject
     {
