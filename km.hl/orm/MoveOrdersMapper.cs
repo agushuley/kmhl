@@ -50,7 +50,7 @@ namespace km.hl.orm {
                 get { return BASE_SELECT + " WHERE move_id = ?"; }
             }
             public void SetParams(System.Data.IDbCommand cmd, g.orm.ORMObject obj) {
-                g.DbTools.setParam(cmd, "@id", id);
+                g.DbTools.setParam(cmd, ":id", id);
             }
         }
         protected override GetQueryCallback getSelectByKeyCb(g.orm.Key key) {
@@ -71,9 +71,9 @@ namespace km.hl.orm {
 
             public void SetParams(System.Data.IDbCommand cmd, g.orm.ORMObject obj) {
                 MoveOrder order = (MoveOrder)obj;
-                g.DbTools.setParam(cmd, "@status", order.State.ToString());
+                g.DbTools.setParam(cmd, ":status", order.State.ToString());
 
-                g.DbTools.setParam(cmd, "@id", order.Id);
+                g.DbTools.setParam(cmd, ":id", order.Id);
             }
         }
         protected override GetQueryCallback getUpdateQueryCB() {

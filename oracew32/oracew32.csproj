@@ -28,6 +28,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=10.2.0.100, Culture=neutral, PublicKeyToken=89b483f429c47342">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>c:\WINNT\assembly\GAC\Oracle.DataAccess\10.2.0.100__89b483f429c47342\Oracle.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="Oracle.DataAccess.Lite_w32, Version=10.2.0.0, Culture=neutral, PublicKeyToken=c30576e928f1bcd8">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\Oracle.DataAccess.Lite_w32.dll</HintPath>
@@ -37,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OracleDataFactory.cs" />
     <Compile Include="OracleW32SyncProvider.cs" />
     <Compile Include="OracleLiteW32Factory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -3,13 +3,11 @@
   <!-- value name="scannerDriver">km.casio.CasioBarScanner, km.casio</value -->
   <value name="scannerDriver">km.hard.stubs.BarScanner, km.hard</value>
   
-  <value name="orders-db.factory">g.orm.driver.OracleLiteCeDataFactory, g</value>
-  <value name="orders-db.connection">dsn=OrdersODB;uid=system;pwd=JUNIUS</value>
   <value name="hl-db.factory">g.orm.driver.OracleLiteCeDataFactory, g</value>
   <value name="hl-db.connection">dsn=kmhl;uid=system;pwd=s1</value>
 
   <value name="sync.provider">g.dbsync.OracleCeSyncProvider, g</value>
   <value name="sync.user">S1</value>
   <value name="sync.password">S1</value>
-  <value name="sync.host">10.10.10.10</value>
+  <value name="sync.host">localhost</value>
 </config>
