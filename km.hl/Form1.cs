@@ -28,7 +28,6 @@ namespace km.hl {
 
         private void button3_Click(object sender, EventArgs e)
         {
-            new testEdit().Show();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -80,10 +79,11 @@ namespace km.hl {
         private void button5_Click(object sender, EventArgs e) {
             g.orm.Mapper m = orm.Context.Instance.getMapper(typeof(orm.MoveOrder));
             foreach (orm.MoveOrder o in m.getAll()) {
-                textBox1.Text += ((g.orm.impl.IntKey)o.ORMKey).Int + ":" + o.Description + "\r\n";
+                textBox1.Text += ((g.orm.impl.IntKey)o.ORMKey).Int + ":" + o.Description + ":" + o.Buyer.Description + "\r\n";
+                foreach (orm.MoveOrderItem i in o.Items) {
+                    textBox1.Text += String.Format("\t{0}:{1}:{2}:{3}\r\n", i.Description, i.QtyGived, i.MfrCode, i.InternalCode);
+                }
             }
-            orm.Context.Instance.commit();
-
         }
 
         private void button6_Click(object sender, EventArgs e) {

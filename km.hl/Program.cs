@@ -7,7 +7,7 @@ namespace km.hl {
         [MTAThread]
         static void Main() {
             g.config.Config.reconfigure(typeof(Program));
-            Application.Run(new Form1());            
+            Application.Run(new MainForm());            
         }
     }
 }

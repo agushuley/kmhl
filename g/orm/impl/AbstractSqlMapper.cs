@@ -7,7 +7,10 @@ namespace g.orm.impl {
     public abstract class AbstractSqlMapper : Mapper {
         private IDictionary<Key, ORMObject> registry = new Dictionary<Key, ORMObject>();
 
-	    private ORMContext ctx = null;
+        private ORMContext ctx = null;
+        protected ORMContext Ctx {
+            get { return ctx; }
+        }
 
 	    public void clear() { registry.Clear(); }
     	
@@ -21,7 +24,7 @@ namespace g.orm.impl {
             get { return registry; }
 	    }
 
-	    protected ORMObject loadObject(DataRow rs) {
+	    public ORMObject loadObject(DataRow rs) {
 		    Key key = createKey(rs);
 		    lock (registry) {
                 if (registry.ContainsKey(key)) {
@@ -182,7 +185,5 @@ namespace g.orm.impl {
         }
 
         #endregion
-
-
     }
 }

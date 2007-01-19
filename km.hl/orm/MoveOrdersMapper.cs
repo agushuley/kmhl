@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using g.orm.impl;
+using g.orm;
 
 namespace km.hl.orm {
     public class MoveOrdersMapper : AbstractSqlMapper {
         protected override string ConnectionKey {
-            get { return "hl-db"; }
+            get { return Commons.DATABASE_ID; }
         }
 
         protected override void loadInstance(g.orm.ORMObject obj, System.Data.DataRow rs) {
@@ -16,18 +17,35 @@ namespace km.hl.orm {
             order.Number = g.DbTools.ToString(rs["move_number"]);
             order.MoveDate = g.DbTools.ToDateTimeZ(rs["move_date"]);
             order.CreationDate = g.DbTools.ToDateTime(rs["creation_date"]);
+            AbstractSqlMapper bm = (AbstractSqlMapper)Ctx.getMapper(typeof(Buyer));
+            Key bk = bm.createKey(rs);
+            if (!bm.Registry.ContainsKey(bk)) {
+                order.Buyer = (Buyer)bm.loadObject(rs);
+            }
+            else {
+                order.Buyer = (Buyer)bm.Registry[bk];
+            }
         }
 
         private string decode(string p) {
-            if (p == null) return null;
-            return g.HttpUtility.UrlDecode(p, Encoding.GetEncoding("Windows-1251"));
+            return Commons.decodeText(p);
         }
 
+        private class MoveOrderItemsLoader : g.orm.DefferableLoader<MoveOrderItem, MoveOrder> {
+            public MoveOrderItemsLoader(g.orm.ORMContext ctx) {
+                this.ctx = ctx;
+            }
+            private g.orm.ORMContext ctx;
+            public ICollection<MoveOrderItem> load(MoveOrder obj) {
+                IMoveOrderItemsMapper mapper = (IMoveOrderItemsMapper)ctx.getMapper(typeof(MoveOrderItem));
+                return mapper.getItemsForOrder(obj);
+            }
+        }
         protected override g.orm.ORMObject createInstance(g.orm.Key key, System.Data.DataRow rs) {
-            return new MoveOrder((IntKey)key);
+            return new MoveOrder((IntKey)key, new MoveOrderItemsLoader(Ctx));
         }
 
-        private const String BASE_SELECT = "SELECT move_id, creation_date, move_number, move_date, description, status, scanner_id FROM inv_mv_orders";
+        private const String BASE_SELECT = "SELECT move_id, creation_date, move_number, move_date, description, status, buyer_id, buyer_name, scanner_id FROM inv_hl_move_orders";
 
         public class AllCb : GetQueryCallback {
             public string Sql {
@@ -77,7 +95,8 @@ namespace km.hl.orm {
             }
         }
         protected override GetQueryCallback getUpdateQueryCB() {
-            return new UpdateCallback();   
+            //return new UpdateCallback();   
+            throw new Exception("The method or operation is not implemented.");
         }
 
         protected override GetQueryCallback getDeleteQueryCB() {

@@ -6,6 +6,8 @@ namespace km.hl.orm {
     public class Context : g.orm.impl.GenericContext {
         private Context() {
             this.registerMapper(typeof(MoveOrder), typeof(MoveOrdersMapper));
+            this.registerMapper(typeof(Buyer), typeof(BuyersMapper));
+            this.registerMapper(typeof(MoveOrderItem), typeof(MoveOrdersItemsMapper));
         }
 
         static g.orm.ORMContext ctx = new Context();

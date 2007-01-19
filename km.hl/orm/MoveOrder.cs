@@ -6,7 +6,7 @@ using g.orm.impl;
 using g.orm;
 
 namespace km.hl.orm {
-    public enum MoveOrderSate { Y, N }
+    public enum MoveOrderSate { U, C, G }
     public class MoveOrder : GenericORMObject {
         public MoveOrder(g.orm.impl.IntKey key, DefferableLoader<MoveOrderItem, MoveOrder> itemsLoader) : base(key) {
             loader = itemsLoader;
@@ -31,7 +31,7 @@ namespace km.hl.orm {
         private MoveOrderSate state;
         public MoveOrderSate State {
             get { return state; }
-            set { state = value; markDirty(); }
+            set { checkRo("state"); state = value; }
         }    
 
         private DateTime creationDate;
@@ -73,6 +73,12 @@ namespace km.hl.orm {
                 }
                 return items;
             }
+        }
+
+        private Buyer buyer;
+        public Buyer Buyer {
+            get { return buyer; }
+            set { checkRo("buyer"); buyer = value; }
         }
     }
 }

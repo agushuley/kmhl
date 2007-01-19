@@ -73,11 +73,39 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="orm\BuyersMapper.cs" />
+    <Compile Include="orm\Buyer.cs" />
+    <Compile Include="orm\Commons.cs" />
     <Compile Include="orm\Context.cs" />
-    <Compile Include="orm\IMoveOrderMapper.cs" />
+    <Compile Include="orm\IMoveOrderItemsMapper.cs" />
     <Compile Include="orm\MoveOrder.cs" />
     <Compile Include="orm\MoveOrderItem.cs" />
+    <Compile Include="orm\MoveOrdersItemsMapper.cs" />
     <Compile Include="orm\MoveOrdersMapper.cs" />
+    <Compile Include="outturn\BuyerItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="outturn\BuyerItem.Designer.cs">
+      <DependentUpon>BuyerItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="outturn\BuyerSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="outturn\BuyerSelect.Designer.cs">
+      <DependentUpon>BuyerSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="outturn\SelectListTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="outturn\SelectListTypeForm.Designer.cs">
+      <DependentUpon>SelectListTypeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Component1.resx">
@@ -88,25 +116,37 @@
       <SubType>Designer</SubType>
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="outturn\BuyerItem.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>BuyerItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="outturn\BuyerSelect.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>BuyerSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="outturn\SelectListTypeForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectListTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="testEdit.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>testEdit.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="testEdit.cs">
+    <Compile Include="SyncForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="testEdit.Designer.cs">
-      <DependentUpon>testEdit.cs</DependentUpon>
+    <Compile Include="SyncForm.Designer.cs">
+      <DependentUpon>SyncForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -19,6 +19,12 @@ namespace km.hl.orm {
             set { checkRo("quantity"); quantity = value; }
         }
 
+        private int gtyGived;
+        public int QtyGived {
+            get { return gtyGived; }
+            set { markDirty(); gtyGived = value; }
+        }
+
         private int inventoryId;
         public int InventoryId {
             get { return inventoryId; }
@@ -41,6 +47,10 @@ namespace km.hl.orm {
         public String MfrCode {
             get { return mfrCode; }
             set { checkRo("mfrCode"); mfrCode = value; }
+        }
+
+        public int Id {
+            get { return ((IntKey)ORMKey).Int; }
         }
     }
 }
