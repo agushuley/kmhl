@@ -23,5 +23,9 @@ namespace km.hl {
         private void btnOutturnSync_Click(object sender, EventArgs e) {
             new SyncForm().ShowDialog();
         }
+
+        private void btnExit_Click(object sender, EventArgs e) {
+            Close();
+        }
     }
 }

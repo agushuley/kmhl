@@ -58,8 +58,8 @@ namespace g {
 					throw new ArgumentException();
 				}
 			}
-			catch (Exception) {
-				throw new ArgumentException("Не могу создать тип " + typeName);
+			catch (Exception e) {
+				throw new ArgumentException("Не могу создать тип " + typeName, e);
 			}
 
 			return instance;

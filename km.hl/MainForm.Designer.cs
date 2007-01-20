@@ -27,6 +27,7 @@ namespace km.hl {
             this.btnOutturnGivved = new System.Windows.Forms.Button();
             this.btnOutturnSync = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOutturnChecked
@@ -64,6 +65,15 @@ namespace km.hl {
             this.label1.Size = new System.Drawing.Size(232, 20);
             this.label1.Text = "Расходные документы";
             // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(4, 179);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(233, 30);
+            this.btnExit.TabIndex = 2;
+            this.btnExit.Text = "0. Выход";
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -71,6 +81,7 @@ namespace km.hl {
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 320);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnOutturnSync);
             this.Controls.Add(this.btnOutturnGivved);
             this.Controls.Add(this.btnOutturnChecked);
@@ -88,5 +99,6 @@ namespace km.hl {
         private System.Windows.Forms.Button btnOutturnGivved;
         private System.Windows.Forms.Button btnOutturnSync;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnExit;
     }
 }
