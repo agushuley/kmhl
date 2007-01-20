@@ -19,5 +19,9 @@ namespace km.hl {
         private void btnOutturnGivved_Click(object sender, EventArgs e) {
             new outturn.SelectListTypeForm(orm.MoveOrderSate.G).ShowDialog();
         }
+
+        private void btnOutturnSync_Click(object sender, EventArgs e) {
+            new SyncForm().ShowDialog();
+        }
     }
 }

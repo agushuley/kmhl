@@ -54,6 +54,7 @@ namespace km.hl {
             this.btnOutturnSync.Size = new System.Drawing.Size(233, 30);
             this.btnOutturnSync.TabIndex = 2;
             this.btnOutturnSync.Text = "3. Синхронизация";
+            this.btnOutturnSync.Click += new System.EventHandler(this.btnOutturnSync_Click);
             // 
             // label1
             // 

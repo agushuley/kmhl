@@ -65,7 +65,7 @@ namespace g {
 			return instance;
         }
 
-        internal static T CreateInstance<T>(string p) {
+        public static T CreateInstance<T>(string p) {
             return CreateInstance<T>(p, null);
         }
     }
