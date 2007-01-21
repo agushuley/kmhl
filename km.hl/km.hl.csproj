@@ -77,16 +77,14 @@
     <Compile Include="orm\MoveOrdersItemsMapper.cs" />
     <Compile Include="orm\MoveOrdersMapper.cs" />
     <Compile Include="outturn\BuyerItem.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="outturn\BuyerItem.Designer.cs">
-      <DependentUpon>BuyerItem.cs</DependentUpon>
+    <Compile Include="outturn\BuyerSelect.cs" />
+    <Compile Include="outturn\ItemsForm.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="outturn\BuyerSelect.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="outturn\BuyerSelect.Designer.cs">
-      <DependentUpon>BuyerSelect.cs</DependentUpon>
+    <Compile Include="outturn\ItemsForm.Designer.cs">
+      <DependentUpon>ItemsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="outturn\SelectListTypeForm.cs">
       <SubType>Form</SubType>
@@ -100,13 +98,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="outturn\BuyerItem.resx">
+    <EmbeddedResource Include="outturn\ItemsForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>BuyerItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="outturn\BuyerSelect.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>BuyerSelect.cs</DependentUpon>
+      <DependentUpon>ItemsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="outturn\SelectListTypeForm.resx">
       <SubType>Designer</SubType>

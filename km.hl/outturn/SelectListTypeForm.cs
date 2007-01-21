@@ -19,9 +19,7 @@ namespace km.hl.outturn {
         private void btnContragents_Click(object sender, EventArgs e) {
             panel.Controls.Clear();
             BuyerSelect select = new BuyerSelect(orders);
-            select.load();
-            select.Dock = DockStyle.Fill;
-            panel.Controls.Add(select);
+            select.load(panel);
         }
 
         ICollection<orm.MoveOrder> orders = new List<orm.MoveOrder>();

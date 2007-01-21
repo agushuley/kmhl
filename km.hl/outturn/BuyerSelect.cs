@@ -1,20 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
 namespace km.hl.outturn {
-    public partial class BuyerSelect : UserControl {
+    class BuyerSelect {
         public BuyerSelect(ICollection<orm.MoveOrder> orders) {
             this.orders = orders;
-            InitializeComponent();
         }
         ICollection<orm.MoveOrder> orders;
 
-        public void load() {
+        public void load(Panel container) {
             ICollection<orm.Buyer> buyersl = new List<orm.Buyer>();
             foreach (orm.MoveOrder order in orders) {
                 if (!buyersl.Contains(order.Buyer)) {
@@ -26,11 +22,15 @@ namespace km.hl.outturn {
             buyersl.CopyTo(buyers, 0);
             Array.Sort<orm.Buyer>(buyers, new BuyersNameComparasion());
 
-            this.Controls.Clear();
-            foreach (orm.Buyer buyer in buyers) {
-                BuyerItem item = new BuyerItem(buyer, orders);
+            container.Controls.Clear();
+            for (int i = buyers.Length - 1; i >= 0; i--) {
+                BuyerItem item = new BuyerItem(buyers[i], orders);
                 item.Dock = DockStyle.Top;
-                this.Controls.Add(item);
+                item.TabIndex = buyers.Length - 1;
+                container.Controls.Add(item);
+                if (i == 0) {
+                    item.Focus();
+                }
             }
         }
 

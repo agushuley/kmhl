@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using System.Text;
 
-using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Lite;
 
 namespace oracew32 {
     class OracleDataFactory : g.orm.DataFactory {

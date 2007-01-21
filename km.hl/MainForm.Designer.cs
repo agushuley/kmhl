@@ -89,6 +89,7 @@ namespace km.hl {
             this.Name = "MainForm";
             this.Text = "KM Handheld Logistic";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.MainForm_Closing);
             this.ResumeLayout(false);
 
         }

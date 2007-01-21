@@ -20,6 +20,10 @@ namespace km.hl {
             new outturn.SelectListTypeForm(orm.MoveOrderSate.G).ShowDialog();
         }
 
+        private void MainForm_Closing(object sender, CancelEventArgs e) {
+            orm.Context.Instance.close();
+        }
+
         private void btnOutturnSync_Click(object sender, EventArgs e) {
             new SyncForm().ShowDialog();
         }
