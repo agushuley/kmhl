@@ -80,5 +80,12 @@ namespace km.hl.orm {
             get { return buyer; }
             set { checkRo("buyer"); buyer = value; }
         }
+
+        private bool complete = false;
+
+        public bool Complete {
+            get { return complete; }
+            set { complete = value; markDirty(); }
+        }
     }
 }

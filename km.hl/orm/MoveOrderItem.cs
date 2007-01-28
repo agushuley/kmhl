@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using g.orm.impl;
+using g.orm;
 
 namespace km.hl.orm {
     public class MoveOrderItem : GenericORMObject {
-        public MoveOrderItem(IntKey key) : base(key) {}
+        public MoveOrderItem(IntKey key, DefferableLoader<ItemSerial, MoveOrderItem> loader) : base(key) {
+            this.loader = loader;
+        }
 
         private MoveOrder order;
         public MoveOrder Order {
@@ -20,7 +23,7 @@ namespace km.hl.orm {
         }
 
         private int gtyGived;
-        public int QtyGived {
+        public int QtyPicked {
             get { return gtyGived; }
             set { markDirty(); gtyGived = value; }
         }
@@ -51,6 +54,35 @@ namespace km.hl.orm {
 
         public int Id {
             get { return ((IntKey)ORMKey).Int; }
+        }
+
+        private DefferableLoader<ItemSerial, MoveOrderItem> loader = null;
+        private ICollection<ItemSerial> serials = null;
+        public ICollection<ItemSerial> Serials {
+            get {
+                if (serials == null && loader != null) {
+                    serials = loader.load(this);
+                    if (serials != null) {
+                        loader = null;
+                    }
+                }
+                return serials;
+            }
+        }
+
+        private bool noSerialNeed = false;
+
+        public bool NoSerialNeed {
+            get { return noSerialNeed; }
+            set { noSerialNeed = value; markDirty(); }
+        }
+
+        public bool IsRightCode(string code) {
+            if (String.IsNullOrEmpty(code)) return false;
+            if (code.StartsWith(MfrCode)) return true; 
+            if (code == InternalCode) return true;
+            if (code.Length + 2 == InternalCode.Length && InternalCode.StartsWith(code + "/")) return true;
+            return false;
         }
     }
 }

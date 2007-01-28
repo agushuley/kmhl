@@ -57,5 +57,17 @@ namespace g {
             }
         }
 
+
+        public static bool ToBoolean(object p) {
+            String val = ToString(p);
+            if (val == null) return false;
+            if (val.Equals("y", StringComparison.OrdinalIgnoreCase)
+                || val.Equals("1", StringComparison.OrdinalIgnoreCase)
+                ) 
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -32,27 +32,27 @@ namespace km.hl {
             // 
             // btnOutturnChecked
             // 
-            this.btnOutturnChecked.Location = new System.Drawing.Point(4, 26);
+            this.btnOutturnChecked.Location = new System.Drawing.Point(0, 26);
             this.btnOutturnChecked.Name = "btnOutturnChecked";
-            this.btnOutturnChecked.Size = new System.Drawing.Size(233, 30);
+            this.btnOutturnChecked.Size = new System.Drawing.Size(238, 30);
             this.btnOutturnChecked.TabIndex = 0;
             this.btnOutturnChecked.Text = "1. Подтвержденные документы";
             this.btnOutturnChecked.Click += new System.EventHandler(this.btnOutturnChecked_Click);
             // 
             // btnOutturnGivved
             // 
-            this.btnOutturnGivved.Location = new System.Drawing.Point(3, 62);
+            this.btnOutturnGivved.Location = new System.Drawing.Point(0, 56);
             this.btnOutturnGivved.Name = "btnOutturnGivved";
-            this.btnOutturnGivved.Size = new System.Drawing.Size(233, 30);
+            this.btnOutturnGivved.Size = new System.Drawing.Size(238, 28);
             this.btnOutturnGivved.TabIndex = 1;
             this.btnOutturnGivved.Text = "2. Выданные документы";
             this.btnOutturnGivved.Click += new System.EventHandler(this.btnOutturnGivved_Click);
             // 
             // btnOutturnSync
             // 
-            this.btnOutturnSync.Location = new System.Drawing.Point(4, 143);
+            this.btnOutturnSync.Location = new System.Drawing.Point(0, 143);
             this.btnOutturnSync.Name = "btnOutturnSync";
-            this.btnOutturnSync.Size = new System.Drawing.Size(233, 30);
+            this.btnOutturnSync.Size = new System.Drawing.Size(238, 30);
             this.btnOutturnSync.TabIndex = 2;
             this.btnOutturnSync.Text = "3. Синхронизация";
             this.btnOutturnSync.Click += new System.EventHandler(this.btnOutturnSync_Click);
@@ -67,9 +67,9 @@ namespace km.hl {
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(4, 179);
+            this.btnExit.Location = new System.Drawing.Point(0, 173);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(233, 30);
+            this.btnExit.Size = new System.Drawing.Size(238, 30);
             this.btnExit.TabIndex = 2;
             this.btnExit.Text = "0. Выход";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -79,16 +79,14 @@ namespace km.hl {
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(240, 320);
+            this.ClientSize = new System.Drawing.Size(238, 275);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnOutturnSync);
             this.Controls.Add(this.btnOutturnGivved);
             this.Controls.Add(this.btnOutturnChecked);
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "MainForm";
             this.Text = "KM Handheld Logistic";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Closing += new System.ComponentModel.CancelEventHandler(this.MainForm_Closing);
             this.ResumeLayout(false);
 

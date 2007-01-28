@@ -60,6 +60,8 @@ namespace km.hl {
 
                 prepareBar.Value = 0;
                 processBar.Value = 0;
+                receiveBar.Value = 0;
+                sendBar.Value = 0;
 
                 sync.DoSync();
             }

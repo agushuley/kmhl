@@ -15,18 +15,29 @@ namespace km.hl.orm {
             MoveOrderItem item = (MoveOrderItem)obj;
             item.Order = (MoveOrder)Ctx.getMapper(typeof(MoveOrder))[new IntKey(g.DbTools.ToInt(rs["move_id"]))];
             item.Quantity = g.DbTools.ToInt(rs["quantity"]);
-            item.QtyGived = g.DbTools.ToInt(rs["quantity_gived"]);
+            item.QtyPicked = g.DbTools.ToInt(rs["quantity_gived"]);
             item.InventoryId = g.DbTools.ToInt(rs["inventory_item_id"]);
             item.Description = Commons.decodeText(g.DbTools.ToString(rs["item_description"]));
             item.MfrCode = Commons.decodeText(g.DbTools.ToString(rs["mfg_part_num"]));
             item.InternalCode = Commons.decodeText(g.DbTools.ToString(rs["item_segment1"]));
+            item.NoSerialNeed = g.DbTools.ToBoolean(rs["no_serials"]);
         }
 
+        private class ItemsSerialsLoader : g.orm.DefferableLoader<ItemSerial, MoveOrderItem> {
+            public ItemsSerialsLoader(g.orm.ORMContext ctx) {
+                this.ctx = ctx;
+            }
+            private g.orm.ORMContext ctx;
+            public ICollection<ItemSerial> load(MoveOrderItem obj) {
+                IItemsSerialsMapper mapper = (IItemsSerialsMapper)ctx.getMapper(typeof(ItemSerial));
+                return mapper.getSerialsForItem(obj);
+            }
+        }
         protected override ORMObject createInstance(Key key, System.Data.DataRow rs) {
-            return new MoveOrderItem((IntKey)key);
+            return new MoveOrderItem((IntKey)key, new ItemsSerialsLoader(Ctx));
         }
 
-        private const String BASE_SELECT = "select move_item_id, move_id, quantity, quantity_gived, inventory_item_id, item_description, item_segment1, mfg_part_num from inv_hl_move_order_items";
+        private const String BASE_SELECT = "SELECT move_item_id, move_id, quantity, quantity_gived, inventory_item_id, item_description, item_segment1, mfg_part_num, no_serials FROM inv_hl_move_order_items";
         protected override GetQueryCallback getSelectAllCb() {
             throw new Exception("The method or operation is not implemented.");
         }
@@ -39,19 +50,20 @@ namespace km.hl.orm {
             throw new Exception("The method or operation is not implemented.");
         }
 
-        private class UpdateQCb : GetQueryCallback {
+        private class UpdateQueryCb : GetQueryCallback {
             public string Sql {
-                get { return "UPDATE inv_hl_move_order_items SET quantity_gived = ? WHERE move_item_id = ?"; }
+                get { return "UPDATE inv_hl_move_order_items SET quantity_gived = ?, no_serials = ? WHERE move_item_id = ?"; }
             }
 
             public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {
                 MoveOrderItem item = (MoveOrderItem)obj;
-                g.DbTools.setParam(cmd, ":gived", item.QtyGived);
+                g.DbTools.setParam(cmd, ":gived", item.QtyPicked);
+                g.DbTools.setParam(cmd, ":no_serials", item.NoSerialNeed ? "Y" : "N");
                 g.DbTools.setParam(cmd, ":id", item.Id);
             }
         }
         protected override GetQueryCallback getUpdateQueryCB() {
-            throw new Exception("The method or operation is not implemented.");
+            return new UpdateQueryCb();
         }
 
         protected override GetQueryCallback getDeleteQueryCB() {

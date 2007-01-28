@@ -43,21 +43,24 @@ namespace km.hl {
             // 
             // label1
             // 
+            this.label1.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
             this.label1.Location = new System.Drawing.Point(4, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 20);
+            this.label1.Size = new System.Drawing.Size(91, 17);
             this.label1.Text = "Пользователь:";
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(4, 29);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            this.label2.Location = new System.Drawing.Point(4, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 20);
+            this.label2.Size = new System.Drawing.Size(91, 19);
             this.label2.Text = "Пароль:";
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(4, 56);
+            this.label3.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            this.label3.Location = new System.Drawing.Point(4, 51);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 20);
             this.label3.Text = "Хост:";
@@ -66,32 +69,36 @@ namespace km.hl {
             // 
             this.txtUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUser.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
             this.txtUser.Location = new System.Drawing.Point(101, 2);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(136, 21);
+            this.txtUser.Size = new System.Drawing.Size(134, 19);
             this.txtUser.TabIndex = 3;
             // 
             // txtPassword
             // 
             this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPassword.Location = new System.Drawing.Point(101, 29);
+            this.txtPassword.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            this.txtPassword.Location = new System.Drawing.Point(101, 27);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(136, 21);
+            this.txtPassword.Size = new System.Drawing.Size(134, 19);
             this.txtPassword.TabIndex = 3;
             // 
             // txtHost
             // 
             this.txtHost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtHost.Location = new System.Drawing.Point(101, 56);
+            this.txtHost.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            this.txtHost.Location = new System.Drawing.Point(101, 52);
             this.txtHost.Name = "txtHost";
-            this.txtHost.Size = new System.Drawing.Size(136, 21);
+            this.txtHost.Size = new System.Drawing.Size(134, 19);
             this.txtHost.TabIndex = 3;
             // 
             // btnDo
             // 
-            this.btnDo.Location = new System.Drawing.Point(32, 81);
+            this.btnDo.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            this.btnDo.Location = new System.Drawing.Point(33, 74);
             this.btnDo.Name = "btnDo";
             this.btnDo.Size = new System.Drawing.Size(182, 24);
             this.btnDo.TabIndex = 4;
@@ -100,7 +107,8 @@ namespace km.hl {
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(4, 111);
+            this.label4.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            this.label4.Location = new System.Drawing.Point(4, 104);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 20);
             this.label4.Text = "Подготовка";
@@ -109,13 +117,14 @@ namespace km.hl {
             // 
             this.prepareBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.prepareBar.Location = new System.Drawing.Point(75, 111);
+            this.prepareBar.Location = new System.Drawing.Point(75, 104);
             this.prepareBar.Name = "prepareBar";
-            this.prepareBar.Size = new System.Drawing.Size(162, 20);
+            this.prepareBar.Size = new System.Drawing.Size(160, 20);
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(4, 137);
+            this.label5.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            this.label5.Location = new System.Drawing.Point(4, 130);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 20);
             this.label5.Text = "Посылка";
@@ -124,55 +133,58 @@ namespace km.hl {
             // 
             this.sendBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.sendBar.Location = new System.Drawing.Point(60, 137);
+            this.sendBar.Location = new System.Drawing.Point(60, 130);
             this.sendBar.Name = "sendBar";
-            this.sendBar.Size = new System.Drawing.Size(177, 20);
+            this.sendBar.Size = new System.Drawing.Size(175, 20);
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(4, 163);
+            this.label6.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            this.label6.Location = new System.Drawing.Point(4, 156);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 20);
             this.label6.Text = "Получение";
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(4, 189);
+            this.label7.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            this.label7.Location = new System.Drawing.Point(4, 182);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(91, 20);
+            this.label7.Size = new System.Drawing.Size(65, 20);
             this.label7.Text = "Обработка";
             // 
             // receiveBar
             // 
             this.receiveBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.receiveBar.Location = new System.Drawing.Point(72, 163);
+            this.receiveBar.Location = new System.Drawing.Point(72, 156);
             this.receiveBar.Name = "receiveBar";
-            this.receiveBar.Size = new System.Drawing.Size(165, 20);
+            this.receiveBar.Size = new System.Drawing.Size(163, 20);
             // 
             // processBar
             // 
             this.processBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.processBar.Location = new System.Drawing.Point(75, 189);
+            this.processBar.Location = new System.Drawing.Point(75, 182);
             this.processBar.Name = "processBar";
-            this.processBar.Size = new System.Drawing.Size(162, 20);
+            this.processBar.Size = new System.Drawing.Size(160, 20);
             // 
             // state
             // 
             this.state.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.state.Location = new System.Drawing.Point(4, 213);
+            this.state.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            this.state.Location = new System.Drawing.Point(4, 205);
             this.state.Name = "state";
-            this.state.Size = new System.Drawing.Size(233, 81);
+            this.state.Size = new System.Drawing.Size(231, 70);
             // 
             // SyncForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ClientSize = new System.Drawing.Size(238, 275);
             this.Controls.Add(this.state);
             this.Controls.Add(this.processBar);
             this.Controls.Add(this.receiveBar);

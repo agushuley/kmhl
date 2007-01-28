@@ -34,32 +34,32 @@ namespace km.hl.outturn {
             this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel.Location = new System.Drawing.Point(4, 43);
+            this.panel.Location = new System.Drawing.Point(0, 33);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(233, 274);
+            this.panel.Size = new System.Drawing.Size(238, 241);
             // 
             // btnContragents
             // 
-            this.btnContragents.Location = new System.Drawing.Point(4, 4);
+            this.btnContragents.Location = new System.Drawing.Point(0, 0);
             this.btnContragents.Name = "btnContragents";
-            this.btnContragents.Size = new System.Drawing.Size(92, 33);
+            this.btnContragents.Size = new System.Drawing.Size(96, 33);
             this.btnContragents.TabIndex = 1;
             this.btnContragents.Text = "Контрагенты";
             this.btnContragents.Click += new System.EventHandler(this.btnContragents_Click);
             // 
             // btnDocuments
             // 
-            this.btnDocuments.Location = new System.Drawing.Point(102, 4);
+            this.btnDocuments.Location = new System.Drawing.Point(96, 0);
             this.btnDocuments.Name = "btnDocuments";
-            this.btnDocuments.Size = new System.Drawing.Size(93, 33);
+            this.btnDocuments.Size = new System.Drawing.Size(103, 33);
             this.btnDocuments.TabIndex = 2;
             this.btnDocuments.Text = "Документы";
             // 
             // X
             // 
-            this.X.Location = new System.Drawing.Point(202, 4);
+            this.X.Location = new System.Drawing.Point(199, 0);
             this.X.Name = "X";
-            this.X.Size = new System.Drawing.Size(35, 33);
+            this.X.Size = new System.Drawing.Size(39, 33);
             this.X.TabIndex = 3;
             this.X.Text = "X";
             this.X.Click += new System.EventHandler(this.X_Click);
@@ -69,15 +69,13 @@ namespace km.hl.outturn {
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(240, 320);
+            this.ClientSize = new System.Drawing.Size(238, 275);
             this.Controls.Add(this.X);
             this.Controls.Add(this.btnDocuments);
             this.Controls.Add(this.btnContragents);
             this.Controls.Add(this.panel);
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "SelectListTypeForm";
             this.Text = "Выберите представление документов";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.SelectViewForm_Load);
             this.ResumeLayout(false);
 

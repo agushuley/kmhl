@@ -25,6 +25,7 @@ namespace km.hl.orm {
             else {
                 order.Buyer = (Buyer)bm.Registry[bk];
             }
+            order.Complete = g.DbTools.ToBoolean(rs["is_complete"]);
         }
 
         private string decode(string p) {
@@ -45,7 +46,7 @@ namespace km.hl.orm {
             return new MoveOrder((IntKey)key, new MoveOrderItemsLoader(Ctx));
         }
 
-        private const String BASE_SELECT = "SELECT move_id, creation_date, move_number, move_date, description, status, buyer_id, buyer_name, scanner_id FROM inv_hl_move_orders";
+        private const String BASE_SELECT = "SELECT move_id, creation_date, move_number, move_date, description, status, buyer_id, buyer_name, scanner_id, is_complete FROM inv_hl_move_orders";
 
         public class AllCb : GetQueryCallback {
             public string Sql {
@@ -84,12 +85,13 @@ namespace km.hl.orm {
 
         private class UpdateCallback : g.orm.impl.GetQueryCallback {
             public string Sql {
-                get { return "update inv_mv_orders set status = ? where move_id = ?"; }
+                get { return "UDPATE inv_mv_orders SET status = ?, is_complete = ? WHERE move_id = ?"; }
             }
 
             public void SetParams(System.Data.IDbCommand cmd, g.orm.ORMObject obj) {
                 MoveOrder order = (MoveOrder)obj;
                 g.DbTools.setParam(cmd, ":status", order.State.ToString());
+                g.DbTools.setParam(cmd, ":is_complete", order.Complete ? "Y" : "N");
 
                 g.DbTools.setParam(cmd, ":id", order.Id);
             }

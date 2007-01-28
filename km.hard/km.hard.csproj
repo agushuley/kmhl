@@ -71,11 +71,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuzzerControl.cs" />
+    <Compile Include="casio\CasioBuzzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="casio\CasioBarScanner.cs" />
     <Compile Include="scan\ScanException.cs" />
     <Compile Include="scan\Scanner.cs" />
     <Compile Include="stubs\BarScanner.cs" />
+    <Compile Include="stubs\Buzzer.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
