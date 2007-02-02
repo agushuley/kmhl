@@ -5,10 +5,12 @@ using System.Windows.Forms;
 
 namespace km.hl.outturn {
     class BuyerSelect {
-        public BuyerSelect(ICollection<orm.MoveOrder> orders) {
+        public BuyerSelect(ICollection<orm.MoveOrder> orders, ScanAlgorithm alghoritm) {
             this.orders = orders;
+            this.alghoritm = alghoritm;
         }
-        ICollection<orm.MoveOrder> orders;
+        private ICollection<orm.MoveOrder> orders;
+        private ScanAlgorithm alghoritm;
 
         public void load(Panel container) {
             ICollection<orm.Buyer> buyersl = new List<orm.Buyer>();
@@ -24,7 +26,7 @@ namespace km.hl.outturn {
 
             container.Controls.Clear();
             for (int i = buyers.Length - 1; i >= 0; i--) {
-                BuyerItem item = new BuyerItem(buyers[i], orders);
+                BuyerItem item = new BuyerItem(buyers[i], orders, alghoritm);
                 item.Dock = DockStyle.Top;
                 item.TabIndex = buyers.Length - 1;
                 container.Controls.Add(item);

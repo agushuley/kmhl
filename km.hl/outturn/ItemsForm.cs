@@ -10,16 +10,18 @@ using km.hard.scan;
 using km.hl.orm;
 
 namespace km.hl.outturn {
-    public partial class ItemsForm : Form {
+    public partial class ItemsForm : AlertForm {
         private class MoveItemsDescComparer : IComparer<MoveOrderItem> {
             int IComparer<MoveOrderItem>.Compare(MoveOrderItem x, MoveOrderItem y) {
                 return x.Description.CompareTo(y.Description);
             }
         }
 
-        public ItemsForm(ICollection<orm.MoveOrderItem> itemsCol) {
+        private ScanAlgorithm algorithm;
+        public ItemsForm(ICollection<orm.MoveOrderItem> itemsCol, ScanAlgorithm algorithm) {
             InitializeComponent();
-           
+
+            this.algorithm = algorithm;
             orm.MoveOrderItem[] items = new MoveOrderItem[itemsCol.Count];
             itemsCol.CopyTo(items, 0);
             Array.Sort(items, new MoveItemsDescComparer());
@@ -77,85 +79,7 @@ namespace km.hl.outturn {
         }
 
         private void scanned() {
-            closeHandQtyInput();
-
-            String code = this.code.Text;
-            if (String.IsNullOrEmpty(code)) {
-                Program.getBuzzer().Play(km.hard.BuzzerVolume.mid, 25, 100);
-                return;
-            }
-            int itemCode = 0;
-            foreach (ItemView itemView in itemsViews.Controls) {
-                orm.MoveOrderItem item = itemView.Item;
-                if (item.IsRightCode(code)) 
-                {
-                    itemCode = item.InventoryId;
-                    break;
-                }
-            }
-            if (itemCode == 0) {
-                this.Text = "Не найдена позиция";
-                Program.playMinor();
-                return;
-            }
-            selected.Clear();
-            bool unpickedFound = false;
-            bool noSerialNeed = false;
-            int top = 0;
-            foreach (ItemView itemView in itemsViews.Controls) {
-                if (itemView.Item.InventoryId == itemCode) {
-                    selected.Add(itemView.Item);
-                    itemView.Visible = true;
-                    itemView.Top = top;
-                    top += itemView.Height;
-                    if (itemView.Item.Quantity > itemView.Item.QtyPicked) {
-                        unpickedFound = true;
-                    }
-                    if (itemView.Item.NoSerialNeed) {
-                        noSerialNeed = true;
-                    }
-                }
-                else {
-                    itemView.Visible = false;
-                }
-            }
-
-            if (!unpickedFound) {
-                Program.playMinor();
-                this.Text = "Все количество позиции отобрано";
-                return;
-            }
-
-            if (!noSerialNeed) {
-                SerialsForm serials = new SerialsForm(selected);
-                DialogResult result = serials.ShowDialog();
-                if (result != DialogResult.Cancel) {
-                    foreach (ItemView itemView in itemsViews.Controls) {
-                        if (itemView.Visible) {
-                            itemView.redraw();
-                        }
-                    }
-                    noSerialNeed = false;
-                    int qty = 0;
-                    foreach (MoveOrderItem item in selected) {
-                        qty += item.Quantity;
-                        noSerialNeed = noSerialNeed || item.NoSerialNeed;
-                    }
-                    if (qty > MAX_ITEMS_WOSCAN && noSerialNeed) {
-                        createHandQtyInput();
-                    }
-                }
-            }
-            else {
-                foreach (MoveOrderItem item in selected) {
-                    if (item.QtyPicked < item.Quantity) {
-                        item.QtyPicked++;
-                        break;
-                    }
-                }
-                orm.Context.Instance.commit();
-                Program.playMajor();
-            }
+            algorithm.process(this);
         }
 
         private const int MAX_ITEMS_WOSCAN = 20;
@@ -175,7 +99,7 @@ namespace km.hl.outturn {
             itemsViews.Top += handInput.Height + 2;
         }
 
-        private void closeHandQtyInput() {
+        public void closeHandQtyInput() {
             if (handInput != null) {
                 handInput.Hide();
                 this.Controls.Remove(handInput);

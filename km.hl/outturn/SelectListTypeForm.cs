@@ -12,13 +12,17 @@ namespace km.hl.outturn {
             InitializeComponent();
 
             this.state = state;
+            if (state == km.hl.orm.MoveOrderSate.C) {
+                algorithm = new ConfirmedScanAlgorithm();
+            }
         }
 
+        private ScanAlgorithm algorithm;
         private orm.MoveOrderSate state;
 
         private void btnContragents_Click(object sender, EventArgs e) {
             panel.Controls.Clear();
-            BuyerSelect select = new BuyerSelect(orders);
+            BuyerSelect select = new BuyerSelect(orders, algorithm);
             select.load(panel);
         }
 

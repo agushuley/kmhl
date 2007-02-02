@@ -5,12 +5,14 @@ using System.Windows.Forms;
 
 namespace km.hl.outturn {
     class BuyerItem : Button {
-        public BuyerItem(orm.Buyer buyer, ICollection<orm.MoveOrder> orders) {
+        public BuyerItem(orm.Buyer buyer, ICollection<orm.MoveOrder> orders, ScanAlgorithm alghoritm) {
 
             Text = String.Format("{0} ({1})", buyer.Description, buyer.Id);
             this.buyer = buyer;
             this.orders = orders;
+            this.alghoritm = alghoritm;
         }
+        private ScanAlgorithm alghoritm;
 
         protected override void OnClick(EventArgs e) {
             base.OnClick(e);
@@ -21,7 +23,7 @@ namespace km.hl.outturn {
                     items.AddRange(order.Items);
                 }
             }
-            new ItemsForm(items).ShowDialog();
+            new ItemsForm(items, alghoritm).ShowDialog();
         }
 
         orm.Buyer buyer;

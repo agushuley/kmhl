@@ -61,6 +61,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlertForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlertForm.Designer.cs">
+      <DependentUpon>AlertForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlertPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AlertPanel.Designer.cs">
+      <DependentUpon>AlertPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +96,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="outturn\BuyerSelect.cs" />
+    <Compile Include="outturn\ConfirmedScanAlgorithm.cs" />
     <Compile Include="outturn\HandQuantityInput.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -99,6 +112,7 @@
     <Compile Include="outturn\ItemView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="outturn\ScanAlgorithm.cs" />
     <Compile Include="outturn\SelectListTypeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +127,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AlertForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AlertForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlertPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AlertPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MainForm.cs</DependentUpon>
