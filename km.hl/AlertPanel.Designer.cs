@@ -36,6 +36,7 @@ namespace km.hl {
             this.lblInfo.Location = new System.Drawing.Point(4, 4);
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(228, 68);
+            this.lblInfo.Text = "Alert!";
             // 
             // AlertPanel
             // 

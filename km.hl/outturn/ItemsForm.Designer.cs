@@ -102,10 +102,10 @@ namespace km.hl.outturn {
 
         #endregion
 
-        private System.Windows.Forms.Panel itemsViews;
-        private System.Windows.Forms.TextBox code;
         private System.Windows.Forms.Button btnScanned;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnClose;
+        internal System.Windows.Forms.TextBox code;
+        internal System.Windows.Forms.Panel itemsViews;
     }
 }

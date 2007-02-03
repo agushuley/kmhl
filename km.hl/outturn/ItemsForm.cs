@@ -32,7 +32,7 @@ namespace km.hl.outturn {
                 itemsViews.Controls.Add(itemView);
                 itemView.Click += new EventHandler(itemView_Click);
                 itemView.Top = top;
-                top += itemView.Height;
+                top += itemView.Height + 1;
             }
         }
 
@@ -131,7 +131,7 @@ namespace km.hl.outturn {
             foreach (ItemView itemView in itemsViews.Controls) {
                 itemView.Visible = true;
                 itemView.Top = top;
-                top += itemView.Height;
+                top += itemView.Height + 1;
             }
             selected.Clear();
         }

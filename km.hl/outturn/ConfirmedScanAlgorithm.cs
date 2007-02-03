@@ -5,15 +5,17 @@ using System.Text;
 namespace km.hl.outturn {
     public class ConfirmedScanAlgorithm : ScanAlgorithm {
         public void process(ItemsForm form) {
-/*            form.closeHandQtyInput();
+            form.closeHandQtyInput();
+            form.hideAlert();
 
-            String code = this.code.Text;
+            String code = form.code.Text;
             if (String.IsNullOrEmpty(code)) {
-                Program.getBuzzer().Play(km.hard.BuzzerVolume.mid, 25, 100);
+                form.alert("Пустой код");
+                Program.playMinor();
                 return;
             }
             int itemCode = 0;
-            foreach (ItemView itemView in itemsViews.Controls) {
+            foreach (ItemView itemView in form.itemsViews.Controls) {
                 orm.MoveOrderItem item = itemView.Item;
                 if (item.IsRightCode(code)) {
                     itemCode = item.InventoryId;
@@ -21,11 +23,12 @@ namespace km.hl.outturn {
                 }
             }
             if (itemCode == 0) {
-                this.Text = "Не найдена позиция";
+                form.alert("Не найдена позиция");
                 Program.playMinor();
                 return;
             }
-            selected.Clear();
+
+            /*            selected.Clear();
             bool unpickedFound = false;
             bool noSerialNeed = false;
             int top = 0;

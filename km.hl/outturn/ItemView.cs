@@ -52,7 +52,7 @@ namespace km.hl.outturn {
             // lblItem
             // 
             this.lblItem.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
-            this.lblItem.Location = new System.Drawing.Point(-1, 0);
+            this.lblItem.Location = new System.Drawing.Point(0, 1);
             this.lblItem.Name = "lblItem";
             this.lblItem.Size = new System.Drawing.Size(166, 16);
             this.lblItem.Text = "label1";
@@ -60,7 +60,7 @@ namespace km.hl.outturn {
             // lblQty
             // 
             this.lblQty.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
-            this.lblQty.Location = new System.Drawing.Point(163, 1);
+            this.lblQty.Location = new System.Drawing.Point(163, 2);
             this.lblQty.Name = "lblQty";
             this.lblQty.Size = new System.Drawing.Size(54, 16);
             this.lblQty.Text = "label4";
@@ -69,7 +69,7 @@ namespace km.hl.outturn {
             // lblIntCode
             // 
             this.lblIntCode.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
-            this.lblIntCode.Location = new System.Drawing.Point(-1, 17);
+            this.lblIntCode.Location = new System.Drawing.Point(0, 18);
             this.lblIntCode.Name = "lblIntCode";
             this.lblIntCode.Size = new System.Drawing.Size(166, 16);
             this.lblIntCode.Text = "label1";
@@ -77,7 +77,7 @@ namespace km.hl.outturn {
             // lblMnfCode
             // 
             this.lblMnfCode.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
-            this.lblMnfCode.Location = new System.Drawing.Point(-1, 34);
+            this.lblMnfCode.Location = new System.Drawing.Point(0, 35);
             this.lblMnfCode.Name = "lblMnfCode";
             this.lblMnfCode.Size = new System.Drawing.Size(166, 16);
             this.lblMnfCode.Text = "label1";
@@ -85,7 +85,7 @@ namespace km.hl.outturn {
             // lblPickedQty
             // 
             this.lblPickedQty.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
-            this.lblPickedQty.Location = new System.Drawing.Point(163, 17);
+            this.lblPickedQty.Location = new System.Drawing.Point(163, 18);
             this.lblPickedQty.Name = "lblPickedQty";
             this.lblPickedQty.Size = new System.Drawing.Size(54, 16);
             this.lblPickedQty.Text = "label4";
@@ -94,7 +94,7 @@ namespace km.hl.outturn {
             // lblMisc
             // 
             this.lblMisc.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
-            this.lblMisc.Location = new System.Drawing.Point(163, 34);
+            this.lblMisc.Location = new System.Drawing.Point(163, 35);
             this.lblMisc.Name = "lblMisc";
             this.lblMisc.Size = new System.Drawing.Size(54, 16);
             this.lblMisc.Text = "label4";
@@ -112,7 +112,7 @@ namespace km.hl.outturn {
             this.Controls.Add(this.lblItem);
             this.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
             this.Name = "ItemView";
-            this.Size = new System.Drawing.Size(218, 48);
+            this.Size = new System.Drawing.Size(218, 50);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemView_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemView_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemView_MouseUp);

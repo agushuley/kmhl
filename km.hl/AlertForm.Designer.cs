@@ -31,9 +31,9 @@ namespace km.hl {
             this.alertPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.alertPanel.Location = new System.Drawing.Point(4, 170);
+            this.alertPanel.Location = new System.Drawing.Point(4, 213);
             this.alertPanel.Name = "alertPanel";
-            this.alertPanel.Size = new System.Drawing.Size(196, 66);
+            this.alertPanel.Size = new System.Drawing.Size(231, 59);
             this.alertPanel.TabIndex = 0;
             this.alertPanel.Visible = false;
             // 
@@ -42,7 +42,7 @@ namespace km.hl {
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(203, 236);
+            this.ClientSize = new System.Drawing.Size(238, 275);
             this.Controls.Add(this.alertPanel);
             this.Name = "AlertForm";
             this.Text = "AlertForm";
