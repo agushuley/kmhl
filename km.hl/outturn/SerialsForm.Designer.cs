@@ -40,6 +40,7 @@ namespace km.hl.outturn {
             this.listSerials.Name = "listSerials";
             this.listSerials.Size = new System.Drawing.Size(237, 223);
             this.listSerials.TabIndex = 0;
+            this.listSerials.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listSerials_KeyUp);
             // 
             // cbNoSerialNeed
             // 
@@ -103,10 +104,10 @@ namespace km.hl.outturn {
 
         #endregion
 
-        private System.Windows.Forms.ListBox listSerials;
         private System.Windows.Forms.CheckBox cbNoSerialNeed;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.TextBox tbSerial;
         private System.Windows.Forms.Button btnOk;
+        internal System.Windows.Forms.TextBox tbSerial;
+        public System.Windows.Forms.ListBox listSerials;
     }
 }

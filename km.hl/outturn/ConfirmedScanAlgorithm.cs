@@ -1,92 +1,156 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
+
+using km.hl.orm;
+using g.orm;
 
 namespace km.hl.outturn {
     public class ConfirmedScanAlgorithm : ScanAlgorithm {
-        public void process(ItemsForm form) {
+        public void process(ItemsForm form, ICollection<ItemView> selected) {
             form.closeHandQtyInput();
             form.hideAlert();
 
-            String code = form.code.Text;
-            if (String.IsNullOrEmpty(code)) {
-                form.alert("Пустой код");
-                Program.playMinor();
-                return;
-            }
-            int itemCode = 0;
-            foreach (ItemView itemView in form.itemsViews.Controls) {
-                orm.MoveOrderItem item = itemView.Item;
-                if (item.IsRightCode(code)) {
-                    itemCode = item.InventoryId;
-                    break;
-                }
-            }
-            if (itemCode == 0) {
-                form.alert("Не найдена позиция");
-                Program.playMinor();
-                return;
-            }
-
-            /*            selected.Clear();
             bool unpickedFound = false;
             bool noSerialNeed = false;
-            int top = 0;
-            foreach (ItemView itemView in itemsViews.Controls) {
-                if (itemView.Item.InventoryId == itemCode) {
-                    selected.Add(itemView.Item);
-                    itemView.Visible = true;
-                    itemView.Top = top;
-                    top += itemView.Height;
-                    if (itemView.Item.Quantity > itemView.Item.QtyPicked) {
-                        unpickedFound = true;
-                    }
-                    if (itemView.Item.NoSerialNeed) {
-                        noSerialNeed = true;
-                    }
+            foreach (ItemView itemView in selected) {
+                if (itemView.Item.Quantity > itemView.Item.QtyPicked) {
+                    unpickedFound = true;
                 }
-                else {
-                    itemView.Visible = false;
+                if (itemView.Item.NoSerialNeed) {
+                    noSerialNeed = true;
                 }
             }
 
             if (!unpickedFound) {
                 Program.playMinor();
-                this.Text = "Все количество позиции отобрано";
+                form.alert("Все количество позиции отобрано");
                 return;
             }
 
             if (!noSerialNeed) {
-                SerialsForm serials = new SerialsForm(selected);
-                DialogResult result = serials.ShowDialog();
-                if (result != DialogResult.Cancel) {
-                    foreach (ItemView itemView in itemsViews.Controls) {
-                        if (itemView.Visible) {
-                            itemView.redraw();
-                        }
-                    }
-                    noSerialNeed = false;
-                    int qty = 0;
-                    foreach (MoveOrderItem item in selected) {
-                        qty += item.Quantity;
-                        noSerialNeed = noSerialNeed || item.NoSerialNeed;
-                    }
-                    if (qty > MAX_ITEMS_WOSCAN && noSerialNeed) {
-                        createHandQtyInput();
-                    }
-                }
-            }
+                processSerials(form, selected);
+            } // need serial
             else {
-                foreach (MoveOrderItem item in selected) {
-                    if (item.QtyPicked < item.Quantity) {
-                        item.QtyPicked++;
+                foreach (ItemView view in selected) {
+                    if (view.Item.QtyPicked < view.Item.Quantity) {
+                        view.Item.QtyPicked++;
+                        view.redraw();
                         break;
                     }
                 }
                 orm.Context.Instance.commit();
                 Program.playMajor();
+            } // if (!serialNeed)
+        }
+
+        public void processItemView(ItemsForm itemsForm, ICollection<ItemView> views) {
+            processSerials(itemsForm, views);
+        }
+
+        private const int MAX_ITEMS_WOSCAN = 20;
+
+        private void processSerials(ItemsForm form, ICollection<ItemView> selected) {
+            SerialsForm serials = new SerialsForm(selected, this);
+            DialogResult result = serials.ShowDialog();
+            if (result != DialogResult.Cancel) {
+                bool noSerialNeed = false;
+                int qty = 0;
+                foreach (ItemView itemView in selected) {
+                    itemView.redraw();
+                    qty += itemView.Item.Quantity;
+                    noSerialNeed = noSerialNeed || itemView.Item.NoSerialNeed;
+                }
+                if (qty > MAX_ITEMS_WOSCAN && noSerialNeed) {
+                    form.createHandQtyInput(selected);
+                }
             }
-  */
+        }
+
+        public void scanSerial(SerialsForm serials, ICollection<ItemView> views) {
+            if (String.IsNullOrEmpty(serials.tbSerial.Text) && !serials.NoSerialsNeed) {
+                Program.playMinor();
+                serials.alert("Серийный номер пуст");
+                return;
+            }
+
+            if (!serials.NoSerialsNeed) {
+                foreach (ItemView view in views) {
+                    if (view.Item.IsRightCode(serials.tbSerial.Text)) {
+                        Program.playMinor();
+                        serials.alert("Серийный некорректен");
+                        return;
+                    }
+                }
+            }
+
+            if (serials.NoSerialsChanged) {
+                foreach (ItemView view in views) {
+                    view.Item.NoSerialNeed = serials.NoSerialsNeed;
+                }
+                Context.Instance.commit();
+            }
+
+            if (!serials.NoSerialsNeed) {
+                foreach (ItemView view in views) {
+                    foreach (ItemSerial s in view.Item.Serials) {
+                        if (s.Serial == serials.tbSerial.Text) {
+                            Program.playMinor();
+                            serials.alert("Дублирование серийного номера");
+                            return;
+                        }
+                    }
+                }
+            }
+
+            foreach (ItemView view in views) {
+                if (view.Item.QtyPicked < view.Item.Quantity) {
+                    if (!serials.NoSerialsNeed) {
+                        ItemSerial serial = new ItemSerial(view.Item, serials.tbSerial.Text);
+                        Mapper serialsMapper = orm.Context.Instance.getMapper(typeof(ItemSerial));
+                        serialsMapper.add(serial);
+                        view.Item.Serials.Add(serial);
+                    }
+
+                    view.Item.QtyPicked++;
+
+                    orm.Context.Instance.commit();
+                    break;
+                }
+            }
+            serials.DialogResult = DialogResult.OK;
+            serials.Close();
+        }
+
+        public void removeSerial(SerialsForm serials, ICollection<ItemView> views, string serial) {
+            ItemSerial serialToRemove = null;
+            foreach (ItemView view in views) {
+                try {
+                    foreach (orm.ItemSerial serialObj in view.Item.Serials) {
+                        if (serial == serialObj.Serial) {
+                            serialToRemove = serialObj;
+                            break;
+                        }
+                    }
+                }
+                finally {
+                    if (serialToRemove != null) {
+                        serialToRemove.Remove();
+                        view.Item.Serials.Remove(serialToRemove);
+                        if (view.Item.QtyPicked > 0) {
+                            view.Item.QtyPicked--;
+                            view.redraw();
+                        }
+                        Context.Instance.commit();
+                        serials.listSerials.Items.Remove(serial);
+                    }
+                }
+            }
+        }
+
+        public void initSelectTypeForm(SelectListTypeForm form) {
+            form.selectByDocument();
         }
     }
 }

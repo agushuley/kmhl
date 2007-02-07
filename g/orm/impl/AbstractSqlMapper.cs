@@ -16,9 +16,13 @@ namespace g.orm.impl {
     	
 	    protected abstract String ConnectionKey { get; }
     	
-	    public IDbConnection Connection {
-            get { return ctx.getConnection(ConnectionKey); }
+	    protected IDbConnection getConnection(bool mutable) {
+            return ctx.getConnection(ConnectionKey, mutable); 
 	    }
+
+        protected void releaseConnection(IDbConnection cnn, IDbTransaction tran) {
+            ctx.releaseConnection(cnn, tran);
+        }
 
         public IDictionary<Key, ORMObject> Registry {
             get { return registry; }
@@ -106,24 +110,30 @@ namespace g.orm.impl {
 	    }
     	
 	    public void setClean() {
+            IList<ORMObject> removed = new List<ORMObject>(); 
 		    foreach (ORMObject obj in Registry.Values) {
 			    if (obj.ORMState == StateType.DELETED) {
-				    Registry.Remove(obj.ORMKey);
+                    removed.Add(obj);
 			    }
                 obj.ORMState = StateType.CLEAN;
-		    }		
+		    }
+            foreach (ORMObject obj in removed) {
+                Registry.Remove(obj.ORMKey);
+            }
 	    }
     	
         
 	    private void executeBatchForObjects(QueryCallbackDelegate queryCB, StateType state) {
 		    IDbCommand stm = null;
+            IDbConnection cnn = null;
+            IDbTransaction trans = null;
 		    try {
 			    foreach (ORMObject obj in Registry.Values) {
 				    if (obj.ORMState == state) {
 					    if (stm == null) {
-						    stm = ctx.getFactory(ConnectionKey)
-                                .getCommand(ctx.getConnection(ConnectionKey),
-                                    ctx.getTransaction(ConnectionKey));
+                            cnn = getConnection(true);
+                            trans = ctx.getTransaction(ConnectionKey);
+						    stm = ctx.getFactory(ConnectionKey).getCommand(cnn, trans);
                             stm.CommandText = queryCB().Sql;
 					    }
 					    queryCB().SetParams(stm, obj);
@@ -134,15 +144,17 @@ namespace g.orm.impl {
 		    finally {
 			    if (stm != null) {
 				    stm.Dispose();
+                    releaseConnection(cnn, trans);
 			    }
 		    } 
 	    }
 
         protected ORMObject[] getObjectsForCb(GetQueryCallback cb) {
             lock (registry) {
+                IDbConnection cnn = getConnection(false);
+                IDbTransaction trans = ctx.getTransaction(ConnectionKey);
                 try {
-                    using (IDbCommand cmd = ctx.getFactory(ConnectionKey).
-                        getCommand(ctx.getConnection(ConnectionKey), ctx.getTransaction(ConnectionKey))) {
+                    using (IDbCommand cmd = ctx.getFactory(ConnectionKey).getCommand(cnn, trans)) {
                         cmd.CommandText = cb.Sql;
                         cb.SetParams(cmd, null);
                         IDbDataAdapter adapter = ctx.getFactory(ConnectionKey).getAdapter(cmd);
@@ -160,6 +172,9 @@ namespace g.orm.impl {
                 }
                 catch (DataException e) {
                     throw new ORMException(e);
+                }
+                finally {
+                    releaseConnection(cnn, trans);
                 }
             }
         }

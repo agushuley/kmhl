@@ -26,6 +26,7 @@ namespace km.hl.outturn {
             itemsCol.CopyTo(items, 0);
             Array.Sort(items, new MoveItemsDescComparer());
             itemsViews.Controls.Clear();
+            itemsViews.AutoScrollPosition = new Point(0, 0);
             int top = 0;
             foreach (orm.MoveOrderItem item in items) {
                 ItemView itemView = new ItemView(item);
@@ -39,32 +40,9 @@ namespace km.hl.outturn {
         void itemView_Click(object sender, EventArgs e) {
             ItemView mainView = (ItemView)sender;
             int itemCode = mainView.Item.InventoryId;
-            selected.Clear();
-            int top = 0;
-            foreach (ItemView itemView in itemsViews.Controls) {
-                if (itemView.Item.InventoryId == itemCode) {
-                    selected.Add(itemView.Item);
-                    itemView.Visible = true;
-                    itemView.Top = top;
-                    top += itemView.Height;
-                }
-                else {
-                    itemView.Visible = false;
-                }
-            }
 
-            SerialsForm serials = new SerialsForm(selected);
-            DialogResult result = serials.ShowDialog();
-            if (result != DialogResult.Cancel) {
-                foreach (ItemView itemView in itemsViews.Controls) {
-                    if (itemView.Visible) {
-                        itemView.redraw();
-                    }
-                }
-            }
+            algorithm.processItemView(this, selectByItemCode(itemCode));
         }
-
-        ICollection<orm.MoveOrderItem> selected = new List<orm.MoveOrderItem>();
 
         private void ItemsForm_Load(object sender, EventArgs e) {
             Scanner s = Program.getScanner();
@@ -77,36 +55,78 @@ namespace km.hl.outturn {
             this.code.Text = code;
             scanned();
         }
-
+        
         private void scanned() {
-            algorithm.process(this);
+            String tbCode = code.Text;
+            if (String.IsNullOrEmpty(tbCode)) {
+                alert("Пустой код");
+                Program.playMinor();
+                return;
+            }
+
+            int itemCode = 0;
+            foreach (ItemView itemView in itemsViews.Controls) {
+                orm.MoveOrderItem item = itemView.Item;
+                if (item.IsRightCode(tbCode)) {
+                    itemCode = item.InventoryId;
+                    break;
+                }
+            }
+
+            if (itemCode == 0) {
+                alert("Не найдена позиция с кодом " + code);
+                Program.playMinor();
+                return;
+            }
+
+            algorithm.process(this, selectByItemCode(itemCode));
         }
 
-        private const int MAX_ITEMS_WOSCAN = 20;
+        private ICollection<ItemView> selectByItemCode(int itemCode) {
+            ICollection<ItemView> selected = new List<ItemView>();
+            itemsViews.AutoScrollPosition = new Point(0, 0);
+            int top = 0;
+            foreach (ItemView itemView in itemsViews.Controls) {
+                if (itemView.Item.InventoryId == itemCode) {
+                    selected.Add(itemView);
+                    itemView.Visible = true;
+                    itemView.Top = top;
+                    top += itemView.Height;
+                }
+                else {
+                    itemView.Visible = false;
+                }
+            }
+            return selected;
+        }
 
+        #region Hand input
         HandQuantityInput handInput = null;
-        private void createHandQtyInput() {
+        internal void createHandQtyInput(ICollection<ItemView> items) {
             if (handInput != null) {
                 closeHandQtyInput();
             }
-            handInput = new HandQuantityInput(selected);
+            handInput = new HandQuantityInput(items);
             handInput.OnClose += new OnEvent(input_OnClose);
             handInput.OnUpdate += new OnEvent(input_OnUpdate);
             this.Controls.Add(handInput);
             handInput.Visible = true;
             handInput.Top = itemsViews.Top;
             handInput.Left = itemsViews.Left;
-            itemsViews.Top += handInput.Height + 2;
+            itemsViews.Top += handInput.Height;
+            itemsViews.Height -= handInput.Height;
         }
 
         public void closeHandQtyInput() {
             if (handInput != null) {
                 handInput.Hide();
                 this.Controls.Remove(handInput);
-                itemsViews.Top -= handInput.Height + 2;
+                itemsViews.Top -= handInput.Height;
+                itemsViews.Height += handInput.Height;
                 handInput = null;
             }
         }
+        #endregion
 
         void input_OnClose() {
             closeHandQtyInput();
@@ -127,13 +147,14 @@ namespace km.hl.outturn {
 
         private void btnClear_Click(object sender, EventArgs e) {
             this.code.Text = "";
+            itemsViews.AutoScrollPosition = new Point(0, 0);
             int top = 0;
             foreach (ItemView itemView in itemsViews.Controls) {
                 itemView.Visible = true;
                 itemView.Top = top;
                 top += itemView.Height + 1;
+                itemView.redraw();
             }
-            selected.Clear();
         }
 
         private void btnClose_Click(object sender, EventArgs e) {

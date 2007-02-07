@@ -20,7 +20,7 @@ namespace g.orm.impl {
 		    mappersForClasses.Add(domObjClall, mapperType);
 	    }
     	
-	    public IDbConnection getConnection(String key) {
+	    public IDbConnection getConnection(String key, bool mutable) {
             lock (this) {
                 if (cnns.ContainsKey(key)) {
                     return cnns[key];
@@ -38,14 +38,29 @@ namespace g.orm.impl {
             }
         }
 
+        public void releaseConnection(IDbConnection connection, IDbTransaction transaction) {
+            if (!cnns.Values.Contains(connection)) {
+                if (transaction != null) {
+                    transaction.Rollback();
+                    transaction.Dispose();
+                }
+                if (connection.State == ConnectionState.Open) {
+                    connection.Close();
+                }
+                connection.Dispose();
+            }
+        }
+
         public IDbTransaction getTransaction(String key) {
             lock (this) {
                 if (transacts.ContainsKey(key)) {
                     return transacts[key];
                 }
                 try {
-                    IDbTransaction tr = getFactory(key).getTransaction(getConnection(key));
-                    transacts.Add(key, tr);
+                    IDbTransaction tr = getFactory(key).getTransaction(getConnection(key, false));
+                    if (cnns.ContainsKey(key)) {
+                        transacts.Add(key, tr);
+                    }
                     return tr;
                 }
                 catch (DataException ex) {
@@ -102,17 +117,30 @@ namespace g.orm.impl {
 		    foreach (IDbTransaction trans in transacts.Values) {
 			    try {
 				    trans.Commit();
+                    trans.Dispose();
 			    } catch (DataException e) {
 				    throw new ORMException(e);
 			    }
 		    }
-	    }
+            transacts.Clear();
+            clearConns();
+        }
 
         public void close() {
             rollback();
+            clearConns();
+
+            foreach (Mapper mapper in mappers.Values) {
+                mapper.clear();
+            }
+	    }
+
+        private void clearConns() {
             foreach (IDbConnection conn in cnns.Values) {
                 try {
-                    conn.Close();
+                    if (conn.State == ConnectionState.Open) {
+                        conn.Close();
+                    }
                     conn.Dispose();
                 }
                 catch (DataException e) {
@@ -120,29 +148,24 @@ namespace g.orm.impl {
                 }
             }
             cnns.Clear();
-
-            foreach (Mapper mapper in mappers.Values) {
-                mapper.clear();
-            }
-	    }
+        }
 
         public void rollback() {
             foreach (IDbTransaction trans in transacts.Values) {
                 try {
                     trans.Rollback();
+                    trans.Dispose();
                 }
                 catch (DataException e) {
                     throw new ORMException(e);
                 }
             }
             transacts.Clear();
+            clearConns();
         }
-        #region IDisposable Members
 
         public void Dispose() {
             close();
         }
-
-        #endregion
     }
 }

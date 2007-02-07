@@ -1,5 +1,5 @@
-namespace km.hl.outturn {
-    partial class BuyerSelect {
+namespace km.hl {
+    partial class ClickShowUserControl {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -23,16 +23,8 @@ namespace km.hl.outturn {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.SuspendLayout();
-            // 
-            // ContragentsSelect
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScroll = true;
-            this.Name = "ContragentsSelect";
-            this.ResumeLayout(false);
-
         }
 
         #endregion

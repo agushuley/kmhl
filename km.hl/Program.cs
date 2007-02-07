@@ -22,7 +22,6 @@ namespace km.hl {
         }
 
         public static void playMinor() {
-            Program.getBuzzer().Play(km.hard.BuzzerVolume.min, 50, 100);
             Program.getBuzzer().Play(km.hard.BuzzerVolume.mid, 25, 50);
         }
 

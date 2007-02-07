@@ -12,7 +12,8 @@ namespace g.orm {
         void update();
 
         DataFactory getFactory(String key);
-        IDbConnection getConnection(String key);
+        IDbConnection getConnection(String key, bool mutable);
         IDbTransaction getTransaction(String key);
+        void releaseConnection(IDbConnection connection, IDbTransaction transaction);
     }
 }

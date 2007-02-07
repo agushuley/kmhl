@@ -34,6 +34,7 @@ namespace km.hl.outturn {
             this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel.AutoScroll = true;
             this.panel.Location = new System.Drawing.Point(0, 33);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(238, 241);
@@ -54,6 +55,7 @@ namespace km.hl.outturn {
             this.btnDocuments.Size = new System.Drawing.Size(103, 33);
             this.btnDocuments.TabIndex = 2;
             this.btnDocuments.Text = "Документы";
+            this.btnDocuments.Click += new System.EventHandler(this.btnDocuments_Click);
             // 
             // X
             // 

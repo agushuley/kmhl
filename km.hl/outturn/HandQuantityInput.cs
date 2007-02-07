@@ -11,15 +11,15 @@ using km.hl.orm;
 namespace km.hl.outturn {
     public delegate void OnEvent();
     public partial class HandQuantityInput : UserControl {
-        public HandQuantityInput(ICollection<MoveOrderItem> items) {
+        public HandQuantityInput(ICollection<ItemView> items) {
             InitializeComponent();
-            this.items = items;
+            this.views = items;
 
             int qty = 0;
             maxQty = 0;
-            foreach (MoveOrderItem item in items) {
-                qty += item.QtyPicked;
-                maxQty += item.Quantity;
+            foreach (ItemView view in items) {
+                qty += view.Item.QtyPicked;
+                maxQty += view.Item.Quantity;
             }
             quantityPicked.Maximum = maxQty;
             lblQty.Text = "" + maxQty;
@@ -27,7 +27,7 @@ namespace km.hl.outturn {
             quantityPicked.Value = qty;
         }
 
-        private ICollection<MoveOrderItem> items;
+        private ICollection<ItemView> views;
         private int maxQty = 0;
 
         private void btnClose_Click(object sender, EventArgs e) {
@@ -42,10 +42,11 @@ namespace km.hl.outturn {
 
         private void btnOk_Click(object sender, EventArgs e) {
             int remaind = Convert.ToInt32(quantityPicked.Value);
-            foreach (MoveOrderItem item in items) {
-                int pos = Math.Min(item.Quantity, remaind);
-                item.QtyPicked = pos;
+            foreach (ItemView view in views) {
+                int pos = Math.Min(view.Item.Quantity, remaind);
+                view.Item.QtyPicked = pos;
                 remaind += remaind;
+                view.redraw();
             }
             Context.Instance.commit();
             if (OnUpdate != null) {

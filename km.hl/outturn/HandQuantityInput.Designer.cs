@@ -50,7 +50,7 @@ namespace km.hl.outturn {
             // quantityPicked
             // 
             this.quantityPicked.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
-            this.quantityPicked.Location = new System.Drawing.Point(59, 6);
+            this.quantityPicked.Location = new System.Drawing.Point(59, 4);
             this.quantityPicked.Name = "quantityPicked";
             this.quantityPicked.Size = new System.Drawing.Size(53, 20);
             this.quantityPicked.TabIndex = 0;
@@ -61,7 +61,7 @@ namespace km.hl.outturn {
             this.btnOk.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular);
             this.btnOk.Location = new System.Drawing.Point(173, 0);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(32, 33);
+            this.btnOk.Size = new System.Drawing.Size(32, 29);
             this.btnOk.TabIndex = 1;
             this.btnOk.Text = "V";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -72,7 +72,7 @@ namespace km.hl.outturn {
             this.btnClose.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular);
             this.btnClose.Location = new System.Drawing.Point(205, 0);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(35, 33);
+            this.btnClose.Size = new System.Drawing.Size(35, 29);
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "X";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -98,7 +98,7 @@ namespace km.hl.outturn {
             this.Controls.Add(this.quantityPicked);
             this.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
             this.Name = "HandQuantityInput";
-            this.Size = new System.Drawing.Size(240, 33);
+            this.Size = new System.Drawing.Size(240, 29);
             this.ResumeLayout(false);
 
         }

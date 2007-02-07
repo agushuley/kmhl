@@ -9,13 +9,15 @@ using System.Windows.Forms;
 using km.hl.orm;
 
 namespace km.hl.outturn {
-    public partial class ItemView : UserControl {
+    public partial class ItemView : ClickShowUserControl {
         public ItemView(MoveOrderItem item) {
             InitializeComponent();
 
             this.item = item;
             redraw();
         }
+
+        private PictureBox bxStatus;
 
         private MoveOrderItem item;
 
@@ -30,6 +32,7 @@ namespace km.hl.outturn {
             lblQty.Text = item.Quantity.ToString();
             lblPickedQty.Text = item.QtyPicked.ToString();
             lblMisc.Text = item.NoSerialNeed ? "ns" : "";
+            bxStatus.Image = item.QtyPicked == item.Quantity ? Resources.greenBall : Resources.redBall;
         }
 
         #region desighner generated code
@@ -47,11 +50,11 @@ namespace km.hl.outturn {
             this.lblMnfCode = new System.Windows.Forms.Label();
             this.lblPickedQty = new System.Windows.Forms.Label();
             this.lblMisc = new System.Windows.Forms.Label();
+            this.bxStatus = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
             // 
             // lblItem
             // 
-            this.lblItem.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
             this.lblItem.Location = new System.Drawing.Point(0, 1);
             this.lblItem.Name = "lblItem";
             this.lblItem.Size = new System.Drawing.Size(166, 16);
@@ -96,14 +99,22 @@ namespace km.hl.outturn {
             this.lblMisc.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
             this.lblMisc.Location = new System.Drawing.Point(163, 35);
             this.lblMisc.Name = "lblMisc";
-            this.lblMisc.Size = new System.Drawing.Size(54, 16);
+            this.lblMisc.Size = new System.Drawing.Size(40, 16);
             this.lblMisc.Text = "label4";
             this.lblMisc.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // bxStatus
+            // 
+            this.bxStatus.Location = new System.Drawing.Point(205, 37);
+            this.bxStatus.Name = "bxStatus";
+            this.bxStatus.Size = new System.Drawing.Size(12, 12);
+            this.bxStatus.Click += new System.EventHandler(this.bxStatus_Click);
             // 
             // ItemView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.bxStatus);
             this.Controls.Add(this.lblMisc);
             this.Controls.Add(this.lblPickedQty);
             this.Controls.Add(this.lblQty);
@@ -113,29 +124,13 @@ namespace km.hl.outturn {
             this.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
             this.Name = "ItemView";
             this.Size = new System.Drawing.Size(218, 50);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemView_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemView_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemView_MouseUp);
             this.ResumeLayout(false);
 
         }
         #endregion
 
-        private bool pressed = false;
-        System.Drawing.Color prevColor;
-        private void ItemView_MouseDown(object sender, MouseEventArgs e) {
-            pressed = true;
-            prevColor = this.BackColor;
-            this.BackColor = System.Drawing.Color.LightYellow;
-        }
-
-        private void ItemView_MouseMove(object sender, MouseEventArgs e) {
-        }
-
-        private void ItemView_MouseUp(object sender, MouseEventArgs e) {
-            if (pressed) {
-                this.BackColor = prevColor;
-            }
+        private void bxStatus_Click(object sender, EventArgs e) {
+            OnClick(e);
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace km.hl.outturn {
     class BuyerSelect {
@@ -25,14 +26,13 @@ namespace km.hl.outturn {
             Array.Sort<orm.Buyer>(buyers, new BuyersNameComparasion());
 
             container.Controls.Clear();
-            for (int i = buyers.Length - 1; i >= 0; i--) {
+            container.AutoScrollPosition = new Point(0, 0);
+            int top = 0;
+            for (int i = 0; i < buyers.Length; i++) {
                 BuyerItem item = new BuyerItem(buyers[i], orders, alghoritm);
-                item.Dock = DockStyle.Top;
-                item.TabIndex = buyers.Length - 1;
+                item.Top = top;
                 container.Controls.Add(item);
-                if (i == 0) {
-                    item.Focus();
-                }
+                top += item.Height + 1;
             }
         }
 

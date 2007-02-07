@@ -10,19 +10,21 @@ using km.hl.orm;
 using g.orm;
 
 namespace km.hl.outturn {
-    public partial class SerialsForm : Form {
-        public SerialsForm(ICollection<MoveOrderItem> items) {
+    public partial class SerialsForm : AlertForm {
+        public SerialsForm(ICollection<ItemView> views, ScanAlgorithm algorithm) {
             InitializeComponent();
 
-            this.items = items;
+            this.views = views;
+            this.algorithm = algorithm;
         }
 
-        private ICollection<MoveOrderItem> items;
+        private ICollection<ItemView> views;
+        private ScanAlgorithm algorithm;
 
         private void SerialsForm_Load(object sender, EventArgs e) {
-            foreach (MoveOrderItem item in items) {
-                cbNoSerialNeed.Checked = item.NoSerialNeed;
-                foreach (ItemSerial s in item.Serials) {
+            foreach (ItemView view in views) {
+                cbNoSerialNeed.Checked = view.Item.NoSerialNeed;
+                foreach (ItemSerial s in view.Item.Serials) {
                     listSerials.Items.Add(s.Serial);
                 }
             }
@@ -41,58 +43,7 @@ namespace km.hl.outturn {
         }
 
         void scan() {
-            if (String.IsNullOrEmpty(tbSerial.Text) && !NoSerialsNeed) {
-                Program.playMinor();
-                this.Text = "Серийный номер пуст";
-                return;
-            }
-
-            if (!NoSerialsNeed) {
-                foreach (MoveOrderItem item in items) {
-                    if (item.IsRightCode(tbSerial.Text)) {
-                        Program.playMinor();
-                        this.Text = "Серийный некорректен";
-                        return;
-                    }
-                }
-            }
-
-            if (noSerialsChanged) {
-                foreach (MoveOrderItem item in items) {
-                    item.NoSerialNeed = NoSerialsNeed;
-                }
-                Context.Instance.commit();
-            }
-
-            if (!NoSerialsNeed) {
-                foreach (MoveOrderItem item in items) {
-                    foreach (ItemSerial s in item.Serials) {
-                        if (s.Serial == tbSerial.Text) {
-                            Program.playMinor();
-                            this.Text = "Дублирование серийного номера";
-                            return;
-                        }
-                    }
-                }
-            }
-
-            foreach (MoveOrderItem item in items) {
-                if (item.QtyPicked < item.Quantity) {
-                    if (!NoSerialsNeed) {
-                        ItemSerial serial = new ItemSerial(item, this.tbSerial.Text);
-                        Mapper serialsMapper = orm.Context.Instance.getMapper(typeof(ItemSerial));
-                        serialsMapper.add(serial);
-                        item.Serials.Add(serial);
-                    }
-
-                    item.QtyPicked++;
-
-                    orm.Context.Instance.commit();
-                    break;
-                }
-            }
-            DialogResult = DialogResult.OK;
-            Close();
+            algorithm.scanSerial(this, views);
         }
 
         private void btnOk_Click(object sender, EventArgs e) {
@@ -104,8 +55,24 @@ namespace km.hl.outturn {
         }
 
         private bool noSerialsChanged = false;
+        public bool NoSerialsChanged {
+            get { return noSerialsChanged; }
+        }
         private void cbNoSerialNeed_CheckStateChanged(object sender, EventArgs e) {
             noSerialsChanged = true;
+        }
+
+        private void listSerials_KeyUp(object sender, KeyEventArgs e) {
+            if (e.KeyCode == Keys.Back) {
+                if (listSerials.SelectedIndex != -1) {
+                    String serial = (String)listSerials.SelectedItem;
+                    algorithm.removeSerial(this, views, serial);
+                }
+                else {
+                    Program.playMajor();
+                    alert("Не выделен серийный номер");
+                }
+            }
         }
     }
 }

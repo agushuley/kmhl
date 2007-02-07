@@ -21,9 +21,7 @@ namespace km.hl.outturn {
         private orm.MoveOrderSate state;
 
         private void btnContragents_Click(object sender, EventArgs e) {
-            panel.Controls.Clear();
-            BuyerSelect select = new BuyerSelect(orders, algorithm);
-            select.load(panel);
+            selectByBuyer();
         }
 
         ICollection<orm.MoveOrder> orders = new List<orm.MoveOrder>();
@@ -33,10 +31,27 @@ namespace km.hl.outturn {
                     orders.Add(order);
                 }
             }
+            algorithm.initSelectTypeForm(this);
         }
 
         private void X_Click(object sender, EventArgs e) {
             this.Close();
-        }       
+        }
+
+        private void btnDocuments_Click(object sender, EventArgs e) {
+            selectByDocument();
+        }
+
+        internal void selectByDocument() {
+            panel.Controls.Clear();
+            OrderSelect select = new OrderSelect(orders, algorithm);
+            select.load(panel);
+        }
+
+        internal void selectByBuyer() {
+            panel.Controls.Clear();
+            BuyerSelect select = new BuyerSelect(orders, algorithm);
+            select.load(panel);
+        }
     }
 }
