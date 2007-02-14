@@ -94,7 +94,7 @@ namespace km.hl.outturn {
             this.Controls.Add(this.code);
             this.Controls.Add(this.itemsViews);
             this.Name = "ItemsForm";
-            this.Text = "ItemsForm";
+            this.Text = "Позиции";
             this.Load += new System.EventHandler(this.ItemsForm_Load);
             this.ResumeLayout(false);
 

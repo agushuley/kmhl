@@ -96,7 +96,7 @@ namespace km.hl.outturn {
             this.Controls.Add(this.cbNoSerialNeed);
             this.Controls.Add(this.listSerials);
             this.Name = "SerialsForm";
-            this.Text = "SerialsForm";
+            this.Text = "Серийные номера";
             this.Load += new System.EventHandler(this.SerialsForm_Load);
             this.ResumeLayout(false);
 
