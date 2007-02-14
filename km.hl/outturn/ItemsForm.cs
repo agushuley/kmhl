@@ -74,7 +74,7 @@ namespace km.hl.outturn {
             }
 
             if (itemCode == 0) {
-                alert("Не найдена позиция с кодом " + code);
+                alert("Не найдена позиция с кодом " + code.Text);
                 Program.playMinor();
                 return;
             }
