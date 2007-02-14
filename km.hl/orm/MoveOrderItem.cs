@@ -77,11 +77,12 @@ namespace km.hl.orm {
             set { noSerialNeed = value; markDirty(); }
         }
 
-        public bool IsRightCode(string code) {
+        public bool IsRightCode(String code) {
+            code = code.ToUpper();
             if (String.IsNullOrEmpty(code)) return false;
-            if (code.StartsWith(MfrCode)) return true; 
-            if (code == InternalCode) return true;
-            if (code.Length + 2 == InternalCode.Length && InternalCode.StartsWith(code + "/")) return true;
+            if (code.StartsWith(MfrCode.ToUpper())) return true;
+            if (code == InternalCode.ToUpper()) return true;
+            if (code.Length + 2 == InternalCode.Length && InternalCode.ToUpper().StartsWith(code + "/")) return true;
             return false;
         }
     }
