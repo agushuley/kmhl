@@ -18,7 +18,7 @@ namespace km.hl.outturn {
 
         private Label lblOrder;
         private PictureBox pictState;
-        private Label lblBuyer;
+        private g.forms.Label lblBuyer;
         private Label lblOrderInfo;
         private ScanAlgorithm alghoritm;
 
@@ -48,7 +48,7 @@ namespace km.hl.outturn {
         private void InitializeComponent() {
             this.lblOrder = new System.Windows.Forms.Label();
             this.pictState = new System.Windows.Forms.PictureBox();
-            this.lblBuyer = new System.Windows.Forms.Label();
+            this.lblBuyer = new g.forms.Label();
             this.lblOrderInfo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -77,7 +77,8 @@ namespace km.hl.outturn {
             this.lblBuyer.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
             this.lblBuyer.Location = new System.Drawing.Point(19, 19);
             this.lblBuyer.Name = "lblBuyer";
-            this.lblBuyer.Size = new System.Drawing.Size(88, 15);
+            this.lblBuyer.Size = new System.Drawing.Size(119, 15);
+            this.lblBuyer.TabIndex = 2;
             this.lblBuyer.Text = "lblOrder";
             // 
             // lblOrderInfo

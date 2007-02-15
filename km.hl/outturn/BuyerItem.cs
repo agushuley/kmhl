@@ -23,7 +23,7 @@ namespace km.hl.outturn {
         IDictionary<orm.MoveOrder, BuyerOrderView> views = null;
         IList<orm.MoveOrder> orders = new List<orm.MoveOrder>();
 
-        private Label lblBuyer;
+        private g.forms.Label lblBuyer;
         private PictureBox pictState;
         private Label lblOrder;
         private Label lblOrderInfo;
@@ -101,7 +101,7 @@ namespace km.hl.outturn {
 
         #region Desighner generate code
         private void InitializeComponent() {
-            this.lblBuyer = new System.Windows.Forms.Label();
+            this.lblBuyer = new g.forms.Label();
             this.pictState = new System.Windows.Forms.PictureBox();
             this.lblOrder = new System.Windows.Forms.Label();
             this.lblOrderInfo = new System.Windows.Forms.Label();
