@@ -15,6 +15,11 @@ namespace km.hl.outturn {
             if (state == km.hl.orm.MoveOrderSate.C) {
                 algorithm = new ConfirmedScanAlgorithm();
             }
+            else if (state == km.hl.orm.MoveOrderSate.G) {
+                algorithm = new GivedScanAlgorithm();
+            } else {
+                algorithm = new NullScanAlghoritm();
+            }
         }
 
         private ScanAlgorithm algorithm;

@@ -103,6 +103,8 @@
     </Compile>
     <Compile Include="outturn\BuyerSelect.cs" />
     <Compile Include="outturn\ConfirmedScanAlgorithm.cs" />
+    <Compile Include="outturn\GivedScanAlgorithm.cs" />
+    <Compile Include="outturn\NullScanAlghoritm.cs" />
     <Compile Include="outturn\OrderSelect.cs" />
     <Compile Include="outturn\OrderItem.cs">
       <SubType>UserControl</SubType>
