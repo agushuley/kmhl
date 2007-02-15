@@ -14,7 +14,7 @@ namespace km.hl.outturn {
 
             bool filled = true;
             foreach (ItemView itemView in selected) {
-                if (itemView.Item.Serials.Count < itemView.Item.QtyPicked) {
+                if (itemView.Item.Serials.Count < itemView.Item.Quantity) {
                     filled = false;
                     break;
                 }
@@ -70,7 +70,7 @@ namespace km.hl.outturn {
 
             bool filled = true;
             foreach (ItemView itemView in views) {
-                if (itemView.Item.Serials.Count < itemView.Item.QtyPicked) {
+                if (itemView.Item.Serials.Count < itemView.Item.Quantity) {
                     filled = false;
                     break;
                 }
@@ -82,13 +82,11 @@ namespace km.hl.outturn {
             };
 
             foreach (ItemView view in views) {
-                if (view.Item.Serials.Count < view.Item.QtyPicked) {
-                    if (!serialsForm.NoSerialsNeed) {
-                        ItemSerial serial = new ItemSerial(view.Item, serialsForm.tbSerial.Text);
-                        Mapper serialsMapper = orm.Context.Instance.getMapper(typeof(ItemSerial));
-                        serialsMapper.add(serial);
-                        view.Item.Serials.Add(serial);
-                    }
+                if (view.Item.Serials.Count < view.Item.Quantity) {
+                    ItemSerial serial = new ItemSerial(view.Item, serialsForm.tbSerial.Text);
+                    Mapper serialsMapper = orm.Context.Instance.getMapper(typeof(ItemSerial));
+                    serialsMapper.add(serial);
+                    view.Item.Serials.Add(serial);
 
                     orm.Context.Instance.commit();
                     break;
