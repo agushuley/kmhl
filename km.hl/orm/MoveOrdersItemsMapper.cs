@@ -109,7 +109,7 @@ namespace km.hl.orm {
             private String mfrCode;
 
             public string Sql {
-                get { return BASE_SELECT + " WHERE UPPER(?) LIKE UPPER(i.mfg_part_num) || '%' "; }
+                get { return BASE_SELECT + " WHERE UPPER(?) LIKE UPPER(mfg_part_num) || '%' "; }
             }
 
             public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {
