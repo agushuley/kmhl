@@ -35,6 +35,7 @@ namespace km.hl.outturn {
 
         private void processSerials(ItemsForm form, ICollection<ItemView> selected) {
             SerialsForm serials = new SerialsForm(selected, this);
+            serials.NoSerialNeedVisible = false;
             DialogResult result = serials.ShowDialog();
             if (result != DialogResult.Cancel) {
                 foreach (ItemView itemView in selected) {
@@ -44,7 +45,7 @@ namespace km.hl.outturn {
         }
 
         public void scanSerial(SerialsForm serialsForm, ICollection<ItemView> views) {
-            if (String.IsNullOrEmpty(serialsForm.tbSerial.Text) && !serialsForm.NoSerialsNeed) {
+            if (String.IsNullOrEmpty(serialsForm.tbSerial.Text)) {
                 Program.playMinor();
                 serialsForm.alert("Серийный номер пуст");
                 return;

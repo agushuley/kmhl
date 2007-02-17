@@ -74,5 +74,10 @@ namespace km.hl.outturn {
                 }
             }
         }
+
+        public bool NoSerialNeedVisible {
+            get { return cbNoSerialNeed.Visible; }
+            set { cbNoSerialNeed.Visible = value; }
+        }
     }
 }
