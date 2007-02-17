@@ -5,5 +5,6 @@ using System.Text;
 namespace km.hl.orm {
     public interface IItemsSerialsMapper : g.orm.Mapper {
         ICollection<ItemSerial> getSerialsForItem(MoveOrderItem obj);
+        ICollection<ItemSerial> getSerialsForSerial(String serialCode);
     }
 }

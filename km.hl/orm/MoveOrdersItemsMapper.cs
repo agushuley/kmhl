@@ -6,7 +6,7 @@ using g.orm.impl;
 using g.orm;
 
 namespace km.hl.orm {
-    class MoveOrdersItemsMapper : AbstractSqlMapper, IMoveOrderItemsMapper{
+    class MoveOrdersItemsMapper : AbstractSqlMapper, IMoveOrderItemsMapper {
         protected override string ConnectionKey {
             get { return Commons.DATABASE_ID; }
         }
@@ -96,6 +96,55 @@ namespace km.hl.orm {
         public ICollection<MoveOrderItem> getItemsForOrder(MoveOrder obj) {
             ICollection<MoveOrderItem> items = new List<MoveOrderItem>();
             foreach (MoveOrderItem i in base.getObjectsForCb(new ItemsForOrderQCb(obj))) {
+                items.Add(i);
+            }
+            return items;
+        }
+
+        private class ItemsForMfrCodeCb : GetQueryCallback {
+            public ItemsForMfrCodeCb(String mfrCode) {
+                this.mfrCode = mfrCode;
+            }
+
+            private String mfrCode;
+
+            public string Sql {
+                get { return BASE_SELECT + " WHERE UPPER(?) LIKE UPPER(i.mfg_part_num) || '%' "; }
+            }
+
+            public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {
+                g.DbTools.setParam(cmd, ":mfr_code", mfrCode);
+            }
+        }
+        public ICollection<MoveOrderItem> getItemsForMfrCode(string mfrCode) {
+            ICollection<MoveOrderItem> items = new List<MoveOrderItem>();
+            foreach (MoveOrderItem i in base.getObjectsForCb(new ItemsForMfrCodeCb(mfrCode))) {
+                items.Add(i);
+            }
+            return items;
+        }
+
+        private class ItemsForIntCodeCb : GetQueryCallback {
+            public ItemsForIntCodeCb(String intCode) {
+                this.intCode = intCode;
+            }
+
+            private String intCode;
+
+            public string Sql {
+                get { 
+                    return BASE_SELECT + " WHERE UPPER(?) = UPPER(item_segment1) OR UPPER(item_segment1) LIKE UPPER(?) || '/_'"; 
+                }
+            }
+
+            public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {
+                g.DbTools.setParam(cmd, ":int_code", intCode);
+                g.DbTools.setParam(cmd, ":int_code2", intCode);
+            }
+        }
+        public ICollection<MoveOrderItem> getItemsForInternalCode(string intCode) {
+            ICollection<MoveOrderItem> items = new List<MoveOrderItem>();
+            foreach (MoveOrderItem i in base.getObjectsForCb(new ItemsForIntCodeCb(intCode))) {
                 items.Add(i);
             }
             return items;

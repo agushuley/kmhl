@@ -108,5 +108,28 @@ namespace km.hl.orm {
             }
             return list;
         }
+
+        private class SelectByCodeCb: GetQueryCallback {
+            public SelectByCodeCb(String serialCode) {
+                this.code = serialCode;
+            }
+
+            private String code;
+
+            public string Sql {
+                get { return BASE_SELECT + " WHERE serial_number = ?"; }
+            }
+
+            public void SetParams(System.Data.IDbCommand cmd, g.orm.ORMObject obj) {
+                g.DbTools.setParam(cmd, ":serial", code);
+            }
+        }
+        public ICollection<ItemSerial> getSerialsForSerial(string serialCode) {
+            ICollection<ItemSerial> list = new List<ItemSerial>();
+            foreach (ItemSerial item in base.getObjectsForCb(new SelectByCodeCb(serialCode))) {
+                list.Add(item);
+            }
+            return list;
+        }
     }
 }
