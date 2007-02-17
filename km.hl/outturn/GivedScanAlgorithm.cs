@@ -50,22 +50,16 @@ namespace km.hl.outturn {
                 return;
             }
 
-            foreach (ItemView view in views) {
-                if (view.Item.IsRightCode(serialsForm.tbSerial.Text)) {
-                    Program.playMinor();
-                    serialsForm.alert("Серийный некорректен");
-                    return;
-                }
+            if (Commons.checkSerialIsItemCode(serialsForm.tbSerial.Text)) {
+                Program.playMinor();
+                serialsForm.alert("Серийный некорректен");
+                return;
             }
 
-            foreach (ItemView view in views) {
-                foreach (ItemSerial s in view.Item.Serials) {
-                    if (s.Serial == serialsForm.tbSerial.Text) {
-                        Program.playMinor();
-                        serialsForm.alert("Дублирование серийного номера");
-                        return;
-                    }
-                }
+            if (Commons.checkSerialExists(serialsForm.tbSerial.Text)) {
+                Program.playMinor();
+                serialsForm.alert("Дублирование серийного номера");
+                return;
             }
 
             bool filled = true;

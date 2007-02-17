@@ -76,12 +76,10 @@ namespace km.hl.outturn {
             }
 
             if (!serials.NoSerialsNeed) {
-                foreach (ItemView view in views) {
-                    if (view.Item.IsRightCode(serials.tbSerial.Text)) {
-                        Program.playMinor();
-                        serials.alert("Серийный некорректен");
-                        return;
-                    }
+                if (Commons.checkSerialIsItemCode(serials.tbSerial.Text)) {
+                    Program.playMinor();
+                    serials.alert("Серийный некорректен");
+                    return;
                 }
             }
 
@@ -93,14 +91,10 @@ namespace km.hl.outturn {
             }
 
             if (!serials.NoSerialsNeed) {
-                foreach (ItemView view in views) {
-                    foreach (ItemSerial s in view.Item.Serials) {
-                        if (s.Serial == serials.tbSerial.Text) {
-                            Program.playMinor();
-                            serials.alert("Дублирование серийного номера");
-                            return;
-                        }
-                    }
+                if (Commons.checkSerialExists(serials.tbSerial.Text)) {
+                    Program.playMinor();
+                    serials.alert("Дублирование серийного номера");
+                    return;
                 }
             }
 
