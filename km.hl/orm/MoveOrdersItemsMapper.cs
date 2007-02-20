@@ -109,11 +109,12 @@ namespace km.hl.orm {
             private String mfrCode;
 
             public string Sql {
-                get { return BASE_SELECT + " WHERE UPPER(?) LIKE UPPER(mfg_part_num) || '%' "; }
+                get { return BASE_SELECT + " WHERE UPPER(?) "
+                    + " LIKE UPPER(REPLACE(REPLACE(REPLACE(mfg_part_num, '%', '\\%'), '_', '\\_'), '\\', '\\\\')) || '%' ESCAPE '\\'  "; }
             }
 
             public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {
-                g.DbTools.setParam(cmd, ":mfr_code", mfrCode);
+                g.DbTools.setParam(cmd, ":mfr_code", Commons.encodeText(mfrCode));
             }
         }
         public ICollection<MoveOrderItem> getItemsForMfrCode(string mfrCode) {
@@ -132,14 +133,14 @@ namespace km.hl.orm {
             private String intCode;
 
             public string Sql {
-                get { 
-                    return BASE_SELECT + " WHERE UPPER(?) = UPPER(item_segment1) OR UPPER(item_segment1) LIKE UPPER(?) || '/_'"; 
+                get {
+                    return BASE_SELECT + " WHERE UPPER(?) = UPPER(item_segment1) OR UPPER(item_segment1) LIKE UPPER(?) || '/_' ESCAPE '\\'"; 
                 }
             }
 
             public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {
-                g.DbTools.setParam(cmd, ":int_code", intCode);
-                g.DbTools.setParam(cmd, ":int_code2", intCode);
+                g.DbTools.setParam(cmd, ":int_code", Commons.encodeText(intCode));
+                g.DbTools.setParam(cmd, ":int_code2", g.DbTools.EschapeString(Commons.encodeText(intCode), '\\'));
             }
         }
         public ICollection<MoveOrderItem> getItemsForInternalCode(string intCode) {
