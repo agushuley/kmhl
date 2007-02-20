@@ -69,5 +69,14 @@ namespace g {
             }
             return false;
         }
+
+        public static String EschapeString(String str, char eschape) {
+            if (String.IsNullOrEmpty(str)) {
+                return str;
+            }
+            return str.Replace("%", "" + eschape + '%')
+                .Replace("_", "" + eschape + '_')
+                .Replace("" + eschape, "" + eschape + eschape);
+        }
     }
 }
