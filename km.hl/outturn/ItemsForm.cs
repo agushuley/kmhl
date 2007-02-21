@@ -97,6 +97,7 @@ namespace km.hl.outturn {
                     itemView.Visible = false;
                 }
             }
+            hideAlert();
             return selected;
         }
 
@@ -155,6 +156,7 @@ namespace km.hl.outturn {
                 top += itemView.Height + 1;
                 itemView.redraw();
             }
+            hideAlert();
         }
 
         private void btnClose_Click(object sender, EventArgs e) {
