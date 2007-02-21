@@ -85,7 +85,7 @@ namespace km.hl.orm {
 
         private class UpdateCallback : g.orm.impl.GetQueryCallback {
             public string Sql {
-                get { return "UDPATE inv_mv_orders SET status = ?, is_complete = ? WHERE move_id = ?"; }
+                get { return "UPDATE inv_hl_move_orders SET status = ?, is_complete = ? WHERE move_id = ?"; }
             }
 
             public void SetParams(System.Data.IDbCommand cmd, g.orm.ORMObject obj) {
@@ -97,8 +97,7 @@ namespace km.hl.orm {
             }
         }
         protected override GetQueryCallback getUpdateQueryCB() {
-            //return new UpdateCallback();   
-            throw new Exception("The method or operation is not implemented.");
+            return new UpdateCallback();   
         }
 
         protected override GetQueryCallback getDeleteQueryCB() {
