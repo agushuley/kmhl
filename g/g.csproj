@@ -76,6 +76,11 @@
     <Compile Include="forms\Label.Designer.cs">
       <DependentUpon>Label.cs</DependentUpon>
     </Compile>
+    <Compile Include="Iesi\DictionarySet.cs" />
+    <Compile Include="Iesi\HashedSet.cs" />
+    <Compile Include="Iesi\HybridSet.cs" />
+    <Compile Include="Iesi\ISet.cs" />
+    <Compile Include="Iesi\Set.cs" />
     <Compile Include="orm\DataFactory.cs" />
     <Compile Include="orm\DefferableLoader.cs" />
     <Compile Include="orm\driver\OracleLiteCeDataFactory.cs" />
