@@ -43,7 +43,27 @@ namespace km.hl.outturn {
                 orm.Context.Instance.commit();
                 Program.playMajor();
             } // if (!serialNeed)
+            checkClosed(selected);
         }
+
+        private void checkClosed(ICollection<ItemView> selected) {
+            Iesi.Collections.ISet orders = new Iesi.Collections.HashedSet();
+            foreach (ItemView item in selected) {
+                orders.Add(item.Item.Order);
+            }
+            foreach (MoveOrder order in orders) {
+                bool completed = true;
+                foreach (MoveOrderItem item in order.Items) {
+                    if (item.QtyPicked < item.Quantity) {
+                        completed = false;
+                        break;
+                    }
+                }
+                order.Complete = completed;
+                orm.Context.Instance.commit();
+            }
+        }
+
 
         public void processItemView(ItemsForm itemsForm, ICollection<ItemView> views) {
             processSerials(itemsForm, views);
@@ -115,6 +135,7 @@ namespace km.hl.outturn {
             }
             serials.DialogResult = DialogResult.OK;
             serials.Close();
+            checkClosed(views);
         }
 
         public void removeSerial(SerialsForm serials, ICollection<ItemView> views, string serial) {
