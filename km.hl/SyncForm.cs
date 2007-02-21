@@ -57,6 +57,7 @@ namespace km.hl {
             try {
                 state.Text = "Sync started...";
                 orm.Context.Instance.commit();
+                orm.Context.Instance.close();
 
                 prepareBar.Value = 0;
                 processBar.Value = 0;
