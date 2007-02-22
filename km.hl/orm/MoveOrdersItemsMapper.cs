@@ -42,8 +42,22 @@ namespace km.hl.orm {
             throw new Exception("The method or operation is not implemented.");
         }
 
+        private class SelectByKeyCb : GetQueryCallback {
+            public SelectByKeyCb(IntKey key) {
+                this.key = key;
+            }
+            private IntKey key;
+
+            public string Sql {
+                get { return BASE_SELECT + " WHERE move_item_id = ?"; }
+            }
+
+            public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {
+                g.DbTools.setParam(cmd, ":move_item_id", key.Int);
+            }
+        }
         protected override GetQueryCallback getSelectByKeyCb(Key key) {
-            throw new Exception("The method or operation is not implemented.");
+            return new SelectByKeyCb((IntKey)key);
         }
 
         protected override GetQueryCallback getInsertQueryCB() {
