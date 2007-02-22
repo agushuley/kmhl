@@ -9,15 +9,15 @@ using System.Windows.Forms;
 using g.dbsync;
 
 namespace km.hl {
-    public partial class SyncForm : Form {
+    public partial class SyncForm : AlertForm {
         g.dbsync.SyncProvider sync;
         public SyncForm() {
             InitializeComponent();
 
             sync = g.Class.CreateInstance<g.dbsync.SyncProvider>(g.config.Config.get("sync.provider"));
-            txtUser.Text = g.config.Config.get("sync.user");
-            txtPassword.Text = g.config.Config.get("sync.password");
-            txtHost.Text = g.config.Config.get("sync.host");
+            sync.UserName = g.config.Config.get("sync.user");
+            sync.Password = g.config.Config.get("sync.password");
+            sync.HostName = g.config.Config.get("sync.host");
 
             sync.OnSyncProgress += new g.dbsync.SyncProgressDelegate(sync_OnSyncProgress);
         }
@@ -45,6 +45,7 @@ namespace km.hl {
                     moveProgressBar(processBar, args.Percentage);
                     break;
             }
+            Application.DoEvents();
         }
 
         private void moveProgressBar(ProgressBar bar, int p) {
@@ -53,9 +54,15 @@ namespace km.hl {
             }
         }
 
-        private void btnDo_Click(object sender, EventArgs e) {
+        private void btnClose_Click(object sender, EventArgs e) {
+            Close();
+        }
+
+        private void SyncForm_Load(object sender, EventArgs e) {
+        }
+
+        private void SyncForm_Activated(object sender, EventArgs e) {
             try {
-                state.Text = "Sync started...";
                 orm.Context.Instance.commit();
                 orm.Context.Instance.close();
 
@@ -65,12 +72,11 @@ namespace km.hl {
                 sendBar.Value = 0;
 
                 sync.DoSync();
+                Close();
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
-            }
-            finally {
-                state.Text = "Sync finished.";
+                Program.playMinor();
+                alert(ex.Message);
             }
         }
     }
