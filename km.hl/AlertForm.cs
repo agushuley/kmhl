@@ -20,5 +20,12 @@ namespace km.hl {
         public void hideAlert() {
             this.alertPanel.Visible = false;
         }
+
+        protected override void OnLoad(EventArgs e) {
+            base.OnLoad(e);
+
+            this.alertPanel.Top = ClientRectangle.Height - 2 - 59;
+            this.alertPanel.Height = 59; 
+        }
     }
 }
