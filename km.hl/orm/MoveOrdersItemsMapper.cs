@@ -124,7 +124,8 @@ namespace km.hl.orm {
 
             public string Sql {
                 get { return BASE_SELECT + " WHERE UPPER(?) "
-                    + " LIKE UPPER(REPLACE(REPLACE(REPLACE(mfg_part_num, '%', '\\%'), '_', '\\_'), '\\', '\\\\')) || '%' ESCAPE '\\'  "; }
+                        + " LIKE '%' || UPPER(REPLACE(REPLACE(REPLACE(mfg_part_num, '%', '\\%'), '_', '\\_'), '\\', '\\\\')) || '%' ESCAPE '\\'  ";
+                }
             }
 
             public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {

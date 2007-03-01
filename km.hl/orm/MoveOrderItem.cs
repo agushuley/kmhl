@@ -80,7 +80,7 @@ namespace km.hl.orm {
         public bool IsRightCode(String code) {
             code = code.ToUpper();
             if (String.IsNullOrEmpty(code)) return false;
-            if (code.StartsWith(MfrCode.ToUpper())) return true;
+            if (code.IndexOf(MfrCode.ToUpper()) >= 0) return true;
             if (code == InternalCode.ToUpper()) return true;
             if (code.Length + 2 == InternalCode.Length && InternalCode.ToUpper().StartsWith(code + "/")) return true;
             return false;
