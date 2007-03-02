@@ -55,7 +55,7 @@ namespace km.hard.casio {
             if (!enabled && !activating) {
                 try {
                     activating = true;
-                    checkCasioOk(OBReadLibNet.Api.OBROpen(owner.Handle, OBReadLibNet.Def.OBR_ALL));
+                    checkCasioOk(OBReadLibNet.Api.OBROpen(owner.Handle, OBReadLibNet.Def.OBR_ALL | OBReadLibNet.Def.OBR_CHK_ON | OBReadLibNet.Def.OBR_OUT_ON));
                     enabled = true;
                 }
                 catch (ScanException ex) {
