@@ -9,9 +9,6 @@ using km.hard.scan;
 namespace km.hard.casio {
     public class CasioBarScanner : Scanner {
         public CasioBarScanner() {
-            checkCasioOk(OBReadLibNet.Api.OBRSetCode39Option(OBReadLibNet.Def.OBR_CODE_ENABLE, 2, 38,
-                OBReadLibNet.Def.OBR_39SON | OBReadLibNet.Def.OBR_39ASON,
-                OBReadLibNet.Def.OBR_CHKDON, OBReadLibNet.Def.OBR_CHKKON));
         }
 
         public void Attach(Form owner) {
@@ -61,7 +58,7 @@ namespace km.hard.casio {
             if (!enabled && !activating) {
                 try {
                     activating = true;
-                    checkCasioOk(OBReadLibNet.Api.OBROpen(owner.Handle, OBReadLibNet.Def.OBR_ALL));
+                    checkCasioOk(OBReadLibNet.Api.OBROpen(owner.Handle, OBReadLibNet.Def.OBR_ALL | OBReadLibNet.Def.OBR_OUT_ON));
                     enabled = true;
                 }
                 catch (ScanException ex) {
