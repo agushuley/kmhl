@@ -57,7 +57,9 @@ namespace km.hard.casio {
                     activating = true;
                     checkCasioOk(OBReadLibNet.Api.OBROpen(owner.Handle, OBReadLibNet.Def.OBR_ALL));
                     enabled = true;
-                    checkCasioOk(OBReadLibNet.Api.OBRSetCode39Option(1, 2, 38, OBReadLibNet.Def.OBR_OUTOFF, OBReadLibNet.Def.OBR_CHKDON, OBReadLibNet.Def.OBR_CHKKON));
+                    checkCasioOk(OBReadLibNet.Api.OBRSetCode39Option(OBReadLibNet.Def.OBR_CODE_ENABLE, 2, 38,
+                        OBReadLibNet.Def.OBR_39SON | OBReadLibNet.Def.OBR_39ASON,
+                        OBReadLibNet.Def.OBR_CHKDON, OBReadLibNet.Def.OBR_CHKKON));
                 }
                 catch (ScanException ex) {
                     MessageBox.Show("Scanner opening error: " + ex.ToString());
