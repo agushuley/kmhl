@@ -28,6 +28,7 @@ namespace km.hl {
             this.btnOutturnSync = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOutturnChecked
@@ -50,11 +51,11 @@ namespace km.hl {
             // 
             // btnOutturnSync
             // 
-            this.btnOutturnSync.Location = new System.Drawing.Point(0, 143);
+            this.btnOutturnSync.Location = new System.Drawing.Point(0, 185);
             this.btnOutturnSync.Name = "btnOutturnSync";
             this.btnOutturnSync.Size = new System.Drawing.Size(238, 30);
-            this.btnOutturnSync.TabIndex = 2;
-            this.btnOutturnSync.Text = "3. Синхронизация";
+            this.btnOutturnSync.TabIndex = 3;
+            this.btnOutturnSync.Text = "4. Синхронизация";
             this.btnOutturnSync.Click += new System.EventHandler(this.btnOutturnSync_Click);
             // 
             // label1
@@ -67,12 +68,21 @@ namespace km.hl {
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(0, 173);
+            this.btnExit.Location = new System.Drawing.Point(0, 215);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(238, 30);
-            this.btnExit.TabIndex = 2;
+            this.btnExit.TabIndex = 4;
             this.btnExit.Text = "0. Выход";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 132);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(238, 30);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "3. Сканирование в файл";
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
@@ -82,6 +92,7 @@ namespace km.hl {
             this.ClientSize = new System.Drawing.Size(238, 275);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnOutturnSync);
             this.Controls.Add(this.btnOutturnGivved);
             this.Controls.Add(this.btnOutturnChecked);
@@ -99,5 +110,6 @@ namespace km.hl {
         private System.Windows.Forms.Button btnOutturnSync;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button button1;
     }
 }
