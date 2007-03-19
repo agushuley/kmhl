@@ -13,15 +13,15 @@ namespace km.hl {
         }
 
         private void btnOutturnChecked_Click(object sender, EventArgs e) {
-            new outturn.SelectListTypeForm(orm.MoveOrderSate.C).ShowDialog();
+            new outturn.SelectListTypeForm(outturn.orm.MoveOrderSate.C).ShowDialog();
         }
 
         private void btnOutturnGivved_Click(object sender, EventArgs e) {
-            new outturn.SelectListTypeForm(orm.MoveOrderSate.G).ShowDialog();
+            new outturn.SelectListTypeForm(outturn.orm.MoveOrderSate.G).ShowDialog();
         }
 
         private void MainForm_Closing(object sender, CancelEventArgs e) {
-            orm.Context.Instance.close();
+            orm.OrmContext.Instance.close();
         }
 
         private void btnOutturnSync_Click(object sender, EventArgs e) {

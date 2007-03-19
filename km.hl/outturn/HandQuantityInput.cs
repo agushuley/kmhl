@@ -48,7 +48,7 @@ namespace km.hl.outturn {
                 remaind += remaind;
                 view.redraw();
             }
-            Context.Instance.commit();
+            OrmContext.Instance.commit();
             if (OnUpdate != null) {
                 OnUpdate();
             }

@@ -6,16 +6,19 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+using km.hl.outturn.orm;
+using km.hl.orm;
+
 namespace km.hl.outturn {
     public partial class SelectListTypeForm : Form {
         public SelectListTypeForm(orm.MoveOrderSate state) {
             InitializeComponent();
 
             this.state = state;
-            if (state == km.hl.orm.MoveOrderSate.C) {
+            if (state == MoveOrderSate.C) {
                 algorithm = new ConfirmedScanAlgorithm();
             }
-            else if (state == km.hl.orm.MoveOrderSate.G) {
+            else if (state == MoveOrderSate.G) {
                 algorithm = new GivedScanAlgorithm();
             } else {
                 algorithm = new NullScanAlghoritm();
@@ -31,7 +34,7 @@ namespace km.hl.outturn {
 
         ICollection<orm.MoveOrder> orders = new List<orm.MoveOrder>();
         private void SelectViewForm_Load(object sender, EventArgs e) {
-            foreach (orm.MoveOrder order in orm.Context.Instance.getMapper(typeof(orm.MoveOrder)).getAll()) {
+            foreach (orm.MoveOrder order in OrmContext.Instance.getMapper(typeof(orm.MoveOrder)).getAll()) {
                 if (order.State == this.state) {
                     orders.Add(order);
                 }

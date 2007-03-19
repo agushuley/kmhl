@@ -4,7 +4,7 @@ using System.Text;
 
 using g.orm.impl;
 
-namespace km.hl.orm {
+namespace km.hl.outturn.orm {
     public class ItemSerialKey : AbstractKey {
         public ItemSerialKey(int itemId, String serial) {
             this.itemId = itemId;

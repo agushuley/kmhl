@@ -85,19 +85,19 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="orm\BuyersMapper.cs" />
-    <Compile Include="orm\Buyer.cs" />
-    <Compile Include="orm\Commons.cs" />
-    <Compile Include="orm\Context.cs" />
-    <Compile Include="orm\IItemsSerialsMapper.cs" />
-    <Compile Include="orm\IMoveOrderItemsMapper.cs" />
-    <Compile Include="orm\ItemSerialKey.cs" />
-    <Compile Include="orm\ItemsSerialsMapper.cs" />
-    <Compile Include="orm\MoveOrder.cs" />
-    <Compile Include="orm\MoveOrderItem.cs" />
-    <Compile Include="orm\ItemSerial.cs" />
-    <Compile Include="orm\MoveOrdersItemsMapper.cs" />
-    <Compile Include="orm\MoveOrdersMapper.cs" />
+    <Compile Include="outturn\orm\BuyersMapper.cs" />
+    <Compile Include="outturn\orm\Buyer.cs" />
+    <Compile Include="orm\OrmCommons.cs" />
+    <Compile Include="orm\OrmContext.cs" />
+    <Compile Include="outturn\orm\IItemsSerialsMapper.cs" />
+    <Compile Include="outturn\orm\IMoveOrderItemsMapper.cs" />
+    <Compile Include="outturn\orm\ItemSerialKey.cs" />
+    <Compile Include="outturn\orm\ItemsSerialsMapper.cs" />
+    <Compile Include="outturn\orm\MoveOrder.cs" />
+    <Compile Include="outturn\orm\MoveOrderItem.cs" />
+    <Compile Include="outturn\orm\ItemSerial.cs" />
+    <Compile Include="outturn\orm\MoveOrdersItemsMapper.cs" />
+    <Compile Include="outturn\orm\MoveOrdersMapper.cs" />
     <Compile Include="outturn\BuyerItem.cs">
       <SubType>UserControl</SubType>
     </Compile>

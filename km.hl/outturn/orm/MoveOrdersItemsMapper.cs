@@ -4,11 +4,12 @@ using System.Text;
 
 using g.orm.impl;
 using g.orm;
+using km.hl.orm;
 
-namespace km.hl.orm {
+namespace km.hl.outturn.orm {
     class MoveOrdersItemsMapper : AbstractSqlMapper, IMoveOrderItemsMapper {
         protected override string ConnectionKey {
-            get { return Commons.DATABASE_ID; }
+            get { return OrmCommons.DATABASE_ID; }
         }
 
         protected override void loadInstance(ORMObject obj, System.Data.DataRow rs) {
@@ -17,9 +18,9 @@ namespace km.hl.orm {
             item.Quantity = g.DbTools.ToInt(rs["quantity"]);
             item.QtyPicked = g.DbTools.ToInt(rs["quantity_gived"]);
             item.InventoryId = g.DbTools.ToInt(rs["inventory_item_id"]);
-            item.Description = Commons.decodeText(g.DbTools.ToString(rs["item_description"]));
-            item.MfrCode = Commons.decodeText(g.DbTools.ToString(rs["mfg_part_num"]));
-            item.InternalCode = Commons.decodeText(g.DbTools.ToString(rs["item_segment1"]));
+            item.Description = OrmCommons.decodeText(g.DbTools.ToString(rs["item_description"]));
+            item.MfrCode = OrmCommons.decodeText(g.DbTools.ToString(rs["mfg_part_num"]));
+            item.InternalCode = OrmCommons.decodeText(g.DbTools.ToString(rs["item_segment1"]));
             item.NoSerialNeed = g.DbTools.ToBoolean(rs["no_serials"]);
         }
 
@@ -129,7 +130,7 @@ namespace km.hl.orm {
             }
 
             public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {
-                g.DbTools.setParam(cmd, ":mfr_code", Commons.encodeText(mfrCode));
+                g.DbTools.setParam(cmd, ":mfr_code", OrmCommons.encodeText(mfrCode));
             }
         }
         public ICollection<MoveOrderItem> getItemsForMfrCode(string mfrCode) {
@@ -154,8 +155,8 @@ namespace km.hl.orm {
             }
 
             public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {
-                g.DbTools.setParam(cmd, ":int_code", Commons.encodeText(intCode));
-                g.DbTools.setParam(cmd, ":int_code2", g.DbTools.EschapeString(Commons.encodeText(intCode), '\\'));
+                g.DbTools.setParam(cmd, ":int_code", OrmCommons.encodeText(intCode));
+                g.DbTools.setParam(cmd, ":int_code2", g.DbTools.EschapeString(OrmCommons.encodeText(intCode), '\\'));
             }
         }
         public ICollection<MoveOrderItem> getItemsForInternalCode(string intCode) {

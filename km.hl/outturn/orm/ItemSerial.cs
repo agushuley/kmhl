@@ -4,7 +4,7 @@ using System.Text;
 
 using g.orm.impl;
 
-namespace km.hl.orm {
+namespace km.hl.outturn.orm {
     public class ItemSerial : GenericORMObject {
         public ItemSerial(ItemSerialKey key) : base(key) { }
         public ItemSerial(MoveOrderItem item, String serial) : base(new ItemSerialKey(item.Id, serial)) {

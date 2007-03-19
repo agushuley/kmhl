@@ -63,8 +63,8 @@ namespace km.hl {
 
         private void SyncForm_Activated(object sender, EventArgs e) {
             try {
-                orm.Context.Instance.commit();
-                orm.Context.Instance.close();
+                orm.OrmContext.Instance.commit();
+                orm.OrmContext.Instance.close();
 
                 prepareBar.Value = 0;
                 processBar.Value = 0;

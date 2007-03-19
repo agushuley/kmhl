@@ -5,6 +5,7 @@ using System.Windows.Forms;
 
 using km.hl.orm;
 using g.orm;
+using km.hl.outturn.orm;
 
 namespace km.hl.outturn {
     public class GivedScanAlgorithm : ScanAlgorithm {
@@ -79,11 +80,11 @@ namespace km.hl.outturn {
             foreach (ItemView view in views) {
                 if (view.Item.Serials.Count < view.Item.Quantity) {
                     ItemSerial serial = new ItemSerial(view.Item, serialsForm.tbSerial.Text);
-                    Mapper serialsMapper = orm.Context.Instance.getMapper(typeof(ItemSerial));
+                    Mapper serialsMapper = OrmContext.Instance.getMapper(typeof(ItemSerial));
                     serialsMapper.add(serial);
                     view.Item.Serials.Add(serial);
 
-                    orm.Context.Instance.commit();
+                    OrmContext.Instance.commit();
                     break;
                 }
             }
@@ -107,7 +108,7 @@ namespace km.hl.outturn {
                         serialToRemove.Remove();
                         view.Item.Serials.Remove(serialToRemove);
                         view.redraw();
-                        Context.Instance.commit();
+                        OrmContext.Instance.commit();
                         serials.listSerials.Items.Remove(serial);
                     }
                 }

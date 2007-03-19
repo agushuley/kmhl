@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using km.hl.outturn.orm;
 
 namespace km.hl.orm {
-    public class Context : g.orm.impl.GenericContext {
-        private Context() {
+    public class OrmContext : g.orm.impl.GenericContext {
+        private OrmContext() {
             this.registerMapper(typeof(MoveOrder), typeof(MoveOrdersMapper));
             this.registerMapper(typeof(Buyer), typeof(BuyersMapper));
             this.registerMapper(typeof(MoveOrderItem), typeof(MoveOrdersItemsMapper));
             this.registerMapper(typeof(ItemSerial), typeof(ItemsSerialsMapper));
         }
 
-        static g.orm.ORMContext ctx = new Context();
+        static g.orm.ORMContext ctx = new OrmContext();
         public static g.orm.ORMContext Instance {
             get { return ctx; }
         }

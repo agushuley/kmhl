@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using g.orm.impl;
 using g.orm;
+using km.hl.orm;
 
-namespace km.hl.orm {
+namespace km.hl.outturn.orm {
     public class MoveOrdersMapper : AbstractSqlMapper {
         protected override string ConnectionKey {
-            get { return Commons.DATABASE_ID; }
+            get { return OrmCommons.DATABASE_ID; }
         }
 
         protected override void loadInstance(g.orm.ORMObject obj, System.Data.DataRow rs) {
@@ -29,7 +30,7 @@ namespace km.hl.orm {
         }
 
         private string decode(string p) {
-            return Commons.decodeText(p);
+            return OrmCommons.decodeText(p);
         }
 
         private class MoveOrderItemsLoader : g.orm.DefferableLoader<MoveOrderItem, MoveOrder> {

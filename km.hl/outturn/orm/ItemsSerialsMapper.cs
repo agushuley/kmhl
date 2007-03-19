@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 
 using g.orm.impl;
+using km.hl.orm;
 
-namespace km.hl.orm {
+namespace km.hl.outturn.orm {
     public class ItemsSerialsMapper : AbstractSqlMapper, IItemsSerialsMapper {
         protected override string ConnectionKey {
-            get { return Commons.DATABASE_ID; }
+            get { return OrmCommons.DATABASE_ID; }
         }
 
         protected override void loadInstance(g.orm.ORMObject obj, System.Data.DataRow rs) {

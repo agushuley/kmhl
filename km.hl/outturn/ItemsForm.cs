@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using km.hard.scan;
-using km.hl.orm;
+using km.hl.outturn.orm;
 
 namespace km.hl.outturn {
     public partial class ItemsForm : AlertForm {

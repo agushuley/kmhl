@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
+using km.hl.outturn.orm;
+
 namespace km.hl.outturn {
     class BuyerItem : ClickShowUserControl {
         public BuyerItem(orm.Buyer buyer, ICollection<orm.MoveOrder> orders, ScanAlgorithm alghoritm) {
@@ -42,7 +44,7 @@ namespace km.hl.outturn {
 
         public void redraw() {
             if (views == null) {
-                Dictionary<orm.MoveOrder, BuyerOrderView> vs = new Dictionary<km.hl.orm.MoveOrder,BuyerOrderView>();
+                Dictionary<orm.MoveOrder, BuyerOrderView> vs = new Dictionary<MoveOrder,BuyerOrderView>();
                 Height = pictState.Top;
                 for (int i = 0; i < orders.Count; i++) {
                     BuyerOrderView v = new BuyerOrderView();

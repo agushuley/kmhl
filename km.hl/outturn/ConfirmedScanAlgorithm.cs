@@ -5,6 +5,7 @@ using System.Windows.Forms;
 
 using km.hl.orm;
 using g.orm;
+using km.hl.outturn.orm;
 
 namespace km.hl.outturn {
     public class ConfirmedScanAlgorithm : ScanAlgorithm {
@@ -40,7 +41,7 @@ namespace km.hl.outturn {
                         break;
                     }
                 }
-                orm.Context.Instance.commit();
+                OrmContext.Instance.commit();
                 Program.playMajor();
             } // if (!serialNeed)
             checkClosed(selected);
@@ -60,7 +61,7 @@ namespace km.hl.outturn {
                     }
                 }
                 order.Complete = completed;
-                orm.Context.Instance.commit();
+                OrmContext.Instance.commit();
             }
         }
 
@@ -107,7 +108,7 @@ namespace km.hl.outturn {
                 foreach (ItemView view in views) {
                     view.Item.NoSerialNeed = serials.NoSerialsNeed;
                 }
-                Context.Instance.commit();
+                OrmContext.Instance.commit();
             }
 
             if (!serials.NoSerialsNeed) {
@@ -122,14 +123,14 @@ namespace km.hl.outturn {
                 if (view.Item.QtyPicked < view.Item.Quantity) {
                     if (!serials.NoSerialsNeed) {
                         ItemSerial serial = new ItemSerial(view.Item, serials.tbSerial.Text);
-                        Mapper serialsMapper = orm.Context.Instance.getMapper(typeof(ItemSerial));
+                        Mapper serialsMapper = OrmContext.Instance.getMapper(typeof(ItemSerial));
                         serialsMapper.add(serial);
                         view.Item.Serials.Add(serial);
                     }
 
                     view.Item.QtyPicked++;
 
-                    orm.Context.Instance.commit();
+                    OrmContext.Instance.commit();
                     break;
                 }
             }
@@ -157,7 +158,7 @@ namespace km.hl.outturn {
                             view.Item.QtyPicked--;
                             view.redraw();
                         }
-                        Context.Instance.commit();
+                        OrmContext.Instance.commit();
                         serials.listSerials.Items.Remove(serial);
                     }
                 }

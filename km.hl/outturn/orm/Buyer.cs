@@ -4,7 +4,7 @@ using System.Text;
 
 using g.orm.impl;
 
-namespace km.hl.orm {
+namespace km.hl.outturn.orm {
     public class Buyer : GenericORMObject {
         public Buyer(IntKey key) : base(key) { }
 

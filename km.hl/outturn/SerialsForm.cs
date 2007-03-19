@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-using km.hl.orm;
 using g.orm;
+using km.hl.outturn.orm;
 
 namespace km.hl.outturn {
     public partial class SerialsForm : AlertForm {

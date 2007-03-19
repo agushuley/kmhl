@@ -5,7 +5,7 @@ using System.Text;
 using g.orm.impl;
 using g.orm;
 
-namespace km.hl.orm {
+namespace km.hl.outturn.orm {
     public enum MoveOrderSate { U, C, G }
     public class MoveOrder : GenericORMObject {
         public MoveOrder(g.orm.impl.IntKey key, DefferableLoader<MoveOrderItem, MoveOrder> itemsLoader) : base(key) {

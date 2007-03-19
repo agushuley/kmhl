@@ -4,7 +4,7 @@ using System.Text;
 using g.orm.impl;
 using g.orm;
 
-namespace km.hl.orm {
+namespace km.hl.outturn.orm {
     public class MoveOrderItem : GenericORMObject {
         public MoveOrderItem(IntKey key, DefferableLoader<ItemSerial, MoveOrderItem> loader) : base(key) {
             this.loader = loader;

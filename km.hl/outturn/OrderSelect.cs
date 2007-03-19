@@ -4,6 +4,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
+using km.hl.outturn.orm;
+
 namespace km.hl.outturn {
     class OrderSelect {
         public OrderSelect(ICollection<orm.MoveOrder> orders, ScanAlgorithm alghoritm) {
@@ -30,7 +32,7 @@ namespace km.hl.outturn {
         }
 
         private class OrdersNnumbersComparasion : IComparer<orm.MoveOrder> {
-            public int Compare(km.hl.orm.MoveOrder x, km.hl.orm.MoveOrder y) {
+            public int Compare(MoveOrder x, MoveOrder y) {
                 return x.Number.CompareTo(y.Number);
             }
         }

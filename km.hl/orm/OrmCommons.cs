@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace km.hl.orm {
-    public static class Commons {
+    public static class OrmCommons {
         public const String DATABASE_ID = "hl-db";
 
         public static String decodeText(String p) {

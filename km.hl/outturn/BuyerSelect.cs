@@ -4,6 +4,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
+using km.hl.outturn.orm;
+
 namespace km.hl.outturn {
     class BuyerSelect {
         public BuyerSelect(ICollection<orm.MoveOrder> orders, ScanAlgorithm alghoritm) {
@@ -21,7 +23,7 @@ namespace km.hl.outturn {
                 }
             }
 
-            orm.Buyer[] buyers = new km.hl.orm.Buyer[buyersl.Count];
+            orm.Buyer[] buyers = new Buyer[buyersl.Count];
             buyersl.CopyTo(buyers, 0);
             Array.Sort<orm.Buyer>(buyers, new BuyersNameComparasion());
 
@@ -36,8 +38,8 @@ namespace km.hl.outturn {
             }
         }
 
-        private class BuyersNameComparasion : IComparer<orm.Buyer> {
-            public int Compare(km.hl.orm.Buyer x, km.hl.orm.Buyer y) {
+        private class BuyersNameComparasion : IComparer<Buyer> {
+            public int Compare(Buyer x, Buyer y) {
                 return x.Description.CompareTo(y.Description);
             }
         }

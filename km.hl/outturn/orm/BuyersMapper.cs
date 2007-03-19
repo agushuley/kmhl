@@ -4,17 +4,18 @@ using System.Text;
 
 using g.orm;
 using g.orm.impl;
+using km.hl.orm;
 
-namespace km.hl.orm {
+namespace km.hl.outturn.orm {
     class BuyersMapper : AbstractSqlMapper {
 
         protected override string ConnectionKey {
-            get { return Commons.DATABASE_ID; }
+            get { return OrmCommons.DATABASE_ID; }
         }
 
         protected override void loadInstance(ORMObject obj, System.Data.DataRow rs) {
             Buyer buyer = (Buyer)obj;
-            buyer.Description = Commons.decodeText(g.DbTools.ToString(rs["buyer_name"]));
+            buyer.Description = OrmCommons.decodeText(g.DbTools.ToString(rs["buyer_name"]));
         }
 
         protected override ORMObject createInstance(Key key, System.Data.DataRow rs) {
