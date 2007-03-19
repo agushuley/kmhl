@@ -38,10 +38,8 @@ namespace km.hl.outturn {
             SerialsForm serials = new SerialsForm(selected, this);
             serials.NoSerialNeedVisible = false;
             DialogResult result = serials.ShowDialog();
-            if (result != DialogResult.Cancel) {
-                foreach (ItemView itemView in selected) {
-                    itemView.redraw();
-                }
+            foreach (ItemView itemView in selected) {
+                itemView.redraw();
             }
         }
 
@@ -85,11 +83,13 @@ namespace km.hl.outturn {
                     view.Item.Serials.Add(serial);
 
                     OrmContext.Instance.commit();
+
+                    serialsForm.listSerials.Items.Add(serialsForm.tbSerial.Text);
+                    serialsForm.tbSerial.Text = "";
+
                     break;
                 }
             }
-            serialsForm.DialogResult = DialogResult.OK;
-            serialsForm.Close();
         }
 
         public void removeSerial(SerialsForm serials, ICollection<ItemView> views, string serial) {

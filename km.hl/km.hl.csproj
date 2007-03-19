@@ -138,6 +138,12 @@
     <Compile Include="outturn\SerialsForm.Designer.cs">
       <DependentUpon>SerialsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlainScan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlainScan.Designer.cs">
+      <DependentUpon>PlainScan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AlertForm.resx">
@@ -179,6 +185,10 @@
     <EmbeddedResource Include="outturn\SerialsForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SerialsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlainScan.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PlainScan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
