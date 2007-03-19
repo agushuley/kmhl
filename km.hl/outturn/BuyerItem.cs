@@ -52,15 +52,7 @@ namespace km.hl.outturn {
                         v.picture = pictState;
                     }
                     else {
-                        v.name = copyControl(new Label(), lblOrder);
-                        Controls.Add(v.name);
-                        v.name.Top = Height;
-                        v.state = copyControl(new Label(), lblOrderInfo);
-                        Controls.Add(v.state);
-                        v.state.Top = Height;
-                        v.picture = copyControl(new PictureBox(), pictState);
-                        Controls.Add(v.picture);
-                        v.picture.Top = Height;
+                        v = createOrderControls(Height);
                     }
                     vs.Add(orders[i], v);
                     Height += 16;
@@ -80,21 +72,39 @@ namespace km.hl.outturn {
             }
         }
 
-        private Label copyControl(Label n, Label o) {
-            n.TextAlign = o.TextAlign;
-            copyControl((Control)n, (Control)o);
-            return n;
-        }
-        private PictureBox copyControl(PictureBox n, PictureBox o) {
-            n.SizeMode = o.SizeMode;
-            copyControl((Control)n, (Control)o);
-            return n;
-        }
-        private void copyControl(Control n, Control o) {
-            n.Left = o.Left;
-            n.Width = o.Width;
-            n.Height = n.Height;
-            n.Font = o.Font;
+        private BuyerOrderView createOrderControls(int top) {
+            BuyerOrderView v = new BuyerOrderView();
+
+            v.picture = new PictureBox();
+            Controls.Add(v.picture);
+            v.picture.Location = new System.Drawing.Point(3, top);
+            v.picture.Name = "pictState";
+            v.picture.Size = new System.Drawing.Size(12, 12);
+            v.picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            v.picture.Click += new System.EventHandler(this.pictState_Click);
+
+
+            v.name = new Label();
+            Controls.Add(v.name);
+            v.name.Location = new System.Drawing.Point(19, top);
+            v.name.Size = new System.Drawing.Size(88, 15);
+            v.name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            v.name.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            v.name.Name = "lblOrder";
+            v.name.Text = "lblOrder";
+
+            v.state = new Label();
+            Controls.Add(v.state);
+            v.state.Location = new System.Drawing.Point(112, top);
+            v.state.Size = new System.Drawing.Size(101, 15);
+            v.state.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            v.state.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            v.state.Name = "lblOrderInfo";
+            v.state.Text = "lblOrderInfo";
+            v.state.TextAlign = System.Drawing.ContentAlignment.TopRight;
+
+            return v;
         }
 
         orm.Buyer buyer;
