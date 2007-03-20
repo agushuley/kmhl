@@ -7,6 +7,7 @@ using g.orm;
 namespace km.hl.orm {
     public class MoveOrderItem : GenericORMObject {
         public MoveOrderItem(IntKey key, DefferableLoader<ItemSerial, MoveOrderItem> loader) : base(key) {
+            extMfrCodes = new ObjectsCollection<String>(this, new List<String>(), true);
             this.loader = loader;
         }
 
@@ -83,7 +84,17 @@ namespace km.hl.orm {
             if (code.IndexOf(MfrCode.ToUpper()) >= 0) return true;
             if (code == InternalCode.ToUpper()) return true;
             if (code.Length + 2 == InternalCode.Length && InternalCode.ToUpper().StartsWith(code + "/")) return true;
+            foreach (String c in ExtMfrCodes) {
+                if (code.IndexOf(c) >= 0) return true;
+            }
             return false;
+        }
+
+        private ICollection<String> extMfrCodes;
+
+        public ICollection<String> ExtMfrCodes
+        {
+          get { return extMfrCodes; }
         }
     }
 }

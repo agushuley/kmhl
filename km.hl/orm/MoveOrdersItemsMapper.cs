@@ -21,6 +21,9 @@ namespace km.hl.orm {
             item.MfrCode = Commons.decodeText(g.DbTools.ToString(rs["mfg_part_num"]));
             item.InternalCode = Commons.decodeText(g.DbTools.ToString(rs["item_segment1"]));
             item.NoSerialNeed = g.DbTools.ToBoolean(rs["no_serials"]);
+            foreach (String code in getExtCodes(rs)) {
+                item.ExtMfrCodes.Add(code);
+            }
         }
 
         private class ItemsSerialsLoader : g.orm.DefferableLoader<ItemSerial, MoveOrderItem> {
@@ -37,7 +40,7 @@ namespace km.hl.orm {
             return new MoveOrderItem((IntKey)key, new ItemsSerialsLoader(Ctx));
         }
 
-        private const String BASE_SELECT = "SELECT move_item_id, move_id, quantity, quantity_gived, inventory_item_id, item_description, item_segment1, mfg_part_num, no_serials FROM inv_hl_move_order_items";
+        private const String BASE_SELECT = "SELECT move_item_id, move_id, quantity, quantity_gived, inventory_item_id, item_description, item_segment1, mfg_part_num, no_serials, MFG_PART_NUM_EXP FROM inv_hl_move_order_items";
         protected override GetQueryCallback getSelectAllCb() {
             throw new Exception("The method or operation is not implemented.");
         }
@@ -116,25 +119,30 @@ namespace km.hl.orm {
         }
 
         private class ItemsForMfrCodeCb : GetQueryCallback {
-            public ItemsForMfrCodeCb(String mfrCode) {
-                this.mfrCode = mfrCode;
-            }
-
-            private String mfrCode;
-
             public string Sql {
-                get { return BASE_SELECT + " WHERE UPPER(?) "
-                        + " LIKE '%' || UPPER(REPLACE(REPLACE(REPLACE(mfg_part_num, '%', '\\%'), '_', '\\_'), '\\', '\\\\')) || '%' ESCAPE '\\'  ";
-                }
+                get { return BASE_SELECT; }
             }
 
-            public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {
-                g.DbTools.setParam(cmd, ":mfr_code", Commons.encodeText(mfrCode));
+            public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) { }
+        }
+        private class MfrCodeFilter : IRowFilter {
+            public MfrCodeFilter(String code) {
+                this.code = code.ToUpper();
+            }
+            private String code;
+            public bool test(System.Data.DataRow row) {
+                if (code.IndexOf(Commons.decodeText(g.DbTools.ToString(row["mfg_part_num"]))) >= 0) {
+                    return true;
+                };
+                foreach (String c in getExtCodes(row)) {
+                    if (code.IndexOf(c) >= 0) return true;
+                }
+                return false;
             }
         }
         public ICollection<MoveOrderItem> getItemsForMfrCode(string mfrCode) {
             ICollection<MoveOrderItem> items = new List<MoveOrderItem>();
-            foreach (MoveOrderItem i in base.getObjectsForCb(new ItemsForMfrCodeCb(mfrCode))) {
+            foreach (MoveOrderItem i in base.getObjectsForCb(new ItemsForMfrCodeCb(), new MfrCodeFilter(mfrCode))) {
                 items.Add(i);
             }
             return items;
@@ -167,5 +175,9 @@ namespace km.hl.orm {
         }
 
         #endregion
+
+        private static ICollection<String> getExtCodes(System.Data.DataRow rs) {
+            return HlTools.splitCodes(Commons.decodeText(g.DbTools.ToString(rs["MFG_PART_NUM_EXP"])));
+        }
     }
 }
