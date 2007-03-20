@@ -16,7 +16,7 @@ namespace g.orm.impl {
 		    get { return this.key; }
 	    }
     	
-	    protected void markDirty() {
+	    public void markDirty() {
 		    if (state == StateType.CLEAN) {
 			    state = StateType.DIRTY;
 		    }
@@ -27,7 +27,7 @@ namespace g.orm.impl {
             set { this.state = value; }
 	    }
 
-	    protected void checkRo(String field) {
+	    public void checkRo(String field) {
 		    if (state != StateType.LOADING) {
 			    throw new ORMException("Field " + field + "of class " + GetType().FullName + " is read only!");
 		    }

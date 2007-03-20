@@ -5,6 +5,10 @@ using System.Text;
 
 namespace g.orm.impl {
     public abstract class AbstractSqlMapper : Mapper {
+        public interface IRowFilter {
+            bool test(DataRow row);
+        }
+
         private IDictionary<Key, ORMObject> registry = new Dictionary<Key, ORMObject>();
 
         private ORMContext ctx = null;
@@ -150,6 +154,10 @@ namespace g.orm.impl {
 	    }
 
         protected ORMObject[] getObjectsForCb(GetQueryCallback cb) {
+            return getObjectsForCb(cb, null);
+        }
+
+        protected ORMObject[] getObjectsForCb(GetQueryCallback cb, AbstractSqlMapper.IRowFilter filter) {
             lock (registry) {
                 IDbConnection cnn = getConnection(false);
                 IDbTransaction trans = ctx.getTransaction(ConnectionKey);
@@ -163,7 +171,9 @@ namespace g.orm.impl {
 
                         List<ORMObject> list = new List<ORMObject>();
                         foreach (DataRow row in set.Tables["Table"].Rows) {
-                            list.Add(loadObject(row));
+                            if (filter == null || filter.test(row)) {
+                                list.Add(loadObject(row));
+                            }
                         }
                         ORMObject[] o = new ORMObject[list.Count];
                         list.CopyTo(o);
