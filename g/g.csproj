@@ -91,6 +91,8 @@
     <Compile Include="orm\impl\GenericContext.cs" />
     <Compile Include="orm\impl\GetQueryCallback.cs" />
     <Compile Include="orm\impl\IntKey.cs" />
+    <Compile Include="orm\impl\ObjectsCollection.cs" />
+    <Compile Include="orm\impl\ObjectsList.cs" />
     <Compile Include="orm\ORMObject.cs" />
     <Compile Include="orm\Key.cs" />
     <Compile Include="orm\Mapper.cs" />
