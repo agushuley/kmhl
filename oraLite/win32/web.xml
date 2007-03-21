@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'WINDOWS-1251'?>
+<workspace>
+   <application name="hl.win32">
+      <app_info>
+         <directory>/hl.win32/</directory>
+         <virtualpath>/hl.win32</virtualpath>
+         <defaultpage/>
+         <icon/>
+         <description>Windows32 version of handled logistic</description>
+         <publication/>
+         <platform>Oracle Lite WIN32;US</platform>
+      </app_info>
+      <app_db connection="10" sharing="Y" publication="kmhl">
+         <dbuser>master</dbuser>
+         <dbpwd/>
+      </app_db>
+      <role name="Default Role"/>
+      <snapshot name="inv_hl_order_serial_nums" owner="INV_USER" order="3">
+         <snaplatform object="TABLE" platform="ORACLE LITE WIN32;US" template="SELECT *   FROM inv_user.inv_hl_order_serial_nums s  WHERE s.move_item_id IN        (select i.move_item_id           from inv_user.inv_hl_move_order_items i          WHERE i.move_id IN (SELECT o.move_id                                FROM INV_USER.inv_hl_move_orders o                               WHERE o.scanner_id = :scanner))" updatable="Y" conflict="client" refresh="fast" dml_procedure="" virtualprimname="" virtualprimcolname=""/>
+      </snapshot>
+      <snapshot name="inv_hl_move_orders" owner="INV_USER" order="1">
+         <snaplatform object="TABLE" platform="ORACLE LITE WIN32;US" template="SELECT * FROM INV_USER.inv_hl_move_orders o WHERE o.scanner_id = :scanner" updatable="Y" conflict="client" refresh="fast" dml_procedure="" virtualprimname="" virtualprimcolname=""/>
+      </snapshot>
+      <snapshot name="inv_hl_move_order_items" owner="INV_USER" order="2">
+         <snaplatform object="TABLE" platform="ORACLE LITE WIN32;US" template="select *   from inv_user.inv_hl_move_order_items i  WHERE i.move_id IN (SELECT o.move_id                        FROM INV_USER.inv_hl_move_orders o                       WHERE o.scanner_id = :scanner)" updatable="Y" conflict="client" refresh="fast" dml_procedure="" virtualprimname="" virtualprimcolname="">
+            <index name="ix_inv_mv_orders_move_id" type="I" columns="move_id"/>
+         </snaplatform>
+      </snapshot>
+   </application>
+</workspace>

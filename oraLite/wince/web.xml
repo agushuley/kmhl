@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'WINDOWS-1251'?>
+<workspace>
+   <application name="hl.wince">
+      <app_info>
+         <directory>/hl.wince</directory>
+         <virtualpath>/hl.wince</virtualpath>
+         <defaultpage/>
+         <icon/>
+         <description>WindowsCE version of mobile logistic</description>
+         <publication/>
+         <platform>Oracle Lite WCESTD42 ARMV4;US</platform>
+      </app_info>
+      <app_db connection="10" sharing="N" publication="kmhl">
+         <dbuser>master</dbuser>
+         <dbpwd/>
+      </app_db>
+      <role name="Default Role"/>
+      <snapshot name="inv_hl_move_orders" owner="INV_USER" order="1">
+         <snaplatform object="TABLE" platform="ORACLE LITE WCESTD42 ARMV4;US" template="SELECT * FROM INV_USER.inv_hl_move_orders o WHERE o.scanner_id = :scanner" updatable="Y" conflict="server" refresh="fast" dml_procedure="" virtualprimname="" virtualprimcolname=""/>
+      </snapshot>
+      <snapshot name="inv_hl_move_order_items" owner="INV_USER" order="2">
+         <snaplatform object="TABLE" platform="ORACLE LITE WCESTD42 ARMV4;US" template="select *   from inv_user.inv_hl_move_order_items i  WHERE i.move_id IN (SELECT o.move_id                        FROM INV_USER.inv_hl_move_orders o                       WHERE o.scanner_id = :scanner)" updatable="Y" conflict="client" refresh="fast" dml_procedure="" virtualprimname="" virtualprimcolname=""/>
+      </snapshot>
+      <snapshot name="inv_hl_order_serial_nums" owner="INV_USER" order="3">
+         <snaplatform object="TABLE" platform="ORACLE LITE WCESTD42 ARMV4;US" template="SELECT *   FROM inv_user.inv_hl_order_serial_nums s  WHERE s.move_item_id IN        (select i.move_item_id           from inv_user.inv_hl_move_order_items i          WHERE i.move_id IN (SELECT o.move_id                                FROM INV_USER.inv_hl_move_orders o                               WHERE o.scanner_id = :scanner))" updatable="Y" conflict="client" refresh="fast" dml_procedure="" virtualprimname="" virtualprimcolname=""/>
+      </snapshot>
+   </application>
+</workspace>
