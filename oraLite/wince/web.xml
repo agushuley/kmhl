@@ -24,5 +24,15 @@
       <snapshot name="inv_hl_order_serial_nums" owner="INV_USER" order="3">
          <snaplatform object="TABLE" platform="ORACLE LITE WCESTD42 ARMV4;US" template="SELECT *   FROM inv_user.inv_hl_order_serial_nums s  WHERE s.move_item_id IN        (select i.move_item_id           from inv_user.inv_hl_move_order_items i          WHERE i.move_id IN (SELECT o.move_id                                FROM INV_USER.inv_hl_move_orders o                               WHERE o.scanner_id = :scanner))" updatable="Y" conflict="client" refresh="fast" dml_procedure="" virtualprimname="" virtualprimcolname=""/>
       </snapshot>
+      <snapshot name="PO_HL_ORDER_SERIAL_NUMS" owner="PO_USER" order="6">
+         <snaplatform object="TABLE" platform="ORACLE LITE WCESTD42 ARMV4;US" template="SELECT * FROM PO_USER.PO_HL_ORDER_SERIAL_NUMS s where exists (SELECT 1 FROM PO_USER.PO_HL_ORDER_ITEMS i where order_id in (SELECT order_id FROM PO_USER.PO_HL_ORDERS where scanner_id = :scanner) and s.order_item_id = i.order_item_id and s.seq_location = i.seq_location)" updatable="Y" conflict="server" refresh="fast" dml_procedure="" virtualprimname="" virtualprimcolname="" />
+      </snapshot>
+      <snapshot name="PO_HL_ORDERS" owner="PO_USER" order="4">
+         <snaplatform object="TABLE" platform="ORACLE LITE WCESTD42 ARMV4;US" template="SELECT * FROM PO_USER.PO_HL_ORDERS where scanner_id = :scanner" updatable="Y" conflict="server" refresh="fast" dml_procedure="" virtualprimname="" virtualprimcolname="" />
+      </snapshot>
+      <snapshot name="PO_HL_ORDER_ITEMS" owner="PO_USER" order="5">
+         <snaplatform object="TABLE" platform="ORACLE LITE WCESTD42 ARMV4;US" template="SELECT * FROM PO_USER.PO_HL_ORDER_ITEMS where order_id in (SELECT order_id FROM PO_USER.PO_HL_ORDERS where scanner_id = :scanner)" updatable="Y" conflict="server" refresh="fast" dml_procedure="" virtualprimname="" virtualprimcolname="" />
+      </snapshot>
+      <sequence name="PO_ORDER_ITEMS_S" type="WINDOW" startvalue="2" increment="2" windowsize="500" threshhold="50" />
    </application>
 </workspace>

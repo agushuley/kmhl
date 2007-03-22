@@ -50,6 +50,30 @@ Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "km.hl.deploy", "km.hl.deplo
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "archs", "archs", "{D7437493-C14F-4F1F-BE18-7889E67DD32E}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wince", "wince", "{82DC7307-2764-417D-BDB3-DB0BBB881B6E}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		oraLite\wince\web.xml = oraLite\wince\web.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "win32", "win32", "{12E2AA7C-52D7-45FC-89B5-DDCD9D81C94C}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		oraLite\win32\web.xml = oraLite\win32\web.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,5 +109,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{82DC7307-2764-417D-BDB3-DB0BBB881B6E} = {D7437493-C14F-4F1F-BE18-7889E67DD32E}
+		{12E2AA7C-52D7-45FC-89B5-DDCD9D81C94C} = {D7437493-C14F-4F1F-BE18-7889E67DD32E}
 	EndGlobalSection
 EndGlobal

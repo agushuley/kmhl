@@ -2,7 +2,6 @@
 <config>
   <value name="scannerDriver">km.hard.casio.CasioBarScanner, km.hard</value>
   <value name="buzzerDriver">km.hard.casio.CasioBuzzer, km.hard</value>
-  <!-- value name="scannerDriver">km.hard.stubs.BarScanner, km.hard</value -->
   
   <value name="hl-db.factory">g.orm.driver.OracleLiteCeDataFactory, g</value>
   <value name="hl-db.connection">dsn=kmhl;uid=system;pwd=s1</value>
@@ -11,4 +10,7 @@
   <value name="sync.user">S1</value>
   <value name="sync.password">S1</value>
   <value name="sync.host">10.10.10.10</value>
+
+  <value name="inbound.seq">PO_ORDER_ITEMS_S</value>
+  <value name="inbound.seq_type">2</value>
 </config>
