@@ -28,5 +28,7 @@ namespace km.hl {
         internal static void playMajor() {
             Program.getBuzzer().Play(km.hard.BuzzerVolume.min, 50, 100);
         }
+
+        internal const String VERSION = "1.1.0-pre";
     }
 }

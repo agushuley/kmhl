@@ -29,6 +29,7 @@ namespace km.hl {
             this.label1 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.version = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnOutturnChecked
@@ -84,12 +85,24 @@ namespace km.hl {
             this.button1.Text = "3. Сканирование в файл";
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // version
+            // 
+            this.version.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.version.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            this.version.Location = new System.Drawing.Point(73, 258);
+            this.version.Name = "version";
+            this.version.Size = new System.Drawing.Size(163, 13);
+            this.version.Text = "vesrion";
+            this.version.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(238, 275);
+            this.ClientSize = new System.Drawing.Size(238, 273);
+            this.Controls.Add(this.version);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.button1);
@@ -99,6 +112,7 @@ namespace km.hl {
             this.Name = "MainForm";
             this.Text = "KM Handheld Logistic";
             this.Closing += new System.ComponentModel.CancelEventHandler(this.MainForm_Closing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
 
         }
@@ -111,5 +125,6 @@ namespace km.hl {
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label version;
     }
 }
