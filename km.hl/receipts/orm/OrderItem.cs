@@ -7,7 +7,11 @@ using g.orm.impl;
 namespace km.hl.receipts.orm {
     public class OrderItem : GenericORMObject {
         public OrderItem(OrderItemKey key) : base(key) {
-            mfrExtCodes = new ObjectsList<Object>(this, new List<Object>(), false);
+            mfrExtCodes = new ObjectsList<String>(this, new List<String>(), false);
+        }
+
+        public OrderItem(OrderItemKey key, Order order) : this(key) {
+            this.order = order;
         }
 
         public int SqType {
@@ -19,35 +23,62 @@ namespace km.hl.receipts.orm {
         }
 
         private Order order;
+        public Order Order {
+            get { return order; }
+            set { checkRo("order");  order = value; }
+        }
+
         private int quantity;
+        public int Quantity {
+            get { return quantity; }
+            set { checkRo("quantity"); quantity = value; }
+        }
+
         private int quantity_checked;
+        public int QuantityChecked {
+            get { return quantity_checked; }
+            set { quantity_checked = value; markDirty(); }
+        }
+
         private int inventoryItemId = -1;
-        private String itemDescription;
+        public int InventoryItemId {
+            get { return inventoryItemId; }
+            set { checkRo("inverntoryItemId");  inventoryItemId = value; }
+        }
+
+        private String description;
+        public String Description {
+            get { return description; }
+            set { checkRo("description"); description = value; }
+        }
+
         private String internalCode = "-1";
+        public String InternalCode {
+            get { return internalCode; }
+            set { checkRo("intCode");  internalCode = value; }
+        }
         private String mfrCode;
+
+        public String MfrCode {
+            get { return mfrCode; }
+            set { checkRo("mfrCode"); mfrCode = value; }
+        }
+
         private String attribute;
+        public String Attribute {
+            get { return attribute; }
+            set { checkRo("attribute"); attribute = value; }
+        }
+
         private bool noSerials;
-        private IList<Object> mfrExtCodes = null;
+        public bool NoSerials {
+            get { return noSerials; }
+            set { noSerials = value; markDirty();  }
+        }
 
-        public class OrderItemKey : AbstractKey {
-            public OrderItemKey(int sqType, int id) {
-                this.sqType = sqType;
-                this.id = id;
-            }
-
-            private int sqType;
-            public int SqType {
-                get { return sqType; }
-            }
-
-            private int id;
-            public int Id {
-                get { return id; }
-            }
-
-            public override object[] Values {
-                get { return new Object[] { sqType, id }; }
-            }
+        private IList<String> mfrExtCodes = null;
+        public IList<String> MfrExtCodes {
+            get { return mfrExtCodes; }
         }
 
         public interface IOrderItemMapper {

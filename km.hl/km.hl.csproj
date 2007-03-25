@@ -79,6 +79,7 @@
     <Compile Include="ClickShowUserControl.Designer.cs">
       <DependentUpon>ClickShowUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="config\ConfigItem.cs" />
     <Compile Include="HlTools.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -212,6 +213,11 @@
     </Compile>
     <Compile Include="receipts\orm\Order.cs" />
     <Compile Include="receipts\orm\OrderItem.cs" />
+    <Compile Include="receipts\orm\OrderItemKey.cs" />
+    <Compile Include="receipts\orm\OrderItemSerial.cs" />
+    <Compile Include="receipts\orm\OrderItemSerialKey.cs" />
+    <Compile Include="receipts\orm\OrdersItemsMapper.cs" />
+    <Compile Include="receipts\orm\OrdersMapper.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 using km.hl.outturn.orm;
+using km.hl.receipts.orm;
 
 namespace km.hl.orm {
     public class OrmContext : g.orm.impl.GenericContext {
@@ -10,6 +12,8 @@ namespace km.hl.orm {
             this.registerMapper(typeof(Buyer), typeof(BuyersMapper));
             this.registerMapper(typeof(MoveOrderItem), typeof(MoveOrdersItemsMapper));
             this.registerMapper(typeof(ItemSerial), typeof(ItemsSerialsMapper));
+
+            this.registerMapper(typeof(Order), typeof(OrdersMapper));
         }
 
         static g.orm.ORMContext ctx = new OrmContext();

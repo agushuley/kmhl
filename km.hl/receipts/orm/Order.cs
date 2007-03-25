@@ -8,6 +8,10 @@ namespace km.hl.receipts.orm {
     public class Order : GenericORMObject {
         public Order(IntKey key) : base(key) {}
 
+        public int Id {
+            get { return ((IntKey)ORMKey).Int; }
+        }
+
         private DateTime createDate;
         public DateTime CreateDate {
             get { return createDate; }
@@ -30,12 +34,6 @@ namespace km.hl.receipts.orm {
         public String Description {
             get { return description; }
             set { checkRo("description"); description = value; }
-        }
-
-        private String status;
-        public String Status {
-            get { return status; }
-            set { checkRo("status"); status = value; }
         }
 
         private int vendorId;
