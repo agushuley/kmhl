@@ -61,13 +61,7 @@ namespace km.hl.outturn {
                 return;
             }
 
-            bool filled = true;
-            foreach (ItemView itemView in views) {
-                if (itemView.Item.Serials.Count < itemView.Item.Quantity) {
-                    filled = false;
-                    break;
-                }
-            }
+            bool filled = isFilled(views);
             if (filled) {
                 Program.playMinor();
                 serialsForm.alert("¬се серийные номера позиции заполнены");
@@ -89,6 +83,21 @@ namespace km.hl.outturn {
                     break;
                 }
             }
+
+            if (isFilled(views)) {
+                serialsForm.DialogResult = DialogResult.OK;
+                serialsForm.Close();
+                Program.playMajor();
+            }
+        }
+
+        private static bool isFilled(ICollection<ItemView> views) {
+            foreach (ItemView itemView in views) {
+                if (itemView.Item.Serials.Count < itemView.Item.Quantity) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public void removeSerial(SerialsForm serials, ICollection<ItemView> views, string serial) {
