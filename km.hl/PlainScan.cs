@@ -24,13 +24,17 @@ namespace km.hl {
         }
 
         private void close_Click(object sender, EventArgs e) {
+            Close();
+        }
+
+        protected override void OnClosing(CancelEventArgs e) {
             if (codes.Text.Trim() != "" && save.ShowDialog() == DialogResult.OK) {
                 using (System.IO.StreamWriter w = new System.IO.StreamWriter(save.FileName)) {
-                    w.Write(codes);
+                    w.Write(codes.Text);
                     w.Flush();
                 }
             }
-            Close();
+            base.OnClosing(e);
         }
     }
 }
