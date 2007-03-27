@@ -82,7 +82,7 @@ namespace km.hl.receipts.orm {
             }
         }
         protected override GetQueryCallback getUpdateQueryCB() {
-            throw new Exception("The method or operation is not implemented.");
+            return new UpdateQueryCb();
         }
 
         protected override GetQueryCallback getDeleteQueryCB() {
@@ -90,7 +90,9 @@ namespace km.hl.receipts.orm {
         }
 
         protected override void loadInstance(g.orm.ORMObject obj, System.Data.DataRow rs) {
-            throw new Exception("The method or operation is not implemented.");
+            OrderItem item = (OrderItem)obj;
+
+
         }
 
         protected override g.orm.ORMObject createInstance(g.orm.Key key, System.Data.DataRow rs) {

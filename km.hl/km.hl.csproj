@@ -216,6 +216,7 @@
     <Compile Include="receipts\orm\OrderItemKey.cs" />
     <Compile Include="receipts\orm\OrderItemSerial.cs" />
     <Compile Include="receipts\orm\OrderItemSerialKey.cs" />
+    <Compile Include="receipts\orm\OrderItemSerialMapper.cs" />
     <Compile Include="receipts\orm\OrdersItemsMapper.cs" />
     <Compile Include="receipts\orm\OrdersMapper.cs" />
     <Compile Include="Resources.Designer.cs">

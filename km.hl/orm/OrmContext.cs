@@ -13,7 +13,10 @@ namespace km.hl.orm {
             this.registerMapper(typeof(MoveOrderItem), typeof(MoveOrdersItemsMapper));
             this.registerMapper(typeof(ItemSerial), typeof(ItemsSerialsMapper));
 
+            // Purhaise orders
             this.registerMapper(typeof(Order), typeof(OrdersMapper));
+            this.registerMapper(typeof(OrderItem), typeof(OrdersItemsMapper));
+            this.registerMapper(typeof(OrderItemSerial), typeof(OrderItemSerialMapper));
         }
 
         static g.orm.ORMContext ctx = new OrmContext();
