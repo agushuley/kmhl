@@ -4,6 +4,7 @@ using System.Text;
 using g.orm.impl;
 
 using km.hl.orm;
+using System.Data;
 
 namespace km.hl.receipts.orm {
     public class OrdersItemsMapper : AbstractSqlMapper, OrderItem.IOrderItemMapper {
@@ -92,19 +93,45 @@ namespace km.hl.receipts.orm {
         protected override void loadInstance(g.orm.ORMObject obj, System.Data.DataRow rs) {
             OrderItem item = (OrderItem)obj;
 
-
+            item.Order = (Order)Context.getMapper(typeof(Order))[new IntKey(g.DbTools.ToInt(rs["order_id"]))];
+            item.Quantity = g.DbTools.ToInt(rs["quantity"]);
+            item.QuantityChecked = g.DbTools.ToInt(rs["quantity_checked"]);
+            item.InventoryItemId = g.DbTools.ToInt(rs["inventory_item_id"]);
+            item.Description = OrmCommons.decodeText(g.DbTools.ToString(rs["item_description"]));
+            item.InternalCode = OrmCommons.decodeText(g.DbTools.ToString(rs["item_segment1"]));
+            item.MfrCode = OrmCommons.decodeText(g.DbTools.ToString(rs["mfg_part_num"]));
+            item.MfrExtCodes.Clear();
+            foreach (String code in HlTools.splitCodes(OrmCommons.decodeText(g.DbTools.ToString(rs["mfg_part_num_exp"])))) {
+                item.MfrExtCodes.Add(code);
+            }
+            item.Attribute = OrmCommons.decodeText(g.DbTools.ToString(rs["attribute1"]));
+            item.NoSerials = g.DbTools.ToBoolean(rs["no_serials"]);
         }
 
         protected override g.orm.ORMObject createInstance(g.orm.Key key, System.Data.DataRow rs) {
-            throw new Exception("The method or operation is not implemented.");
+            return new OrderItem((OrderItemKey)key);
         }
 
         public override g.orm.Key createKey(System.Data.DataRow rs) {
-            throw new Exception("The method or operation is not implemented.");
+            return new OrderItemKey(g.DbTools.ToInt(rs["seq_location"]), g.DbTools.ToInt(rs["order_item_id"]));
         }
 
         public override g.orm.Key createKey() {
-            throw new Exception("The method or operation is not implemented.");
+            IDbConnection cnn = getConnection(true);
+            IDbTransaction tran = null;
+            try {
+                tran = Ctx.getTransaction(ConnectionKey);
+                using (IDbCommand cmd = Ctx.getFactory(ConnectionKey).getCommand(cnn, tran)) {
+                    IDataAdapter ad = Ctx.getFactory(ConnectionKey).getAdapter(cmd);
+                    cmd.CommandText = "SELECT " + g.config.Config.get("receipts.seq_type") + ".nextval id FROM dual";
+                    DataSet set = new DataSet();
+                    ad.Fill(set);
+                    return new OrderItemKey(Int32.Parse(g.config.Config.get("receipts.seq_type")), g.DbTools.ToInt(set.Tables[0].Rows[0]["id"]));
+                };
+            }
+            finally {
+                releaseConnection(cnn, null);
+            }
         }
 
         public ICollection<OrderItem> getItemsForOrder(IntKey orderKey) {

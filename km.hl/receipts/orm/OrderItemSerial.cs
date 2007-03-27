@@ -18,8 +18,20 @@ namespace km.hl.receipts.orm {
             set { checkRo("orderItem"); item = value; }
         }
 
+        public int Id {
+            get { return ((OrderItemSerialKey)ORMKey).Id; }
+        }
+
+        public int SeqType {
+            get { return ((OrderItemSerialKey)ORMKey).SqType; }
+        }
+
+        public String Serial {
+            get { return ((OrderItemSerialKey)ORMKey).Serial; }
+        }
+
         public interface IOrdersItemsSerialsMapper {
-            ICollection<ORMObject> getSerialsForItem(OrderItemKey key);
+            ICollection<OrderItemSerial> getSerialsForItem(OrderItemKey key);
         }
     }
 }

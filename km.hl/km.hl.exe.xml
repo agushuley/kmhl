@@ -11,6 +11,6 @@
   <value name="sync.password">S1</value>
   <value name="sync.host">10.10.10.10</value>
 
-  <value name="inbound.seq">PO_ORDER_ITEMS_S</value>
-  <value name="inbound.seq_type">2</value>
+  <value name="receipts.seq">PO_ORDER_ITEMS_S</value>
+  <value name="receipts.seq_type">2</value>
 </config>

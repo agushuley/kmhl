@@ -82,7 +82,7 @@ namespace km.hl.receipts.orm {
         }
 
         public interface IOrderItemMapper {
-            ICollection<OrderItem> getItemsForOrder(IntKey orderKey);
+            ICollection<OrderItem> getItemsForOrder(IntKey itemKey);
         }
     }
 }
