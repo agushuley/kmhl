@@ -134,8 +134,25 @@ namespace km.hl.receipts.orm {
             }
         }
 
+        private class ItemsForOrderCB : GetQueryCallback {
+            public ItemsForOrderCB(IntKey key) {
+                this.key = key;
+            }
+            private IntKey key;
+            public string Sql {
+                get { return BASE_SELECT + " WHERE order_id = ?"; }
+            }
+
+            public void SetParams(IDbCommand cmd, g.orm.ORMObject obj) {
+                g.DbTools.setParam(cmd, ":order_id", key.Int);
+            }
+        }
         public ICollection<OrderItem> getItemsForOrder(IntKey orderKey) {
-            throw new Exception("The method or operation is not implemented.");
+            ICollection<OrderItem> items = new List<OrderItem>();
+            foreach (OrderItem item in getObjectsForCb(new ItemsForOrderCB(orderKey))) {
+                items.Add(item);
+            }
+            return items;
         }
     }
 }

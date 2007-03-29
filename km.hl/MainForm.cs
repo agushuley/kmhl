@@ -39,5 +39,9 @@ namespace km.hl {
         private void MainForm_Load(object sender, EventArgs e) {
             version.Text = "Version: " + Program.VERSION;
         }
+
+        private void btnReceips_Click(object sender, EventArgs e) {
+            new receipts.OrdersForm().ShowDialog();
+        }
     }
 }

@@ -28,13 +28,14 @@ namespace km.hl {
             this.btnOutturnSync = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnPlainScan = new System.Windows.Forms.Button();
             this.version = new System.Windows.Forms.Label();
+            this.btnReceipts = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOutturnChecked
             // 
-            this.btnOutturnChecked.Location = new System.Drawing.Point(0, 26);
+            this.btnOutturnChecked.Location = new System.Drawing.Point(0, 17);
             this.btnOutturnChecked.Name = "btnOutturnChecked";
             this.btnOutturnChecked.Size = new System.Drawing.Size(238, 30);
             this.btnOutturnChecked.TabIndex = 0;
@@ -43,7 +44,7 @@ namespace km.hl {
             // 
             // btnOutturnGivved
             // 
-            this.btnOutturnGivved.Location = new System.Drawing.Point(0, 56);
+            this.btnOutturnGivved.Location = new System.Drawing.Point(0, 47);
             this.btnOutturnGivved.Name = "btnOutturnGivved";
             this.btnOutturnGivved.Size = new System.Drawing.Size(238, 28);
             this.btnOutturnGivved.TabIndex = 1;
@@ -55,16 +56,16 @@ namespace km.hl {
             this.btnOutturnSync.Location = new System.Drawing.Point(0, 185);
             this.btnOutturnSync.Name = "btnOutturnSync";
             this.btnOutturnSync.Size = new System.Drawing.Size(238, 30);
-            this.btnOutturnSync.TabIndex = 3;
-            this.btnOutturnSync.Text = "4. Синхронизация";
+            this.btnOutturnSync.TabIndex = 10;
+            this.btnOutturnSync.Text = "5. Синхронизация";
             this.btnOutturnSync.Click += new System.EventHandler(this.btnOutturnSync_Click);
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(4, 3);
+            this.label1.Location = new System.Drawing.Point(4, -1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(232, 20);
+            this.label1.Size = new System.Drawing.Size(232, 15);
             this.label1.Text = "Расходные документы";
             // 
             // btnExit
@@ -72,18 +73,18 @@ namespace km.hl {
             this.btnExit.Location = new System.Drawing.Point(0, 215);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(238, 30);
-            this.btnExit.TabIndex = 4;
+            this.btnExit.TabIndex = 11;
             this.btnExit.Text = "0. Выход";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // button1
+            // btnPlainScan
             // 
-            this.button1.Location = new System.Drawing.Point(0, 132);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(238, 30);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "3. Сканирование в файл";
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnPlainScan.Location = new System.Drawing.Point(0, 137);
+            this.btnPlainScan.Name = "btnPlainScan";
+            this.btnPlainScan.Size = new System.Drawing.Size(238, 30);
+            this.btnPlainScan.TabIndex = 3;
+            this.btnPlainScan.Text = "4. Сканирование в файл";
+            this.btnPlainScan.Click += new System.EventHandler(this.button1_Click);
             // 
             // version
             // 
@@ -96,6 +97,15 @@ namespace km.hl {
             this.version.Text = "vesrion";
             this.version.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // btnReceipts
+            // 
+            this.btnReceipts.Location = new System.Drawing.Point(0, 92);
+            this.btnReceipts.Name = "btnReceipts";
+            this.btnReceipts.Size = new System.Drawing.Size(238, 30);
+            this.btnReceipts.TabIndex = 2;
+            this.btnReceipts.Text = "3. Приходные документы";
+            this.btnReceipts.Click += new System.EventHandler(this.btnReceips_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -105,9 +115,10 @@ namespace km.hl {
             this.Controls.Add(this.version);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnPlainScan);
             this.Controls.Add(this.btnOutturnSync);
             this.Controls.Add(this.btnOutturnGivved);
+            this.Controls.Add(this.btnReceipts);
             this.Controls.Add(this.btnOutturnChecked);
             this.Name = "MainForm";
             this.Text = "KM Handheld Logistic";
@@ -124,7 +135,8 @@ namespace km.hl {
         private System.Windows.Forms.Button btnOutturnSync;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPlainScan;
         private System.Windows.Forms.Label version;
+        private System.Windows.Forms.Button btnReceipts;
     }
 }

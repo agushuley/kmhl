@@ -197,6 +197,14 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="receipts\OrdersForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OrdersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="receipts\OrderItem.resx">
+      <DependentUpon>OrderItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -210,6 +218,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="receipts\OrdersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="receipts\OrdersForm.Designer.cs">
+      <DependentUpon>OrdersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="receipts\OrderItem.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="receipts\orm\Order.cs" />
     <Compile Include="receipts\orm\OrderItem.cs" />
