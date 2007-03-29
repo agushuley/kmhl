@@ -29,6 +29,14 @@ namespace km.hl {
             Program.getBuzzer().Play(km.hard.BuzzerVolume.min, 50, 100);
         }
 
-        internal const String VERSION = "1.1.0-pre";
+        public const int RELEASE_MAJOR = 1;
+        public const int RELEASE_MINOR = 1;
+        public enum ReleaseType {
+            pre, rel
+        }
+        public const ReleaseType RELEASE_TYPE = ReleaseType.pre;
+        public static String VERSION {
+            get { return String.Format("{0}.{1}-{2}", RELEASE_MAJOR, RELEASE_MINOR, RELEASE_TYPE); }
+        }
     }
 }
