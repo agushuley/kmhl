@@ -106,6 +106,11 @@ namespace km.hl.receipts.orm {
             }
             item.Attribute = OrmCommons.decodeText(g.DbTools.ToString(rs["attribute1"]));
             item.NoSerials = g.DbTools.ToBoolean(rs["no_serials"]);
+
+            item.Serials.Clear();
+            foreach (OrderItemSerial serial in ((OrderItemSerial.IOrdersItemsSerialsMapper)Ctx.getMapper(typeof(OrderItemSerial))).getSerialsForItem((OrderItemKey)obj.ORMKey)) {
+                item.Serials.Add(serial);
+            }
         }
 
         protected override g.orm.ORMObject createInstance(g.orm.Key key, System.Data.DataRow rs) {

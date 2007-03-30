@@ -30,13 +30,15 @@ namespace km.hl.receipts {
             documentsPanel.AutoScrollPosition = new Point(0, 0);
             int top = 0;
             for (int i = 0; i < ordersa.Length; i++) {
-                OrderItem item = new OrderItem(ordersa[i]);
+                OrderView item = new OrderView(ordersa[i]);
                 item.Top = top;
                 documentsPanel.Controls.Add(item);
                 top += item.Height + 1;
             }
         }
 
-
+        private void btnClose_Click(object sender, EventArgs e) {
+            Close();
+        }
     }
 }

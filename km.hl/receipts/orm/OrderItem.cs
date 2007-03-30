@@ -84,5 +84,22 @@ namespace km.hl.receipts.orm {
         public interface IOrderItemMapper {
             ICollection<OrderItem> getItemsForOrder(IntKey itemKey);
         }
+
+        public bool IsRightCode(String code) {
+            code = code.ToUpper();
+            if (String.IsNullOrEmpty(code)) return false;
+            if (code.IndexOf(MfrCode.ToUpper()) >= 0) return true;
+            if (code == InternalCode.ToUpper()) return true;
+            if (code.Length + 2 == InternalCode.Length && InternalCode.ToUpper().StartsWith(code + "/")) return true;
+            foreach (String c in mfrExtCodes) {
+                if (code.IndexOf(c) >= 0) return true;
+            }
+            return false;
+        }
+
+        private ICollection<OrderItemSerial> serials = new List<OrderItemSerial>();
+        public ICollection<OrderItemSerial> Serials {
+            get { return serials; }
+        }
     }
 }

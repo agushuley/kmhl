@@ -17,8 +17,24 @@ namespace km.hl.receipts.orm {
             throw new Exception("The method or operation is not implemented.");
         }
 
+        private class GetByIdCb : GetQueryCallback {
+            public GetByIdCb(OrderItemSerialKey key) {
+                this.key = key;
+            }
+            private OrderItemSerialKey key;
+
+            public string Sql {
+                get { return BASE_SELECT + " WHERE order_item_id = ? AND seq_location = ? AND serial_number = ?"; }
+            }
+
+            public void SetParams(System.Data.IDbCommand cmd, g.orm.ORMObject obj) {
+                g.DbTools.setParam(cmd, ":order_item_id", key.Id);
+                g.DbTools.setParam(cmd, ":seq_type", key.SqType);
+                g.DbTools.setParam(cmd, ":serial_number", key.Serial);
+            }
+        }
         protected override GetQueryCallback getSelectByKeyCb(g.orm.Key key) {
-            throw new Exception("The method or operation is not implemented.");
+            return new GetByIdCb((OrderItemSerialKey)key);
         }
 
         private class InsertCb : GetQueryCallback {
@@ -85,7 +101,7 @@ namespace km.hl.receipts.orm {
             private OrderItemKey key;
 
             public string Sql {
-                get { return BASE_SELECT + " order_item_id = ? AND seq_location = ?"; }
+                get { return BASE_SELECT + " WHERE order_item_id = ? AND seq_location = ?"; }
             }
 
             public void SetParams(System.Data.IDbCommand cmd, g.orm.ORMObject obj) {
@@ -93,7 +109,6 @@ namespace km.hl.receipts.orm {
                 g.DbTools.setParam(cmd, ":seq_type", key.SqType);
             }
         }
-
         public ICollection<OrderItemSerial> getSerialsForItem(OrderItemKey key) {
             ICollection<OrderItemSerial> items = new List<OrderItemSerial>();
             foreach (OrderItemSerial item in getObjectsForCb(new SerialsForItemCb(key))) {
