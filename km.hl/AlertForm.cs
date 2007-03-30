@@ -14,7 +14,8 @@ namespace km.hl {
 
         public void alert(String alert) {
             this.alertPanel.lblInfo.Text = alert;
-            this.alertPanel.Visible = true;
+            this.alertPanel.Show();
+            this.alertPanel.BringToFront();
         }
 
         public void hideAlert() {
