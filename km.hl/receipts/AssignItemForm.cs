@@ -59,6 +59,11 @@ namespace km.hl.receipts {
         }
 
         private void newItemClick(Object sender, EventArgs e) {
+            NewItemForm newItemForm = new NewItemForm();
+            newItemForm.Code = tbCode.Text;
+            if (newItemForm.ShowDialog() != DialogResult.OK) {
+                return;
+            }
             int inventoryId = 0;
             foreach (orm.OrderItem item in order.Items) {
                 if (item.InventoryItemId < 0) {
@@ -71,11 +76,13 @@ namespace km.hl.receipts {
             orm.OrderItem newItem = new km.hl.receipts.orm.OrderItem(
                 (orm.OrderItemKey)mapper.createKey(),
                 // TODO: Change test to get item description
-                order, inventoryId, "" + inventoryId, "test");
+                order, inventoryId, "" + inventoryId, newItemForm.Code);
+            newItem.MfrCode = newItemForm.Code;
             order.Items.Add(newItem);
             mapper.add(newItem);
             km.hl.orm.OrmContext.Instance.commit();
             this.selectedItem = newItem;
+            this.isNew = true;
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -93,5 +100,8 @@ namespace km.hl.receipts {
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private bool isNew = false;
+        public bool IsNew { get { return isNew; } }
     }
 }

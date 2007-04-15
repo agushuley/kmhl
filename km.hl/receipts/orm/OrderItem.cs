@@ -95,9 +95,13 @@ namespace km.hl.receipts.orm {
         public bool IsRightCode(String code) {
             code = code.ToUpper();
             if (String.IsNullOrEmpty(code)) return false;
-            if (code.IndexOf(MfrCode.ToUpper()) >= 0) return true;
-            if (code == InternalCode.ToUpper()) return true;
-            if (code.Length + 2 == InternalCode.Length && InternalCode.ToUpper().StartsWith(code + "/")) return true;
+            if (MfrCode != null) {
+                if (code.IndexOf(MfrCode.ToUpper()) >= 0) return true;
+            }
+            if (InternalCode != null) {
+                if (code == InternalCode.ToUpper()) return true;
+                if (code.Length + 2 == InternalCode.Length && InternalCode.ToUpper().StartsWith(code + "/")) return true;
+            }
             foreach (String c in mfrExtCodes) {
                 if (code.IndexOf(c) >= 0) return true;
             }

@@ -81,6 +81,11 @@ namespace km.hl.receipts {
                 Program.playMajor();
                 AssignItemForm form = new AssignItemForm(order, scanedCode);
                 if (form.ShowDialog() == DialogResult.OK) {
+                    if (form.IsNew) {
+                        ItemView view = new ItemView(form.SelectedItem);
+                        view.Click += new EventHandler(itemView_Click);
+                        itemsViews.Controls.Add(view);
+                    }
                     itemCode = form.SelectedItem.InventoryItemId;
                 }
                 else {

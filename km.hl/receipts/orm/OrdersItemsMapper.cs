@@ -18,8 +18,22 @@ namespace km.hl.receipts.orm {
             throw new Exception("The method or operation is not implemented.");
         }
 
+        private class OrderItemByKeyCB : GetQueryCallback {
+            public OrderItemByKeyCB(OrderItemKey key) {
+                this.key = key;
+            }
+            private OrderItemKey key;
+            public string Sql {
+                get { return BASE_SELECT + " WHERE order_item_id = ? AND seq_location = ?"; }
+            }
+
+            public void SetParams(IDbCommand cmd, g.orm.ORMObject obj) {
+                g.DbTools.setParam(cmd, ":order_item_id", key.Id);
+                g.DbTools.setParam(cmd, ":seq_location", key.SqType);
+            }
+        }
         protected override GetQueryCallback getSelectByKeyCb(g.orm.Key key) {
-            throw new Exception("The method or operation is not implemented.");
+            return new OrderItemByKeyCB((OrderItemKey)key);
         }
 
         private class InsertQueryCb : GetQueryCallback {
@@ -135,7 +149,7 @@ namespace km.hl.receipts.orm {
                 tran = Ctx.getTransaction(ConnectionKey);
                 using (IDbCommand cmd = Ctx.getFactory(ConnectionKey).getCommand(cnn, tran)) {
                     IDataAdapter ad = Ctx.getFactory(ConnectionKey).getAdapter(cmd);
-                    cmd.CommandText = "SELECT " + g.config.Config.get("receipts.seq_type") + ".nextval id FROM dual";
+                    cmd.CommandText = "SELECT " + g.config.Config.get("receipts.seq") + ".nextval id FROM dual";
                     DataSet set = new DataSet();
                     ad.Fill(set);
                     return new OrderItemKey(Int32.Parse(g.config.Config.get("receipts.seq_type")), g.DbTools.ToInt(set.Tables[0].Rows[0]["id"]));
