@@ -61,8 +61,8 @@ namespace km.hl.receipts {
         }
         
         private void scanned() {
-            String tbCode = code.Text;
-            if (String.IsNullOrEmpty(tbCode)) {
+            String scanedCode = code.Text;
+            if (String.IsNullOrEmpty(scanedCode)) {
                 alert("Пустой код");
                 Program.playMinor();
                 return;
@@ -71,16 +71,21 @@ namespace km.hl.receipts {
             int itemCode = 0;
             foreach (ItemView itemView in itemsViews.Controls) {
                 orm.OrderItem item = itemView.Item;
-                if (item.IsRightCode(tbCode)) {
+                if (item.IsRightCode(scanedCode)) {
                     itemCode = item.InventoryItemId;
                     break;
                 }
             }
 
             if (itemCode == 0) {
-                alert("Не найдена позиция с кодом " + code.Text);
-                Program.playMinor();
-                return;
+                Program.playMajor();
+                AssignItemForm form = new AssignItemForm(order, scanedCode);
+                if (form.ShowDialog() == DialogResult.OK) {
+                    itemCode = form.SelectedItem.InventoryItemId;
+                }
+                else {
+                    return;
+                }
             }
 
             processSelected(selectByItemCode(itemCode));

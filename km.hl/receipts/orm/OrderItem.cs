@@ -14,6 +14,13 @@ namespace km.hl.receipts.orm {
             this.order = order;
         }
 
+        public OrderItem(OrderItemKey key, Order order, int inventoryItemId, String intCode, String description) : this(key) {
+            this.order = order;
+            this.inventoryItemId = inventoryItemId;
+            this.internalCode = intCode;
+            this.description = description;
+        }
+
         public int SqType {
             get { return ((OrderItemKey)ORMKey).SqType; }
         }
@@ -40,7 +47,7 @@ namespace km.hl.receipts.orm {
             set { quantity_checked = value; markDirty(); }
         }
 
-        private int inventoryItemId = -1;
+        private int inventoryItemId;
         public int InventoryItemId {
             get { return inventoryItemId; }
             set { checkRo("inverntoryItemId");  inventoryItemId = value; }
@@ -52,7 +59,7 @@ namespace km.hl.receipts.orm {
             set { checkRo("description"); description = value; }
         }
 
-        private String internalCode = "-1";
+        private String internalCode;
         public String InternalCode {
             get { return internalCode; }
             set { checkRo("intCode");  internalCode = value; }
@@ -61,7 +68,7 @@ namespace km.hl.receipts.orm {
 
         public String MfrCode {
             get { return mfrCode; }
-            set { checkRo("mfrCode"); mfrCode = value; }
+            set { mfrCode = value; markDirty(); }
         }
 
         private String attribute;

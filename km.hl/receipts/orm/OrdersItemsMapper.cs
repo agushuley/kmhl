@@ -24,10 +24,14 @@ namespace km.hl.receipts.orm {
 
         private class InsertQueryCb : GetQueryCallback {
             public string Sql {
-                get { return "UPDATE po_hl_order_items "
-                    + "SET order_id = ?, quantity = ?, quantity_checked = ?, inventory_item_id = ?, item_description = ?, "
-                    + "    item_segment1 = ?, mfg_part_num = ?, mfg_part_num_exp = ?, attribute1 = ?, no_serials = ? "
-                    + "WHERE order_item_id = ? AND seq_location = ?"; }
+                get {
+                    return "INSERT INTO po_hl_order_items (order_id, quantity, quantity_checked, inventory_item_id, item_description, "
+                    + " item_segment1, mfg_part_num, mfg_part_num_exp, attribute1, no_serials,  "
+                    + " order_item_id, seq_location) "
+                    + "VALUES (?, ?, ?, ?, ?, "
+                    + " ?, ?, ?, ?, ?, "
+                    + " ?, ?)"; 
+                }
             }
 
             public void SetParams(System.Data.IDbCommand cmd, g.orm.ORMObject obj) {
@@ -67,7 +71,8 @@ namespace km.hl.receipts.orm {
 
         private class UpdateQueryCb : GetQueryCallback {
             public string Sql {
-                get { return "UPDATE po_hl_order_items SET quantity_checked = ?, mfg_part_num_exp = ?, no_serials = ? "
+                get {
+                    return "UPDATE po_hl_order_items SET quantity_checked = ?, mfg_part_num_exp = ?, no_serials = ?, item_description = ?, mfg_part_num = ? "
                     + "WHERE order_item_id = ? AND seq_location = ?"; }
             }
 
@@ -77,6 +82,8 @@ namespace km.hl.receipts.orm {
                 g.DbTools.setParam(cmd, ":quantity_checked", i.QuantityChecked);
                 g.DbTools.setParam(cmd, ":mfg_part_num_exp", OrmCommons.encodeText(OrdersItemsMapper.listToCodesString(i.MfrExtCodes)));
                 g.DbTools.setParam(cmd, ":no_serials",  i.NoSerials ? "Y" : "N");
+                g.DbTools.setParam(cmd, ":description", OrmCommons.encodeText(i.Description));
+                g.DbTools.setParam(cmd, ":mfg_part_num", i.MfrCode);
 
                 g.DbTools.setParam(cmd, ":order_item_id", i.Id);
                 g.DbTools.setParam(cmd, ":seq_location", i.SqType);

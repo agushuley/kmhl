@@ -76,6 +76,12 @@
     <Compile Include="forms\Label.Designer.cs">
       <DependentUpon>Label.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\OwnerDrawList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="forms\OwnerDrawList.Designer.cs">
+      <DependentUpon>OwnerDrawList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Iesi\DictionarySet.cs" />
     <Compile Include="Iesi\HashedSet.cs" />
     <Compile Include="Iesi\HybridSet.cs" />

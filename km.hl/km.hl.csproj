@@ -197,6 +197,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="receipts\AssignItemForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AssignItemForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="receipts\HandQuantityInput.resx">
       <DependentUpon>HandQuantityInput.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -238,6 +242,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="receipts\AssignItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="receipts\AssignItemForm.Designer.cs">
+      <DependentUpon>AssignItemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="receipts\HandQuantityInput.cs">
       <SubType>UserControl</SubType>
