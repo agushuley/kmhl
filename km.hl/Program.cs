@@ -10,7 +10,7 @@ namespace km.hl {
         [MTAThread]
         static void Main() {
             g.config.Config.reconfigure(typeof(Program));
-            Application.Run(new MainForm());            
+            g.forms.SingleApp.Run("km.hl", new MainForm());          
         }
 
         static public BuzzerControl getBuzzer() {

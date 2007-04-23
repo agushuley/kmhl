@@ -76,6 +76,7 @@
     <Compile Include="forms\Label.Designer.cs">
       <DependentUpon>Label.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\SingleApp.cs" />
     <Compile Include="Iesi\DictionarySet.cs" />
     <Compile Include="Iesi\HashedSet.cs" />
     <Compile Include="Iesi\HybridSet.cs" />
