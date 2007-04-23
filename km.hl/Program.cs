@@ -10,10 +10,8 @@ namespace km.hl {
     static class Program {
         [MTAThread]
         static void Main() {
-            bool ok;
-
             g.config.Config.reconfigure(typeof(Program));
-            Application.Run(new MainForm());            
+            g.forms.SingleApp.Run("km.hl", new MainForm());          
         }
 
         static public BuzzerControl getBuzzer() {
