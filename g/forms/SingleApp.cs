@@ -15,7 +15,7 @@ namespace g.forms {
                     File.Delete(lockFileName);
                 }
                 catch (System.IO.IOException) {
-                    System.Windows.Forms.MessageBox.Show("Запущен второй экземпляр приложения, выхожу. Если Вы не согласны с этим, удалите файл " + lockFileName);
+                    System.Windows.Forms.MessageBox.Show("Запущен второй экземпляр приложения, новый экземпляр не будет запущен. Если Вы не согласны с этим, удалите файл " + lockFileName);
                     return;
                 }
             }
@@ -25,7 +25,7 @@ namespace g.forms {
                 }
             }
             finally {
-                File.Delete(lockFileName);
+                try { File.Delete(lockFileName); } catch (Exception ex) { };
             }
         }
     }
