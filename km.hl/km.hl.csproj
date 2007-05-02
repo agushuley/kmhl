@@ -253,6 +253,7 @@
     <Compile Include="receipts\AssignItemForm.Designer.cs">
       <DependentUpon>AssignItemForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="receipts\Commons.cs" />
     <Compile Include="receipts\HandQuantityInput.cs">
       <SubType>UserControl</SubType>
     </Compile>

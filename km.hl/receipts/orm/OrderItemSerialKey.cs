@@ -31,7 +31,7 @@ namespace km.hl.receipts.orm {
         }
 
         public override object[] Values {
-            get { return new Object[] { sqType, id }; }
+            get { return new Object[] { sqType, id, serial }; }
         }
     }
 }

@@ -116,5 +116,23 @@ namespace km.hl.receipts.orm {
             }
             return items;
         }
+
+        private class SerialsForSerialCb : GetQueryCallback {
+            public SerialsForSerialCb(String serial) {
+                this.serial = serial;
+            }
+            private String serial;
+
+            public string Sql {
+                get { return BASE_SELECT + " WHERE serial_number = ?"; }
+            }
+
+            public void SetParams(System.Data.IDbCommand cmd, g.orm.ORMObject obj) {
+                g.DbTools.setParam(cmd, ":serial", serial);
+            }
+        }
+        public ICollection<OrderItemSerial> getSerialsBySerial(String serial) {
+            return HlTools.convertCollection<OrderItemSerial>(getObjectsForCb(new SerialsForSerialCb(serial)));
+        }
     }
 }

@@ -32,6 +32,7 @@ namespace km.hl.receipts.orm {
 
         public interface IOrdersItemsSerialsMapper {
             ICollection<OrderItemSerial> getSerialsForItem(OrderItemKey key);
+            ICollection<OrderItemSerial> getSerialsBySerial(String serial);
         }
     }
 }

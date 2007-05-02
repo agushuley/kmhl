@@ -48,13 +48,16 @@ namespace km.hl.receipts {
             }
 
             if (!NoSerialsNeed) {
-/*                if (Commons.checkSerialIsItemCode(serials.tbSerial.Text)) {
+                if (Commons.checkSerialBySerial(tbSerial.Text)) {
                     Program.playMinor();
-                    serials.alert("Серийный некорректен");
+                    alert("Дублирование серийного номера");
                     return;
-                } */
-                /* TODO: Serials check */
-
+                } 
+                if (Commons.checkSerialIsItemCode(tbSerial.Text)) {
+                    Program.playMinor();
+                    alert("Серийный некорректен");
+                    return;
+                } 
             }
 
             if (NoSerialsChanged) {
@@ -64,29 +67,28 @@ namespace km.hl.receipts {
                 OrmContext.Instance.commit();
             }
 
-            if (!NoSerialsNeed) {
-/*                if (Commons.checkSerialExists(serials.tbSerial.Text)) {
-                    Program.playMinor();
-                    serials.alert("Дублирование серийного номера");
-                    return;
-                } */
-            }
-
+            bool findedEmptyPos = false;
             foreach (ItemView view in views) {
-                if (view.Item.QuantityChecked < view.Item.Quantity) {
+                if (view.Item.QuantityChecked < view.Item.Quantity || view.Item.Quantity == 0) {
                     if (!NoSerialsNeed) {
                         orm.OrderItemSerial serial = new orm.OrderItemSerial(new orm.OrderItemSerialKey((orm.OrderItemKey)view.Item.ORMKey, tbSerial.Text), view.Item);
                         Mapper serialsMapper = OrmContext.Instance.getMapper(typeof(orm.OrderItemSerial));
                         serialsMapper.add(serial);
                         view.Item.Serials.Add(serial);
                     }
-
+                    
                     view.Item.QuantityChecked++;
 
                     OrmContext.Instance.commit();
+                    findedEmptyPos = true;
                     break;
                 }
             }
+            if (!findedEmptyPos) {
+                alert("Все количество позиции отобрано.");
+                return;
+            }
+            
             DialogResult = DialogResult.OK;
             Close();
         }

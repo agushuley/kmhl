@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using g.orm.impl;
 
 using km.hl.orm;
 using System.Data;
+using g.orm;
+using g.orm.impl;
 
 namespace km.hl.receipts.orm {
     public class OrdersItemsMapper : AbstractSqlMapper, OrderItem.IOrderItemMapper {
@@ -27,12 +28,12 @@ namespace km.hl.receipts.orm {
                 get { return BASE_SELECT + " WHERE order_item_id = ? AND seq_location = ?"; }
             }
 
-            public void SetParams(IDbCommand cmd, g.orm.ORMObject obj) {
+            public void SetParams(IDbCommand cmd, ORMObject obj) {
                 g.DbTools.setParam(cmd, ":order_item_id", key.Id);
                 g.DbTools.setParam(cmd, ":seq_location", key.SqType);
             }
         }
-        protected override GetQueryCallback getSelectByKeyCb(g.orm.Key key) {
+        protected override GetQueryCallback getSelectByKeyCb(Key key) {
             return new OrderItemByKeyCB((OrderItemKey)key);
         }
 
@@ -48,7 +49,7 @@ namespace km.hl.receipts.orm {
                 }
             }
 
-            public void SetParams(System.Data.IDbCommand cmd, g.orm.ORMObject obj) {
+            public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {
                 OrderItem i = (OrderItem)obj;
                 
                 g.DbTools.setParam(cmd, ":order_id", i.Order.Id);
@@ -90,7 +91,7 @@ namespace km.hl.receipts.orm {
                     + "WHERE order_item_id = ? AND seq_location = ?"; }
             }
 
-            public void SetParams(System.Data.IDbCommand cmd, g.orm.ORMObject obj) {
+            public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {
                 OrderItem i = (OrderItem) obj;
 
                 g.DbTools.setParam(cmd, ":quantity_checked", i.QuantityChecked);
@@ -111,7 +112,7 @@ namespace km.hl.receipts.orm {
             throw new Exception("The method or operation is not implemented.");
         }
 
-        protected override void loadInstance(g.orm.ORMObject obj, System.Data.DataRow rs) {
+        protected override void loadInstance(ORMObject obj, System.Data.DataRow rs) {
             OrderItem item = (OrderItem)obj;
 
             item.Order = (Order)Context.getMapper(typeof(Order))[new IntKey(g.DbTools.ToInt(rs["order_id"]))];
@@ -134,15 +135,15 @@ namespace km.hl.receipts.orm {
             }
         }
 
-        protected override g.orm.ORMObject createInstance(g.orm.Key key, System.Data.DataRow rs) {
+        protected override ORMObject createInstance(Key key, System.Data.DataRow rs) {
             return new OrderItem((OrderItemKey)key);
         }
 
-        public override g.orm.Key createKey(System.Data.DataRow rs) {
+        public override Key createKey(System.Data.DataRow rs) {
             return new OrderItemKey(g.DbTools.ToInt(rs["seq_location"]), g.DbTools.ToInt(rs["order_item_id"]));
         }
 
-        public override g.orm.Key createKey() {
+        public override Key createKey() {
             IDbConnection cnn = getConnection(true);
             IDbTransaction tran = null;
             try {
@@ -169,7 +170,7 @@ namespace km.hl.receipts.orm {
                 get { return BASE_SELECT + " WHERE order_id = ?"; }
             }
 
-            public void SetParams(IDbCommand cmd, g.orm.ORMObject obj) {
+            public void SetParams(IDbCommand cmd, ORMObject obj) {
                 g.DbTools.setParam(cmd, ":order_id", key.Int);
             }
         }
@@ -179,6 +180,54 @@ namespace km.hl.receipts.orm {
                 items.Add(item);
             }
             return items;
+        }
+
+        private class ItemsForIntCodeCb : GetQueryCallback {
+            public ItemsForIntCodeCb(String intCode) {
+                this.intCode = intCode;
+            }
+
+            private String intCode;
+
+            public string Sql {
+                get {
+                    return BASE_SELECT + " WHERE UPPER(?) = UPPER(item_segment1) OR UPPER(item_segment1) LIKE UPPER(?) || '/_' ESCAPE '\\'";
+                }
+            }
+
+            public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) {
+                g.DbTools.setParam(cmd, ":int_code", OrmCommons.encodeText(intCode));
+                g.DbTools.setParam(cmd, ":int_code2", g.DbTools.EschapeString(OrmCommons.encodeText(intCode), '\\'));
+            }
+        }
+        public ICollection<OrderItem> getItemsByIntCode(string code) {
+            return km.hl.HlTools.convertCollection<OrderItem>(base.getObjectsForCb(new ItemsForIntCodeCb(code)));
+        }
+
+        private class ItemsForMfrCodeCb : GetQueryCallback {
+            public string Sql {
+                get { return BASE_SELECT; }
+            }
+
+            public void SetParams(System.Data.IDbCommand cmd, ORMObject obj) { }
+        }
+        private class MfrCodeFilter : IRowFilter {
+            public MfrCodeFilter(String code) {
+                this.code = code.ToUpper();
+            }
+            private String code;
+            public bool test(System.Data.DataRow row) {
+                if (code.IndexOf(OrmCommons.decodeText(g.DbTools.ToString(row["mfg_part_num"]))) >= 0) {
+                    return true;
+                };
+                foreach (String c in HlTools.splitCodes(OrmCommons.decodeText(g.DbTools.ToString(row["mfg_part_num_exp"])))) {
+                    if (code.IndexOf(c) >= 0) return true;
+                }
+                return false;
+            }
+        }
+        public ICollection<OrderItem> getItemsByMfrCode(string code) {
+            return HlTools.convertCollection<OrderItem>(base.getObjectsForCb(new ItemsForMfrCodeCb(), new MfrCodeFilter(code)));
         }
     }
 }

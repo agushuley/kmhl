@@ -88,10 +88,6 @@ namespace km.hl.receipts.orm {
             get { return mfrExtCodes; }
         }
 
-        public interface IOrderItemMapper {
-            ICollection<OrderItem> getItemsForOrder(IntKey itemKey);
-        }
-
         public bool IsRightCode(String code) {
             code = code.ToUpper();
             if (String.IsNullOrEmpty(code)) return false;
@@ -111,6 +107,12 @@ namespace km.hl.receipts.orm {
         private ICollection<OrderItemSerial> serials = new List<OrderItemSerial>();
         public ICollection<OrderItemSerial> Serials {
             get { return serials; }
+        }
+
+        public interface IOrderItemMapper {
+            ICollection<OrderItem> getItemsForOrder(IntKey itemKey);
+            ICollection<OrderItem> getItemsByIntCode(String code);
+            ICollection<OrderItem> getItemsByMfrCode(String code);
         }
     }
 }
