@@ -75,8 +75,7 @@ namespace km.hl.receipts {
             g.orm.Mapper mapper = km.hl.orm.OrmContext.Instance.getMapper(typeof(orm.OrderItem));
             orm.OrderItem newItem = new km.hl.receipts.orm.OrderItem(
                 (orm.OrderItemKey)mapper.createKey(),
-                // TODO: Change test to get item description
-                order, inventoryId, "" + inventoryId, newItemForm.Code);
+                order, inventoryId, "" + inventoryId, newItemForm.Name);
             newItem.MfrCode = newItemForm.Code;
             order.Items.Add(newItem);
             mapper.add(newItem);
