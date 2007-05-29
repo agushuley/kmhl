@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace km.hl.receipts {
-    public partial class AssignItemForm : Form {
+    public partial class AssignItemForm : AlertForm {
         public AssignItemForm(orm.Order order, String scanedCode) {
             InitializeComponent();
 
@@ -44,6 +44,11 @@ namespace km.hl.receipts {
         }
 
         private void itemClick(Object sender, EventArgs e) {
+            if (tbCode.Text.IndexOf('/') != -1) {
+                alert("Дополнительный код не может содержать символ слеша '/'");
+                return;
+            }
+            
             ItemView v = (ItemView)sender;
 
             if (String.IsNullOrEmpty(v.Item.MfrCode)) {
@@ -75,7 +80,7 @@ namespace km.hl.receipts {
             g.orm.Mapper mapper = km.hl.orm.OrmContext.Instance.getMapper(typeof(orm.OrderItem));
             orm.OrderItem newItem = new km.hl.receipts.orm.OrderItem(
                 (orm.OrderItemKey)mapper.createKey(),
-                order, inventoryId, "" + inventoryId, newItemForm.Name);
+                order, inventoryId, "" + inventoryId, newItemForm.ItemCaption);
             newItem.MfrCode = newItemForm.Code;
             order.Items.Add(newItem);
             mapper.add(newItem);

@@ -12,7 +12,7 @@ namespace km.hl.receipts {
             InitializeComponent();
         }
 
-        public String Caption {
+        public String ItemCaption {
             get { return tbName.Text; }
             set { tbName.Text = value; }
         }
