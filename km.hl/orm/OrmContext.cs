@@ -17,6 +17,9 @@ namespace km.hl.orm {
             this.registerMapper(typeof(Order), typeof(OrdersMapper));
             this.registerMapper(typeof(OrderItem), typeof(OrdersItemsMapper));
             this.registerMapper(typeof(OrderItemSerial), typeof(OrderItemSerialMapper));
+
+            // Common
+            this.registerMapper(typeof(config.ConfigItem), typeof(config.ComfigItemMapper));
         }
 
         static g.orm.ORMContext ctx = new OrmContext();

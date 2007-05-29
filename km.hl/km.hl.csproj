@@ -79,6 +79,7 @@
     <Compile Include="ClickShowUserControl.Designer.cs">
       <DependentUpon>ClickShowUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="config\ComfigItemMapper.cs" />
     <Compile Include="config\ConfigItem.cs" />
     <Compile Include="HlTools.cs" />
     <Compile Include="MainForm.cs">
