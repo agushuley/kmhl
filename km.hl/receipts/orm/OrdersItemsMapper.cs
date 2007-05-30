@@ -98,7 +98,7 @@ namespace km.hl.receipts.orm {
                 g.DbTools.setParam(cmd, ":mfg_part_num_exp", OrmCommons.encodeText(OrdersItemsMapper.listToCodesString(i.MfrExtCodes)));
                 g.DbTools.setParam(cmd, ":no_serials",  i.NoSerials ? "Y" : "N");
                 g.DbTools.setParam(cmd, ":description", OrmCommons.encodeText(i.Description));
-                g.DbTools.setParam(cmd, ":mfg_part_num", i.MfrCode);
+                g.DbTools.setParam(cmd, ":mfg_part_num", OrmCommons.encodeText(i.MfrCode));
 
                 g.DbTools.setParam(cmd, ":order_item_id", i.Id);
                 g.DbTools.setParam(cmd, ":seq_location", i.SqType);
