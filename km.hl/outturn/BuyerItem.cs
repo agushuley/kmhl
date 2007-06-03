@@ -63,13 +63,13 @@ namespace km.hl.outturn {
             }
             foreach (KeyValuePair<orm.MoveOrder, BuyerOrderView> pair in views) {
                 pair.Value.name.Text = pair.Key.Number;
-                int all = 0, picked = 0;
+                int all = 0, picked = 0, serials = 0;
                 foreach (orm.MoveOrderItem item in pair.Key.Items) {
                     all += item.Quantity;
                     picked += item.QtyPicked;
+                    serials += item.Serials.Count;
                 }
-                pair.Value.state.Text = String.Format("it: {0} qt: {1} pq: {2}", pair.Key.Items.Count,
-                    all, picked);
+                pair.Value.state.Text = String.Format("{0} / {1} / {2}", all, picked, serials);
                 pair.Value.picture.Image = pair.Key.Complete ? Resources.greenBall : Resources.redBall;
             }
         }

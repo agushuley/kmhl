@@ -23,13 +23,14 @@ namespace km.hl.receipts {
         public void redraw() {
             lblOrder.Text = order.Number;
             lblBuyer.Text = String.Format("{0} ({1})", order.Vendor, order.VendorId);
-            int all = 0, picked = 0;
+            int all = 0, picked = 0, serials = 0;
             foreach (orm.OrderItem item in order.Items) {
                 all += item.Quantity;
                 picked += item.QuantityChecked;
+                serials += item.Serials.Count;
             }
-            lblOrderInfo.Text = String.Format("{0} / {1} / {2}", order.Items.Count,
-                    all, picked);
+            lblOrderInfo.Text = String.Format("{0} / {1} / {2}", 
+                    all, picked, serials);
              pictState.Image = order.IsComplete ? Resources.greenBall : Resources.redBall;
         }
 

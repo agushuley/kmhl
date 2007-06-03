@@ -34,13 +34,13 @@ namespace km.hl.outturn {
         public void redraw() {
             lblOrder.Text = order.Number;
             lblBuyer.Text = String.Format("{0} ({1})", order.Buyer.Description, order.Buyer.Id);
-            int all = 0, picked = 0;
+            int all = 0, picked = 0, serials = 0;
             foreach (orm.MoveOrderItem item in order.Items) {
                 all += item.Quantity;
                 picked += item.QtyPicked;
+                serials += item.Serials.Count;
             }
-            lblOrderInfo.Text = String.Format("it: {0} qt: {1} pq: {2}", order.Items.Count,
-                    all, picked);
+            lblOrderInfo.Text = String.Format("{0} / {1} / {2}", all, picked, serials);
              pictState.Image = order.Complete ? Resources.greenBall : Resources.redBall;
         }
 
