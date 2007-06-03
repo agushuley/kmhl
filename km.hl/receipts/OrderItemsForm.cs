@@ -107,7 +107,7 @@ namespace km.hl.receipts {
                     qty += itemView.Item.Quantity;
                     noSerialNeed = noSerialNeed || itemView.Item.NoSerials;
                 }
-                if (qty > MAX_ITEMS_WOSCAN && noSerialNeed) {
+                if (noSerialNeed) {
                     createHandQtyInput(selected);
                 }
             }
