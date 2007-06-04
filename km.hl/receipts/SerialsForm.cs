@@ -41,13 +41,23 @@ namespace km.hl.receipts {
         }
 
         void scan() {
-            if (String.IsNullOrEmpty(tbSerial.Text) && !NoSerialsNeed) {
-                Program.playMinor();
-                alert("Серийный номер пуст");
-                return;
+            if (NoSerialsChanged) {
+                foreach (ItemView view in views) {
+                    view.Item.NoSerials = NoSerialsNeed;
+                    if (!NoSerialsNeed) {
+                        view.Item.QuantityChecked = view.Item.Serials.Count;
+                    }
+                }
+                OrmContext.Instance.commit();
             }
 
             if (!NoSerialsNeed) {
+                if (String.IsNullOrEmpty(tbSerial.Text)) {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                    return;
+                }
+
                 if (Commons.checkSerialBySerial(tbSerial.Text)) {
                     Program.playMinor();
                     alert("Дублирование серийного номера");
@@ -58,13 +68,6 @@ namespace km.hl.receipts {
                     alert("Серийный некорректен");
                     return;
                 } 
-            }
-
-            if (NoSerialsChanged) {
-                foreach (ItemView view in views) {
-                    view.Item.NoSerials = NoSerialsNeed;
-                }
-                OrmContext.Instance.commit();
             }
 
             bool findedEmptyPos = false;

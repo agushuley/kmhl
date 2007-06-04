@@ -112,11 +112,6 @@ namespace km.hl.receipts {
                 }
             }
 
-            Iesi.Collections.ISet orders = new Iesi.Collections.HashedSet();
-            foreach (ItemView item in selected) {
-                orders.Add(item.Item.Order);
-            }
-
             checkFinal();
         }
 
