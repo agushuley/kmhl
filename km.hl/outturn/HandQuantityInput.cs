@@ -45,7 +45,7 @@ namespace km.hl.outturn {
             foreach (ItemView view in views) {
                 int pos = Math.Min(view.Item.Quantity, remaind);
                 view.Item.QtyPicked = pos;
-                remaind += remaind;
+                remaind -= pos;
                 view.redraw();
             }
             OrmContext.Instance.commit();

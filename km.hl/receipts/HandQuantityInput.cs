@@ -45,7 +45,7 @@ namespace km.hl.receipts {
             foreach (ItemView view in views) {
                 int pos = Math.Min(view.Item.Quantity, remaind);
                 view.Item.QuantityChecked = pos;
-                remaind += remaind;
+                remaind -= pos;
                 view.redraw();
             }
             OrmContext.Instance.commit();
