@@ -31,11 +31,11 @@ namespace km.hl {
         }
 
         public const int RELEASE_MAJOR = 1;
-        public const int RELEASE_MINOR = 1;
+        public const int RELEASE_MINOR = 2;
         public enum ReleaseType {
             pre, rel
         }
-        public const ReleaseType RELEASE_TYPE = ReleaseType.pre;
+        public const ReleaseType RELEASE_TYPE = ReleaseType.rel;
         public static String Version {
             get { return String.Format("{0}.{1}-{2}", RELEASE_MAJOR, RELEASE_MINOR, RELEASE_TYPE); }
         }
