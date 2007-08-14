@@ -31,7 +31,7 @@ namespace km.hl {
         }
 
         public const int RELEASE_MAJOR = 1;
-        public const int RELEASE_MINOR = 2;
+        public const int RELEASE_MINOR = 3;
         public enum ReleaseType {
             pre, rel
         }

@@ -9,6 +9,13 @@ using km.hl.outturn.orm;
 
 namespace km.hl.outturn {
     public class ConfirmedScanAlgorithm : ScanAlgorithm {
+        public ConfirmedScanAlgorithm() {
+            String v = g.config.Config.get("outturn.min.items.without.serials");
+            if (v != null) {
+                _minItemsWoSerials = Int32.Parse(v);
+            }
+        }
+
         public void process(ItemsForm form, ICollection<ItemView> selected) {
             form.closeHandQtyInput();
             form.hideAlert();
@@ -70,7 +77,7 @@ namespace km.hl.outturn {
             processSerials(itemsForm, views);
         }
 
-        private const int MAX_ITEMS_WOSCAN = 20;
+        private int _minItemsWoSerials = 20;
 
         private void processSerials(ItemsForm form, ICollection<ItemView> selected) {
             SerialsForm serials = new SerialsForm(selected, this);
@@ -83,7 +90,7 @@ namespace km.hl.outturn {
                     qty += itemView.Item.Quantity;
                     noSerialNeed = noSerialNeed || itemView.Item.NoSerialNeed;
                 }
-                if (qty > MAX_ITEMS_WOSCAN && noSerialNeed) {
+                if (qty > _minItemsWoSerials && noSerialNeed) {
                     form.createHandQtyInput(selected);
                 }
             }

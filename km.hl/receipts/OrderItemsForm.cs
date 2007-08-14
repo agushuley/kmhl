@@ -131,8 +131,6 @@ namespace km.hl.receipts {
             redraw();
         }
 
-        private const int MAX_ITEMS_WOSCAN = 20;
-
         private ICollection<ItemView> selectByItemCode(int itemCode) {
             ICollection<ItemView> selected = new List<ItemView>();
             itemsViews.AutoScrollPosition = new Point(0, 0);
