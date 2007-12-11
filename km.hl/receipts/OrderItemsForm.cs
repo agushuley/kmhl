@@ -73,7 +73,9 @@ namespace km.hl.receipts {
                 orm.OrderItem item = itemView.Item;
                 if (item.IsRightCode(scanedCode)) {
                     itemCode = item.InventoryItemId;
-                    break;
+                    if (item.Quantity > item.QuantityChecked) {
+                        break;
+                    }
                 }
             }
 

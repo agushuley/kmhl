@@ -69,7 +69,9 @@ namespace km.hl.outturn {
                 orm.MoveOrderItem item = itemView.Item;
                 if (item.IsRightCode(tbCode)) {
                     itemCode = item.InventoryId;
-                    break;
+                    if (item.QtyPicked < item.Quantity) {
+                        break;
+                    }
                 }
             }
 
