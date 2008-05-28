@@ -21,10 +21,8 @@ namespace km.hl.receipts {
                 qty += view.Item.QuantityChecked;
                 maxQty += view.Item.Quantity;
             }
-            quantityPicked.Maximum = maxQty;
             lblQty.Text = "" + maxQty;
-            quantityPicked.Minimum = 0;
-            quantityPicked.Value = qty;
+            quantityPicked.Text = qty.ToString();
         }
 
         private ICollection<ItemView> views;
@@ -41,16 +39,24 @@ namespace km.hl.receipts {
         public event OnEvent OnUpdate;
 
         private void btnOk_Click(object sender, EventArgs e) {
-            int remaind = Convert.ToInt32(quantityPicked.Value);
-            foreach (ItemView view in views) {
-                int pos = Math.Min(view.Item.Quantity, remaind);
-                view.Item.QuantityChecked = pos;
-                remaind -= pos;
-                view.redraw();
-            }
-            OrmContext.Instance.commit();
-            if (OnUpdate != null) {
-                OnUpdate();
+            try {
+                int remaind = Int32.Parse(quantityPicked.Text);
+                if (remaind < 0 || remaind > maxQty) {
+                    MessageBox.Show("К-во должно быть в границах между 0 и " + maxQty, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+                foreach (ItemView view in views) {
+                    int pos = Math.Min(view.Item.Quantity, remaind);
+                    view.Item.QuantityChecked = pos;
+                    remaind -= pos;
+                    view.redraw();
+                }
+                OrmContext.Instance.commit();
+                if (OnUpdate != null) {
+                    OnUpdate();
+                }
+            } catch (FormatException) {
+                MessageBox.Show("Ошибка формата номера", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
     }
