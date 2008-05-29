@@ -25,7 +25,7 @@ namespace km.hl.outturn {
         private void InitializeComponent() {
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.quantityPicked = new System.Windows.Forms.NumericUpDown();
+            this.quantityPicked = new System.Windows.Forms.TextBox();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblQty = new System.Windows.Forms.Label();
@@ -105,7 +105,7 @@ namespace km.hl.outturn {
 
         #endregion
 
-        private System.Windows.Forms.NumericUpDown quantityPicked;
+        private System.Windows.Forms.TextBox quantityPicked;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblQty;
