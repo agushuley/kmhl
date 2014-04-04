@@ -21,4 +21,6 @@
 
   <value name="receipts.seq">PO_ORDER_ITEMS_S</value>
   <value name="receipts.seq_type">2</value>
+
+  <value name="outturn.min.items.without.serials">10</value>  
 </config>
