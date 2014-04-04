@@ -1,4 +1,4 @@
-namespace km.hl.receipts {
+п»їnamespace km.hl.receipts {
     partial class SerialsForm {
         /// <summary>
         /// Required designer variable.
@@ -49,7 +49,7 @@ namespace km.hl.receipts {
             this.cbNoSerialNeed.Name = "cbNoSerialNeed";
             this.cbNoSerialNeed.Size = new System.Drawing.Size(140, 18);
             this.cbNoSerialNeed.TabIndex = 1;
-            this.cbNoSerialNeed.Text = "Серийные не нужны";
+            this.cbNoSerialNeed.Text = "РЎРµСЂРёР№РЅС‹Рµ РЅРµ РЅСѓР¶РЅС‹";
             this.cbNoSerialNeed.CheckStateChanged += new System.EventHandler(this.cbNoSerialNeed_CheckStateChanged);
             // 
             // btnClose
@@ -96,7 +96,7 @@ namespace km.hl.receipts {
             this.Controls.Add(this.cbNoSerialNeed);
             this.Controls.Add(this.listSerials);
             this.Name = "SerialsForm";
-            this.Text = "Серийные номера";
+            this.Text = "РЎРµСЂРёР№РЅС‹Рµ РЅРѕРјРµСЂР°";
             this.Load += new System.EventHandler(this.SerialsForm_Load);
             this.ResumeLayout(false);
 

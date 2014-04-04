@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,7 +21,7 @@ namespace km.hl.receipts {
 
             int top = 0;
             {
-                orm.OrderItem item = new km.hl.receipts.orm.OrderItem(new orm.OrderItemKey(0, 0), null, 0, null, "Новая позиция...");
+                orm.OrderItem item = new km.hl.receipts.orm.OrderItem(new orm.OrderItemKey(0, 0), null, 0, null, "РќРѕРІР°СЏ РїРѕР·РёС†РёСЏ...");
 
                 ItemView view = new ItemView(item);
                 items.Controls.Add(view);
@@ -45,7 +45,7 @@ namespace km.hl.receipts {
 
         private void itemClick(Object sender, EventArgs e) {
             if (tbCode.Text.IndexOf('/') != -1) {
-                alert("Дополнительный код не может содержать символ слеша '/'");
+                alert("Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РєРѕРґ РЅРµ РјРѕР¶РµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ СЃРёРјРІРѕР» СЃР»РµС€Р° '/'");
                 return;
             }
             

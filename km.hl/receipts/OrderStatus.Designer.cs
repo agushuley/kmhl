@@ -1,4 +1,4 @@
-namespace km.hl.receipts {
+п»їnamespace km.hl.receipts {
     partial class OrderStatusForm {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@ namespace km.hl.receipts {
             this.stateNotReady.Name = "stateNotReady";
             this.stateNotReady.Size = new System.Drawing.Size(100, 20);
             this.stateNotReady.TabIndex = 0;
-            this.stateNotReady.Text = "Не готов";
+            this.stateNotReady.Text = "РќРµ РіРѕС‚РѕРІ";
             // 
             // stateReady
             // 
@@ -46,7 +46,7 @@ namespace km.hl.receipts {
             this.stateReady.Name = "stateReady";
             this.stateReady.Size = new System.Drawing.Size(100, 20);
             this.stateReady.TabIndex = 1;
-            this.stateReady.Text = "Готов";
+            this.stateReady.Text = "Р“РѕС‚РѕРІ";
             // 
             // pictureBox1
             // 
@@ -71,7 +71,7 @@ namespace km.hl.receipts {
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(58, 33);
             this.button1.TabIndex = 5;
-            this.button1.Text = "Да";
+            this.button1.Text = "Р”Р°";
             // 
             // button2
             // 
@@ -80,7 +80,7 @@ namespace km.hl.receipts {
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(58, 33);
             this.button2.TabIndex = 6;
-            this.button2.Text = "Нет";
+            this.button2.Text = "РќРµС‚";
             // 
             // OrderStatusForm
             // 
@@ -94,7 +94,7 @@ namespace km.hl.receipts {
             this.Controls.Add(this.stateReady);
             this.Controls.Add(this.stateNotReady);
             this.Name = "OrderStatusForm";
-            this.Text = "Статус документа";
+            this.Text = "РЎС‚Р°С‚СѓСЃ РґРѕРєСѓРјРµРЅС‚Р°";
             this.ResumeLayout(false);
 
         }

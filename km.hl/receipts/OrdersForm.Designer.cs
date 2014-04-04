@@ -1,4 +1,4 @@
-namespace km.hl.receipts {
+п»їnamespace km.hl.receipts {
     partial class OrdersForm {
         /// <summary>
         /// Required designer variable.
@@ -40,7 +40,7 @@ namespace km.hl.receipts {
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(72, 20);
             this.btnClose.TabIndex = 1;
-            this.btnClose.Text = "Закрыть";
+            this.btnClose.Text = "Р—Р°РєСЂС‹С‚СЊ";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // OrdersForm
@@ -52,7 +52,7 @@ namespace km.hl.receipts {
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.documentsPanel);
             this.Name = "OrdersForm";
-            this.Text = "Документы закупки";
+            this.Text = "Р”РѕРєСѓРјРµРЅС‚С‹ Р·Р°РєСѓРїРєРё";
             this.Load += new System.EventHandler(this.OrdersForm_Load);
             this.ResumeLayout(false);
 

@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -46,7 +46,7 @@ namespace km.hl {
 
         protected override void OnClosing(CancelEventArgs e) {
             if (!(codes.Text.Trim() == "" && saved)) {
-                switch (MessageBox.Show("Вы хотите сохранить отсканированый буфер?", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)) {
+                switch (MessageBox.Show("Р’С‹ С…РѕС‚РёС‚Рµ СЃРѕС…СЂР°РЅРёС‚СЊ РѕС‚СЃРєР°РЅРёСЂРѕРІР°РЅС‹Р№ Р±СѓС„РµСЂ?", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)) {
                     case DialogResult.Yes:
                         save();
                         if (!saved) {

@@ -1,12 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <config>
+  <!-- 
   <value name="scannerDriver">km.hard.casio.CasioBarScanner, km.hard</value>
   <value name="buzzerDriver">km.hard.casio.CasioBuzzer, km.hard</value>
-  
   <value name="hl-db.factory">g.orm.driver.OracleLiteCeDataFactory, g</value>
+  <value name="sync.provider">g.dbsync.OracleCeSyncProvider, g</value>
+  -->
+  
+  <value name="scannerDriver">km.hard.stubs.BarScanner, km.hard</value>
+  <value name="buzzerDriver">km.hard.stubs.Buzzer, km.hard</value>
+
+  <value name="hl-db.factory">oracew32.OracleLiteW32DataFactory, oracew32</value>
+  <value name="sync.provider">oracew32.OracleW32SyncProvider, oracew32</value>
+
   <value name="hl-db.connection">dsn=kmhl;uid=system;pwd=s1</value>
 
-  <value name="sync.provider">g.dbsync.OracleCeSyncProvider, g</value>
   <value name="sync.user">S1</value>
   <value name="sync.password">S1</value>
   <value name="sync.host">10.10.10.10</value>

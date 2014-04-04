@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -59,7 +59,7 @@ namespace km.hl.outturn {
         private void scanned() {
             String tbCode = code.Text;
             if (String.IsNullOrEmpty(tbCode)) {
-                alert("Пустой код");
+                alert("РџСѓСЃС‚РѕР№ РєРѕРґ");
                 Program.playMinor();
                 return;
             }
@@ -76,7 +76,7 @@ namespace km.hl.outturn {
             }
 
             if (itemCode == 0) {
-                alert("Не найдена позиция с кодом " + code.Text);
+                alert("РќРµ РЅР°Р№РґРµРЅР° РїРѕР·РёС†РёСЏ СЃ РєРѕРґРѕРј " + code.Text);
                 Program.playMinor();
                 return;
             }

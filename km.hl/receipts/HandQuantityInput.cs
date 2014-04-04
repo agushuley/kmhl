@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -42,7 +42,7 @@ namespace km.hl.receipts {
             try {
                 int remaind = Int32.Parse(quantityPicked.Text);
                 if (remaind < 0 || remaind > maxQty) {
-                    MessageBox.Show("К-во должно быть в границах между 0 и " + maxQty, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("Рљ-РІРѕ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РІ РіСЂР°РЅРёС†Р°С… РјРµР¶РґСѓ 0 Рё " + maxQty, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                     return;
                 }
                 foreach (ItemView view in views) {
@@ -56,7 +56,7 @@ namespace km.hl.receipts {
                     OnUpdate();
                 }
             } catch (FormatException) {
-                MessageBox.Show("Ошибка формата номера", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("РћС€РёР±РєР° С„РѕСЂРјР°С‚Р° РЅРѕРјРµСЂР°", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
     }

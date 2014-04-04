@@ -1,82 +1,69 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5E535048-C479-466A-89A7-B3CBBB846AB5}</ProjectGuid>
+    <ProjectGuid>{0FC66821-4D92-4F0A-A189-468CA7BBD288}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>km.hl</RootNamespace>
     <AssemblyName>km.hl</AssemblyName>
-    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PlatformFamilyName>WindowsCE</PlatformFamilyName>
-    <PlatformID>E2BECB1F-8C8C-41ba-B736-9BE7D946A398</PlatformID>
-    <OSVersion>5.00</OSVersion>
-    <DeployDirSuffix>ITScan</DeployDirSuffix>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-    <FormFactorID>
-    </FormFactorID>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
-    <NoStdLib>true</NoStdLib>
-    <NoConfig>true</NoConfig>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <FileAlignment>512</FileAlignment>
     <WarningLevel>4</WarningLevel>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
-    <NoStdLib>true</NoStdLib>
-    <NoConfig>true</NoConfig>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <FileAlignment>512</FileAlignment>
     <WarningLevel>4</WarningLevel>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="mscorlib" />
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Forms.DataGrid" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlertForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AlertForm.Designer.cs">
+    <Compile Include="AlertForm.designer.cs">
       <DependentUpon>AlertForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AlertPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AlertPanel.Designer.cs">
+    <Compile Include="AlertPanel.designer.cs">
       <DependentUpon>AlertPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="ClickShowUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ClickShowUserControl.Designer.cs">
+    <Compile Include="ClickShowUserControl.designer.cs">
       <DependentUpon>ClickShowUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="config\ComfigItemMapper.cs" />
@@ -85,22 +72,11 @@
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="outturn\orm\BuyersMapper.cs" />
-    <Compile Include="outturn\orm\Buyer.cs" />
     <Compile Include="orm\OrmCommons.cs" />
     <Compile Include="orm\OrmContext.cs" />
-    <Compile Include="outturn\orm\IItemsSerialsMapper.cs" />
-    <Compile Include="outturn\orm\IMoveOrderItemsMapper.cs" />
-    <Compile Include="outturn\orm\ItemSerialKey.cs" />
-    <Compile Include="outturn\orm\ItemsSerialsMapper.cs" />
-    <Compile Include="outturn\orm\MoveOrder.cs" />
-    <Compile Include="outturn\orm\MoveOrderItem.cs" />
-    <Compile Include="outturn\orm\ItemSerial.cs" />
-    <Compile Include="outturn\orm\MoveOrdersItemsMapper.cs" />
-    <Compile Include="outturn\orm\MoveOrdersMapper.cs" />
     <Compile Include="outturn\BuyerItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -108,11 +84,6 @@
     <Compile Include="outturn\Commons.cs" />
     <Compile Include="outturn\ConfirmedScanAlgorithm.cs" />
     <Compile Include="outturn\GivedScanAlgorithm.cs" />
-    <Compile Include="outturn\NullScanAlghoritm.cs" />
-    <Compile Include="outturn\OrderSelect.cs" />
-    <Compile Include="outturn\OrderItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="outturn\HandQuantityInput.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -128,6 +99,22 @@
     <Compile Include="outturn\ItemView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="outturn\NullScanAlghoritm.cs" />
+    <Compile Include="outturn\OrderItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="outturn\OrderSelect.cs" />
+    <Compile Include="outturn\orm\Buyer.cs" />
+    <Compile Include="outturn\orm\BuyersMapper.cs" />
+    <Compile Include="outturn\orm\IItemsSerialsMapper.cs" />
+    <Compile Include="outturn\orm\IMoveOrderItemsMapper.cs" />
+    <Compile Include="outturn\orm\ItemSerial.cs" />
+    <Compile Include="outturn\orm\ItemSerialKey.cs" />
+    <Compile Include="outturn\orm\ItemsSerialsMapper.cs" />
+    <Compile Include="outturn\orm\MoveOrder.cs" />
+    <Compile Include="outturn\orm\MoveOrderItem.cs" />
+    <Compile Include="outturn\orm\MoveOrdersItemsMapper.cs" />
+    <Compile Include="outturn\orm\MoveOrdersMapper.cs" />
     <Compile Include="outturn\ScanAlgorithm.cs" />
     <Compile Include="outturn\SelectListTypeForm.cs">
       <SubType>Form</SubType>
@@ -144,53 +131,42 @@
     <Compile Include="PlainScan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PlainScan.Designer.cs">
+    <Compile Include="PlainScan.designer.cs">
       <DependentUpon>PlainScan.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AlertForm.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>AlertForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AlertPanel.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>AlertPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="outturn\BuyerItem.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>BuyerItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="outturn\OrderItem.resx">
-      <DependentUpon>OrderItem.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="outturn\HandQuantityInput.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>HandQuantityInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="outturn\ItemsForm.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>ItemsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="outturn\ItemView.resx">
       <DependentUpon>ItemView.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="outturn\OrderItem.resx">
+      <DependentUpon>OrderItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="outturn\SelectListTypeForm.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>SelectListTypeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="outturn\SerialsForm.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>SerialsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlainScan.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>PlainScan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -199,54 +175,39 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="receipts\AssignItemForm.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>AssignItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="receipts\HandQuantityInput.resx">
       <DependentUpon>HandQuantityInput.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="receipts\ItemView.resx">
+      <DependentUpon>ItemView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="receipts\NewItemForm.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>NewItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="receipts\OrderItemsForm.resx">
       <DependentUpon>OrderItemsForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="receipts\ItemView.resx">
-      <DependentUpon>ItemView.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="receipts\OrdersForm.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>OrdersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="receipts\OrderStatus.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>OrderStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="receipts\OrderView.resx">
       <DependentUpon>OrderView.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="receipts\SerialsForm.resx">
       <DependentUpon>SerialsForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx" />
     <EmbeddedResource Include="SyncForm.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>SyncForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="receipts\AssignItemForm.cs">
       <SubType>Form</SubType>
@@ -261,6 +222,9 @@
     <Compile Include="receipts\HandQuantityInput.Designer.cs">
       <DependentUpon>HandQuantityInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="receipts\ItemView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="receipts\NewItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,9 +236,6 @@
     </Compile>
     <Compile Include="receipts\OrderItemsForm.Designer.cs">
       <DependentUpon>OrderItemsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="receipts\ItemView.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="receipts\OrdersForm.cs">
       <SubType>Form</SubType>
@@ -305,44 +266,33 @@
     <Compile Include="receipts\SerialsForm.Designer.cs">
       <DependentUpon>SerialsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <Compile Include="Resources.Designer.cs" />
     <Compile Include="SyncForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SyncForm.Designer.cs">
+    <Compile Include="SyncForm.designer.cs">
       <DependentUpon>SyncForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="km.hl.csproj.user" />
     <Content Include="km.hl.exe.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\gb.png" />
-    <None Include="Resources\rb.png" />
+    <Content Include="Resources\gb.png" />
+    <Content Include="Resources\rb.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\g\g.csproj">
-      <Project>{7648D0B2-C7A1-470B-882B-0985DBF22AB3}</Project>
+      <Project>{BF7B97AE-102E-4D01-BDBD-5DA49E28E6B6}</Project>
       <Name>g</Name>
     </ProjectReference>
     <ProjectReference Include="..\km.hard\km.hard.csproj">
-      <Project>{B458B90D-7AE1-4968-88E0-F57D09C137C1}</Project>
+      <Project>{0CADC73D-AD77-40C9-BC00-F0143C84C5B5}</Project>
       <Name>km.hard</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
-  <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
-  <ProjectExtensions>
-    <VisualStudio>
-      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
-        <HostingProcess disable="1" />
-      </FlavorProperties>
-    </VisualStudio>
-  </ProjectExtensions>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

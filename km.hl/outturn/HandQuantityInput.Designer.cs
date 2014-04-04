@@ -1,4 +1,4 @@
-namespace km.hl.outturn {
+ï»¿namespace km.hl.outturn {
     partial class HandQuantityInput {
         /// <summary> 
         /// Required designer variable.
@@ -37,7 +37,7 @@ namespace km.hl.outturn {
             this.label1.Location = new System.Drawing.Point(-1, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 15);
-            this.label1.Text = "Îòîáðàíî";
+            this.label1.Text = "ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð½Ð¾";
             // 
             // label3
             // 
@@ -45,7 +45,7 @@ namespace km.hl.outturn {
             this.label3.Location = new System.Drawing.Point(118, 6);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 15);
-            this.label3.Text = "èç";
+            this.label3.Text = "Ð¸Ð·";
             // 
             // quantityPicked
             // 

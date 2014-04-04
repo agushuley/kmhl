@@ -1,4 +1,4 @@
-namespace km.hl.receipts {
+п»їnamespace km.hl.receipts {
     partial class NewItemForm {
         /// <summary>
         /// Required designer variable.
@@ -40,7 +40,7 @@ namespace km.hl.receipts {
             label1.Location = new System.Drawing.Point(4, 4);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(100, 20);
-            label1.Text = "Название:";
+            label1.Text = "РќР°Р·РІР°РЅРёРµ:";
             // 
             // tbName
             // 
@@ -54,7 +54,7 @@ namespace km.hl.receipts {
             label2.Location = new System.Drawing.Point(4, 58);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(231, 20);
-            label2.Text = "Код производителя:";
+            label2.Text = "РљРѕРґ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЏ:";
             // 
             // tbCode
             // 
@@ -70,7 +70,7 @@ namespace km.hl.receipts {
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new System.Drawing.Size(72, 20);
             btnCreate.TabIndex = 4;
-            btnCreate.Text = "Создать";
+            btnCreate.Text = "РЎРѕР·РґР°С‚СЊ";
             btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // btnCancel
@@ -80,7 +80,7 @@ namespace km.hl.receipts {
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new System.Drawing.Size(72, 20);
             btnCancel.TabIndex = 5;
-            btnCancel.Text = "Отменить";
+            btnCancel.Text = "РћС‚РјРµРЅРёС‚СЊ";
             // 
             // NewItemForm
             // 
@@ -95,7 +95,7 @@ namespace km.hl.receipts {
             this.Controls.Add(this.tbName);
             this.Controls.Add(label1);
             this.Name = "NewItemForm";
-            this.Text = "Новая позиция";
+            this.Text = "РќРѕРІР°СЏ РїРѕР·РёС†РёСЏ";
             this.Closing += new System.ComponentModel.CancelEventHandler(this.NewItemForm_Closing);
             this.ResumeLayout(false);
 

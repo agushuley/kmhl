@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -61,8 +61,8 @@ namespace km.hl {
                 int major = Int32.Parse(parts[0]);
                 int minor = Int32.Parse(parts[1]);
                 if (major > Program.RELEASE_MAJOR || (major == Program.RELEASE_MAJOR && minor > Program.RELEASE_MINOR)) {
-                    MessageBox.Show("Доступна новая версия ПО: " + item.Value + ", у Вас: " + Program.Version + ". " 
-                        + "Рекомендуем Вам обновить ПО к новой версии.");
+                    MessageBox.Show("Р”РѕСЃС‚СѓРїРЅР° РЅРѕРІР°СЏ РІРµСЂСЃРёСЏ РџРћ: " + item.Value + ", Сѓ Р’Р°СЃ: " + Program.Version + ". " 
+                        + "Р РµРєРѕРјРµРЅРґСѓРµРј Р’Р°Рј РѕР±РЅРѕРІРёС‚СЊ РџРћ Рє РЅРѕРІРѕР№ РІРµСЂСЃРёРё.");
                 }
             }
             catch (Exception) { };

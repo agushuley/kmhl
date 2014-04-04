@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
@@ -15,7 +15,7 @@ namespace g.forms {
                     File.Delete(lockFileName);
                 }
                 catch (System.IO.IOException) {
-                    System.Windows.Forms.MessageBox.Show("Запущен второй экземпляр приложения, новый экземпляр не будет запущен. Если Вы не согласны с этим, удалите файл " + lockFileName);
+                    System.Windows.Forms.MessageBox.Show("Р—Р°РїСѓС‰РµРЅ РІС‚РѕСЂРѕР№ СЌРєР·РµРјРїР»СЏСЂ РїСЂРёР»РѕР¶РµРЅРёСЏ, РЅРѕРІС‹Р№ СЌРєР·РµРјРїР»СЏСЂ РЅРµ Р±СѓРґРµС‚ Р·Р°РїСѓС‰РµРЅ. Р•СЃР»Рё Р’С‹ РЅРµ СЃРѕРіР»Р°СЃРЅС‹ СЃ СЌС‚РёРј, СѓРґР°Р»РёС‚Рµ С„Р°Р№Р» " + lockFileName);
                     return;
                 }
             }

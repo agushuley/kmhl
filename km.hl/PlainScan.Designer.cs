@@ -1,4 +1,4 @@
-namespace km.hl {
+ï»¿namespace km.hl {
     partial class PlainScan {
         /// <summary>
         /// Required designer variable.
@@ -52,7 +52,7 @@ namespace km.hl {
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(94, 20);
             this.close.TabIndex = 2;
-            this.close.Text = "Çàêðûòü";
+            this.close.Text = "Ð—Ð°ÐºÑ€Ñ‹Ñ‚ÑŒ";
             this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // save
@@ -67,7 +67,7 @@ namespace km.hl {
             this.btnStore.Name = "btnStore";
             this.btnStore.Size = new System.Drawing.Size(94, 20);
             this.btnStore.TabIndex = 1;
-            this.btnStore.Text = "Ñîõðàíèòü";
+            this.btnStore.Text = "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ";
             this.btnStore.Click += new System.EventHandler(this.btnStore_Click);
             // 
             // PlainScan

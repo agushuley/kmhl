@@ -1,4 +1,4 @@
-namespace km.hl.outturn {
+п»їnamespace km.hl.outturn {
     partial class SelectListTypeForm {
         /// <summary>
         /// Required designer variable.
@@ -45,7 +45,7 @@ namespace km.hl.outturn {
             this.btnContragents.Name = "btnContragents";
             this.btnContragents.Size = new System.Drawing.Size(96, 33);
             this.btnContragents.TabIndex = 1;
-            this.btnContragents.Text = "Контрагенты";
+            this.btnContragents.Text = "РљРѕРЅС‚СЂР°РіРµРЅС‚С‹";
             this.btnContragents.Click += new System.EventHandler(this.btnContragents_Click);
             // 
             // btnDocuments
@@ -54,7 +54,7 @@ namespace km.hl.outturn {
             this.btnDocuments.Name = "btnDocuments";
             this.btnDocuments.Size = new System.Drawing.Size(103, 33);
             this.btnDocuments.TabIndex = 2;
-            this.btnDocuments.Text = "Документы";
+            this.btnDocuments.Text = "Р”РѕРєСѓРјРµРЅС‚С‹";
             this.btnDocuments.Click += new System.EventHandler(this.btnDocuments_Click);
             // 
             // X
@@ -77,7 +77,7 @@ namespace km.hl.outturn {
             this.Controls.Add(this.btnContragents);
             this.Controls.Add(this.panel);
             this.Name = "SelectListTypeForm";
-            this.Text = "Выберите представление документов";
+            this.Text = "Р’С‹Р±РµСЂРёС‚Рµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РґРѕРєСѓРјРµРЅС‚РѕРІ";
             this.Load += new System.EventHandler(this.SelectViewForm_Load);
             this.ResumeLayout(false);
 

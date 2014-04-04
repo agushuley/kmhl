@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -63,7 +63,7 @@ namespace km.hl.receipts {
         private void scanned() {
             String scanedCode = code.Text;
             if (String.IsNullOrEmpty(scanedCode)) {
-                alert("Пустой код");
+                alert("РџСѓСЃС‚РѕР№ РєРѕРґ");
                 Program.playMinor();
                 return;
             }

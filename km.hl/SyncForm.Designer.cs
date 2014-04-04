@@ -1,4 +1,4 @@
-namespace km.hl {
+п»їnamespace km.hl {
     partial class SyncForm {
         /// <summary>
         /// Required designer variable.
@@ -40,7 +40,7 @@ namespace km.hl {
             this.label4.Location = new System.Drawing.Point(4, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 20);
-            this.label4.Text = "Подготовка";
+            this.label4.Text = "РџРѕРґРіРѕС‚РѕРІРєР°";
             // 
             // prepareBar
             // 
@@ -56,7 +56,7 @@ namespace km.hl {
             this.label5.Location = new System.Drawing.Point(4, 55);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 20);
-            this.label5.Text = "Посылка";
+            this.label5.Text = "РџРѕСЃС‹Р»РєР°";
             // 
             // sendBar
             // 
@@ -72,7 +72,7 @@ namespace km.hl {
             this.label6.Location = new System.Drawing.Point(4, 81);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 20);
-            this.label6.Text = "Получение";
+            this.label6.Text = "РџРѕР»СѓС‡РµРЅРёРµ";
             // 
             // label7
             // 
@@ -80,7 +80,7 @@ namespace km.hl {
             this.label7.Location = new System.Drawing.Point(4, 107);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 20);
-            this.label7.Text = "Обработка";
+            this.label7.Text = "РћР±СЂР°Р±РѕС‚РєР°";
             // 
             // receiveBar
             // 
@@ -104,7 +104,7 @@ namespace km.hl {
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(106, 20);
             this.btnClose.TabIndex = 9;
-            this.btnClose.Text = "Закрыть";
+            this.btnClose.Text = "Р—Р°РєСЂС‹С‚СЊ";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // SyncForm
@@ -123,7 +123,7 @@ namespace km.hl {
             this.Controls.Add(this.prepareBar);
             this.Controls.Add(this.label4);
             this.Name = "SyncForm";
-            this.Text = "Синхронизация";
+            this.Text = "РЎРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ";
             this.Activated += new System.EventHandler(this.SyncForm_Activated);
             this.Load += new System.EventHandler(this.SyncForm_Load);
             this.ResumeLayout(false);

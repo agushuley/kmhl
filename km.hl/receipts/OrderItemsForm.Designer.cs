@@ -1,4 +1,4 @@
-namespace km.hl.receipts {
+ï»¿namespace km.hl.receipts {
     partial class OrderItemsForm {
         /// <summary>
         /// Required designer variable.
@@ -103,7 +103,7 @@ namespace km.hl.receipts {
             this.Controls.Add(this.code);
             this.Controls.Add(this.itemsViews);
             this.Name = "ItemsForm";
-            this.Text = "Ïîçèöèè";
+            this.Text = "ÐŸÐ¾Ð·Ð¸Ñ†Ð¸Ð¸";
             this.Load += new System.EventHandler(this.ItemsForm_Load);
             this.Controls.SetChildIndex(this.itemsViews, 0);
             this.Controls.SetChildIndex(this.code, 0);

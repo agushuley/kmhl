@@ -1,4 +1,4 @@
-namespace test {
+﻿namespace test {
     partial class Form1 {
         /// <summary>
         /// Required designer variable.

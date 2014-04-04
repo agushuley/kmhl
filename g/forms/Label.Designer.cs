@@ -1,4 +1,4 @@
-namespace g.forms {
+﻿namespace g.forms {
     partial class Label {
         /// <summary>
         /// Required designer variable.

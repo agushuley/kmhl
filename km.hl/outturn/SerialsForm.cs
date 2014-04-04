@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -70,7 +70,7 @@ namespace km.hl.outturn {
                 }
                 else {
                     Program.playMajor();
-                    alert("Не выделен серийный номер");
+                    alert("РќРµ РІС‹РґРµР»РµРЅ СЃРµСЂРёР№РЅС‹Р№ РЅРѕРјРµСЂ");
                 }
             }
         }

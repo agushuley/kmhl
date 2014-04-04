@@ -1,4 +1,4 @@
-namespace km.hl.outturn {
+ï»¿namespace km.hl.outturn {
     partial class ItemsForm {
         /// <summary>
         /// Required designer variable.
@@ -94,7 +94,7 @@ namespace km.hl.outturn {
             this.Controls.Add(this.code);
             this.Controls.Add(this.itemsViews);
             this.Name = "ItemsForm";
-            this.Text = "Ïîçèöèè";
+            this.Text = "ÐŸÐ¾Ð·Ð¸Ñ†Ð¸Ð¸";
             this.Load += new System.EventHandler(this.ItemsForm_Load);
             this.ResumeLayout(false);
 

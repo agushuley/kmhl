@@ -1,4 +1,4 @@
-namespace km.hl {
+﻿namespace km.hl {
     partial class AlertForm {
         /// <summary>
         /// Required designer variable.

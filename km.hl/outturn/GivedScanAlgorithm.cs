@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
@@ -22,7 +22,7 @@ namespace km.hl.outturn {
             }
             if (filled) {
                 Program.playMinor();
-                form.alert("Все серийные номера позиции заполнены");
+                form.alert("Р’СЃРµ СЃРµСЂРёР№РЅС‹Рµ РЅРѕРјРµСЂР° РїРѕР·РёС†РёРё Р·Р°РїРѕР»РЅРµРЅС‹");
                 return;
             };
 
@@ -46,26 +46,26 @@ namespace km.hl.outturn {
         public void scanSerial(SerialsForm serialsForm, ICollection<ItemView> views) {
             if (String.IsNullOrEmpty(serialsForm.tbSerial.Text)) {
                 Program.playMinor();
-                serialsForm.alert("Серийный номер пуст");
+                serialsForm.alert("РЎРµСЂРёР№РЅС‹Р№ РЅРѕРјРµСЂ РїСѓСЃС‚");
                 return;
             }
 
             if (Commons.checkSerialIsItemCode(serialsForm.tbSerial.Text)) {
                 Program.playMinor();
-                serialsForm.alert("Серийный некорректен");
+                serialsForm.alert("РЎРµСЂРёР№РЅС‹Р№ РЅРµРєРѕСЂСЂРµРєС‚РµРЅ");
                 return;
             }
 
             if (Commons.checkSerialExists(serialsForm.tbSerial.Text)) {
                 Program.playMinor();
-                serialsForm.alert("Дублирование серийного номера");
+                serialsForm.alert("Р”СѓР±Р»РёСЂРѕРІР°РЅРёРµ СЃРµСЂРёР№РЅРѕРіРѕ РЅРѕРјРµСЂР°");
                 return;
             }
 
             bool filled = isFilled(views);
             if (filled) {
                 Program.playMinor();
-                serialsForm.alert("Все серийные номера позиции заполнены");
+                serialsForm.alert("Р’СЃРµ СЃРµСЂРёР№РЅС‹Рµ РЅРѕРјРµСЂР° РїРѕР·РёС†РёРё Р·Р°РїРѕР»РЅРµРЅС‹");
                 return;
             };
 

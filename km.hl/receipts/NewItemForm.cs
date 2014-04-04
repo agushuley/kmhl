@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,12 +29,12 @@ namespace km.hl.receipts {
         private void NewItemForm_Closing(object sender, CancelEventArgs e) {
             if (DialogResult == DialogResult.OK) {
                 if (String.IsNullOrEmpty(tbName.Text.Trim())) {
-                    MessageBox.Show("Название позиции пустое!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("РќР°Р·РІР°РЅРёРµ РїРѕР·РёС†РёРё РїСѓСЃС‚РѕРµ!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                     e.Cancel = true;
                     return;
                 }
                 if (String.IsNullOrEmpty(tbCode.Text.Trim())) {
-                    MessageBox.Show("Код производителя пустой!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("РљРѕРґ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЏ РїСѓСЃС‚РѕР№!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                     e.Cancel = true;
                     return;
                 }

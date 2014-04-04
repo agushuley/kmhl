@@ -1,4 +1,4 @@
-namespace km.hl.receipts {
+Ôªønamespace km.hl.receipts {
     partial class AssignItemForm {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@ namespace km.hl.receipts {
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 20);
-            this.label1.Text = " Ó‰:";
+            this.label1.Text = "–ö–æ–¥:";
             // 
             // textBox1
             // 
@@ -50,7 +50,7 @@ namespace km.hl.receipts {
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(72, 20);
             this.btnClose.TabIndex = 2;
-            this.btnClose.Text = "ŒÚÏÂÌËÚ¸";
+            this.btnClose.Text = "–û—Ç–º–µ–Ω–∏—Ç—å";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // items

@@ -1,4 +1,4 @@
-namespace km.hl {
+﻿namespace km.hl {
     partial class AlertPanel {
         /// <summary> 
         /// Required designer variable.

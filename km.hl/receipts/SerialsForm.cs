@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -60,12 +60,12 @@ namespace km.hl.receipts {
 
                 if (Commons.checkSerialBySerial(tbSerial.Text)) {
                     Program.playMinor();
-                    alert("Дублирование серийного номера");
+                    alert("Р”СѓР±Р»РёСЂРѕРІР°РЅРёРµ СЃРµСЂРёР№РЅРѕРіРѕ РЅРѕРјРµСЂР°");
                     return;
                 } 
                 if (Commons.checkSerialIsItemCode(tbSerial.Text)) {
                     Program.playMinor();
-                    alert("Серийный некорректен");
+                    alert("РЎРµСЂРёР№РЅС‹Р№ РЅРµРєРѕСЂСЂРµРєС‚РµРЅ");
                     return;
                 } 
             }
@@ -88,7 +88,7 @@ namespace km.hl.receipts {
                 }
             }
             if (!findedEmptyPos) {
-                alert("Все количество позиции отобрано.");
+                alert("Р’СЃРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕР·РёС†РёРё РѕС‚РѕР±СЂР°РЅРѕ.");
                 return;
             }
             
@@ -143,7 +143,7 @@ namespace km.hl.receipts {
                 }
                 else {
                     Program.playMajor();
-                    alert("Не выделен серийный номер");
+                    alert("РќРµ РІС‹РґРµР»РµРЅ СЃРµСЂРёР№РЅС‹Р№ РЅРѕРјРµСЂ");
                 }
             }
         }

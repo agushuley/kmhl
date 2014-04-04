@@ -1,4 +1,4 @@
-namespace g.forms {
+﻿namespace g.forms {
     partial class OwnerDrawList {
         /// <summary> 
         /// Required designer variable.
